@@ -1,5 +1,4 @@
-
-Create a new repository
+##Create a new repository
 
 git clone https://gitlab.com/RezaPahlevi/content-approval.git
 cd content-approval
@@ -8,7 +7,7 @@ git add README.md
 git commit -m "add README"
 git push -u origin master
 
-Existing folder
+##Existing folder
 
 cd existing_folder
 git init
@@ -17,7 +16,7 @@ git add .
 git commit
 git push -u origin master
 
-Existing Git repository
+##Existing Git repository
 
 cd existing_repo
 git remote add origin https://gitlab.com/RezaPahlevi/content-approval.git
