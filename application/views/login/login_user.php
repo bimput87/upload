@@ -18,14 +18,19 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   <div class="login-box-body">
     <p class="login-box-msg">Sign in to start your session</p>
     
-    <form action="../../index2.html" method="post">
+    <?php echo form_open('login/login') ?>
+     <div style="display:none">
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+      </div>   
       <div class="form-group has-feedback">
-        <input type="email" class="form-control" placeholder="Email">
+        <input name="email" type="email" class="form-control" placeholder="Email">
         <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+        <?php echo form_error('email') ?>
       </div>
       <div class="form-group has-feedback">
-        <input type="password" class="form-control" placeholder="Password">
+        <input name="password" type="password" class="form-control" placeholder="Password">
         <span class="glyphicon glyphicon-lock form-control-feedback"></span>
+        <?php echo form_error('password') ?>
       </div>
       <div class="row">
         <div class="col-xs-8">
@@ -36,9 +41,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         </div>
         <!-- /.col -->
       </div>
-    </form>
+    <?php echo form_close() ?>
 
-    <a href="#">I forgot my password</a><br>
+    <?php echo anchor('login_user/forgot', 'I forgot my password') ?>
+    <br>
     <?php echo anchor('login_user/register_view', 'Register a new account', array('class' => 'text-center')) ?>
     <!-- <a href="register.html" class="text-center">Register a new membership</a> -->
 
@@ -49,14 +55,5 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 <?php  require_once VINC.'footer.php';?>
 
-<script>
-  $(function () {
-    $('input').iCheck({
-      checkboxClass: 'icheckbox_square-blue',
-      radioClass: 'iradio_square-blue',
-      increaseArea: '20%' // optional
-    });
-  });
-</script>
 </body>
 </html>

@@ -11,7 +11,7 @@
 		{
 			parent::__construct();
 			$this->load->model('user_model', 'usr_mdl', TRUE);
-			$this->load->library('form_validation');
+			$this->load->library(array('form_validation', 'bcrypt'));
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible">', '</div>');
 			$this->status = $this->config->item('status');
 			$this->roles = $this->config->item('roles');
@@ -25,6 +25,52 @@
 		public function register_view()
 		{
 			$this->load->view('login/register_user');
+		}
+
+		public function login($post)
+		{
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
+			$this->form_validation->set_rules('password', 'Passowrd', 'required');
+
+			if ($this->form_validation->run() == FALSE) 
+				$this->index();
+			else{
+				$post = $this->input->post();
+				$clean = $this->security->xss_clean($post);
+
+				$user_info = $this->usr_mdl->check_login($clean);
+
+				if (!$user_info) {
+					$this->session->set_flashdata('flash_messsage', 'The login was unsuccessful');
+					redirect('login/login');
+				}
+				foreach ($user_info as $key => $value) 
+					$this->session->set_userdata($key, $value);
+
+				redirect('login');
+				
+			}
+		}
+
+		public function forgot()
+		{
+			$this->form_validation->set_rules('email', 'Email', required|valid_email);
+			if($this->form_validation->run() == FALSE)
+				$this->load->view('login/forgot');
+			else{
+				$email = $this->input->post('email');
+				$clean = $this->security->xss_clean($email);
+				$user_info = $this->usr_mdl->get_user_info($clean);
+
+				if (!$user_info) {
+					$this->session->set_flashdata('flash_messsage', 'We can\'t find your email address');
+					redirect('login');
+				} else {
+										
+				}
+				
+
+			}
 		}
 
 		public function register()
@@ -71,9 +117,9 @@
 		 	} 
 
 		 	$data = array(
-		 		'first_name' => $user_info['first_name'], 
-		 		'email'		 => $user_info['email'],
-		 		'user_id'	 => $user_info['user_id'],
+		 		'first_name' => $user_info->first_name, 
+		 		'email'		 => $user_info->email,
+		 		'user_id'	 => $user_info->id,
 		 		'token'		 => $this->base64url_encode($token)	
 	 		);
 
@@ -81,8 +127,23 @@
 	 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 
 	 		if ($this->form_validation->run == FALSE) 
-	 			$this->load->view('login/complete');
+	 			$this->load->view('login/complete', $data);
 	 		else{
+	 			$post = $this->input->post(NULL, TRUE);
+	 			$clean_post = $this->security->xss_clean($post);
+	 			$hashed = $this->bcrypt->hash_password($clean_post['password']);
+	 			unset($clean_post['passconf']);
+	 			$usr_info = $this->usr_mdl->update_user_info($clean_post);
+
+	 			if (!$usr_info) {
+	 				$this->session->set_flashdata('flash_messsage', 'There was a problem while updating data');
+	 				redirect('login');
+	 			}
+	 			unset($usr_info->password);
+	 			foreach ($usr_info as $key => $value) 
+	 				$this->sesion->set_userdata($key, $value);
+
+	 			redirect('login');
 	 			
 	 		}
 		}

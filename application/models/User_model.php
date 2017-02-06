@@ -12,6 +12,7 @@ class User_model extends CI_Model
 		parent::__construct();
 		$this->roles = $this->config->item('roles');
 		$this->status = $this->config->item('status');
+		$this->load->library('bcrypt');
 	}
 
 	public function insert_user($post)
@@ -53,10 +54,85 @@ class User_model extends CI_Model
 		return $token.$user_id;
 	}
 
-	public function FunctionName($value='')
+	public function is_token_valid($token)
 	{
-		# code...
+		$tkn = substr($token, 0, 30);
+		$uid = substr($token, 30);
+
+		$q = $this->db->get_where('tokens', array(
+				'tokens.token'	=> $tkn,
+				'tokens.user_id'=> $uid
+			),
+			1
+		);
+
+		if ($this->db->affected_rows() > 0) {
+			$row = $q->row();
+
+			$created = $row->created;
+			$created_ts = strtotime($created);
+			$today = date('Y-m-d');
+			$today_ts = strtotime($today);
+
+			if($created_ts != $today_ts)
+				return FALSE;
+
+			$user_info = $this->get_user_info($row->user_id);
+
+			return $user_info;
+		}else
+			return FALSE;
 	}
+
+	public function check_login($post)
+	{
+		$this->db->where('email', $post['email']);
+		$query = $this->db->get('users');
+		$user_info = $query->row();
+
+		if (!$this->bcrypt->check_password($post['password'], $user_info->password)) {
+			error_log('Unsuccessful login attempt ('.$post['password'].')');
+			return FALSE;
+		}
+		
+		$this->update_login_time($user_info->id);
+
+		unset($user_info->password);
+
+		return $user_info;
+	}
+
+	public function update_login_time($id)
+	{
+		$this->db->where('id', $id);
+		$this->db->update('users', array('last_login' => date('Y-m-d h:i:s A')));
+
+		return;
+	}
+
+	public function update_user_info($post)
+	{
+		$data = array(
+			'password' 	=> $post['password'], 
+			'last_login'=> date('Y-m-d h:i:s A'),
+			'status'	=> $this->status[1] 
+		);
+
+		$this->db->where('id', $post['user_id']);
+		$this->db->update('users', $data);
+		$success = $this->db->affected_rows();
+
+		if(!$success){
+			error_log('Unable to update user info ('.$post['user_id'].')');
+			return FALSE;
+		}
+
+		$user_info = $this->get_user_info($post['user_id']);
+
+		return $user_info;
+	}
+
+
 }
 
 
