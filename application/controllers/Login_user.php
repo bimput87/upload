@@ -72,8 +72,8 @@
 				$clean = $this->security->xss_clean($email);
 				$user_info = $this->usr_mdl->get_user_info_by_email($clean);
 				// print_r($user_info);
-				echo "hasil";
-				var_dump($user_info);
+				// echo "hasil";
+				// var_dump($user_info);
 				// echo $user_info;
 				// die;
 				// exit;

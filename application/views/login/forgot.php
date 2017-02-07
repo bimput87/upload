@@ -22,7 +22,7 @@
 					echo $html;
 				}
 			?>
-			<p class="login-box-msg">Fill email to reset your password</p>
+			<p class="login-box-msg">Fill email to reset your link for reset password</p>
 
 			<?php echo form_open(site_url().'login_user/forgot/', array('class' => 'bs-example')) ?>
 				<div style="display:none">
