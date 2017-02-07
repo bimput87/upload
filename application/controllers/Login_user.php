@@ -1,6 +1,6 @@
 <?php  
 	/**
-	* 
+	* Login class
 	*/
 	class Login_user extends CI_Controller
 	{
@@ -27,13 +27,13 @@
 			$this->load->view('login/register_user');
 		}
 
-		public function login($post)
+		public function do_login()
 		{
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-			$this->form_validation->set_rules('password', 'Passowrd', 'required');
+			$this->form_validation->set_rules('password', 'Password', 'required');
 
 			if ($this->form_validation->run() == FALSE) 
-				$this->index();
+				redirect('/');
 			else{
 				$post = $this->input->post();
 				$clean = $this->security->xss_clean($post);
@@ -41,20 +41,20 @@
 				$user_info = $this->usr_mdl->check_login($clean);
 
 				if (!$user_info) {
-					$this->session->set_flashdata('flash_messsage', 'The login was unsuccessful');
-					redirect('login/login');
+					$_SESSION['flash_messsage'] = 'The login was unsuccessful';
+					$this->session->mark_as_temp('flash_messsage', 60); // Expire in 1 minutes
+					redirect(site_url().'login_user/do_login');
 				}
 				foreach ($user_info as $key => $value) 
 					$this->session->set_userdata($key, $value);
 
-				redirect('login');
-				
+				echo "Sukses login";
 			}
 		}
 
-		public function forgot()
+		public function reset_password()
 		{
-			$this->form_validation->set_rules('email', 'Email', required|valid_email);
+			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			if($this->form_validation->run() == FALSE)
 				$this->load->view('login/forgot');
 			else{
@@ -64,12 +64,35 @@
 
 				if (!$user_info) {
 					$this->session->set_flashdata('flash_messsage', 'We can\'t find your email address');
-					redirect('login');
+					redirect('/');
 				} else {
-										
-				}
-				
+					$email = $this->input->post('email');
+					$clean = $this->security->xss_clean($email);
+					$user_info = $this->usr_mdl->get_user_info_by_email($clean);
 
+					if (!$user_info) {
+						$this->session->set_flashdata('flash_messsage', 'We can\'t find find your email address');
+						redirect('/');
+					}
+
+					if ($user_info->status != $this->status[1]) {
+						$this->session->set_flashdata('flash_messsage', 'Your account is not in approved status');
+						redirect('/');
+					}	
+
+					/*build token*/
+
+					$token = $this->usr_mdl->insert_token($user_info->id);
+					$qstring = $this->base64url_encode($token);
+					$url = site_url().'login/reset_password';
+					$link = '<a href=" '.$url.' ">'. $url .'</a>';
+
+					$message = '';
+					$message .= '<strong>A password reset has been requested for this email account</strong></br>';
+					$message .= '<strong>Please click: </strong>'.$link;
+					echo $message;
+					exit;									
+				}
 			}
 		}
 
@@ -85,19 +108,21 @@
 			else {
 				if ($this->usr_mdl->is_duplicate($this->input->post('email'))) {
 					$this->session->set_flashdata('flash_messsage', 'User email already exists');
-					redirect('login');
+					redirect('/');
 				} else {
 					$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
 					$id = $this->usr_mdl->insert_user($clean);
 					$token = $this->usr_mdl->insert_token($id);
 
 					$qstring = $this->base64url_encode($token);
-					$url = site_url().'login/complete/token/'.$qstring;
+					$url = site_url().'login_user/complete/token/'.$qstring;
 					$link = '<a href="'.$url.'">'.$url.'</a>';
 
 					$message = '';
-					$message .= '<strong>You have signed up</strong>';
+					$message .= '<strong>You have signed up</strong></br>';
 					$message .= '<strong>Please click </strong>'.$link;
+					echo $message;
+					
 					exit;
 				}
 			}
@@ -113,7 +138,7 @@
 
 			if (!$user_info) {
 			 	$this->session->set_flashdata('flash_messsage', 'Token is invalid or expired');
-			 	redirect('login');
+			 	redirect('/');
 		 	} 
 
 		 	$data = array(
@@ -123,27 +148,28 @@
 		 		'token'		 => $this->base64url_encode($token)	
 	 		);
 
-	 		$this->form_validation->set_rules('password', 'Password', required|min_length[6]);
+	 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
 	 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 
-	 		if ($this->form_validation->run == FALSE) 
+	 		if ($this->form_validation->run() == FALSE) 
 	 			$this->load->view('login/complete', $data);
 	 		else{
 	 			$post = $this->input->post(NULL, TRUE);
 	 			$clean_post = $this->security->xss_clean($post);
 	 			$hashed = $this->bcrypt->hash_password($clean_post['password']);
+	 			$clean_post['password'] = $hashed;
 	 			unset($clean_post['passconf']);
 	 			$usr_info = $this->usr_mdl->update_user_info($clean_post);
-
+	 			// print_r($clean_post);
 	 			if (!$usr_info) {
 	 				$this->session->set_flashdata('flash_messsage', 'There was a problem while updating data');
-	 				redirect('login');
+	 				redirect('/');
 	 			}
 	 			unset($usr_info->password);
 	 			foreach ($usr_info as $key => $value) 
-	 				$this->sesion->set_userdata($key, $value);
+	 				$this->session->set_userdata($key, $value);
 
-	 			redirect('login');
+	 			redirect('/');
 	 			
 	 		}
 		}

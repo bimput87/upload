@@ -1,12 +1,28 @@
 <?php  
 /**
-* 
+* Models for user authentication(login, reset_password & signup)
 */
 class User_model extends CI_Model
-{
+{	
+	/**
+	 * [$roles description]
+	 * Global var array stored roles
+	 * @var [array]
+	 */
 	public $roles;
+	/**
+	 * [$status description]
+	 * Global var array stored status
+	 * @var [array]
+	 */
 	public $status;
 
+	/**
+	 * [__construct description]
+	 * Initialize everything here
+	 * 1. Fill the roles and status variable
+	 * 2. Load library bcrypt encryption
+	 */
 	function __construct()
 	{
 		parent::__construct();
@@ -15,6 +31,12 @@ class User_model extends CI_Model
 		$this->load->library('bcrypt');
 	}
 
+	/**
+	 * [insert_user description]
+	 * Function used for inserting user onto the database
+	 * @param  [array] $post [array post]
+	 * @return [int]       [user_id]
+	 */
 	public function insert_user($post)
 	{
 		$string_array = array(
@@ -32,10 +54,39 @@ class User_model extends CI_Model
 		return $this->db->insert_id();
 	}
 
+	/**
+	 * [is_duplicate description]
+	 * @param  [type]  $email [description]
+	 * @return boolean        [description]
+	 */
 	public function is_duplicate($email)
 	{
 		$this->db->get_where('users', array('email' => $email));
 		return $this->db->affected_rows() > 0 ? TRUE : FALSE;
+	}
+
+	public function get_user_info_by_email($email)
+	{
+		$q = $this->db->get_where('users', array('email' => $email,), 1);
+		if($this->db->affected_rows() > 0){
+			$row = $q->row();
+			return $row;
+		}else{
+			error_log('No user found get user info ('.$email.')');
+			return FALSE;
+		}
+	}
+
+	public function get_user_info($id)
+	{
+		$q = $this->db->get_where('users', array('id' => $id));
+		if ($this->db->affected_rows() > 0) {
+			$row = $q->row();
+			return $row;
+		}else{
+			error_log('no user found  by id ('.$id.')');
+			return FALSE;
+		}
 	}
 
 	public function insert_token($user_id)
@@ -44,9 +95,9 @@ class User_model extends CI_Model
 		$date = date('Y-m-d');
 
 		$string_array = array(
-			'token' 	=> $token,
+			'token' 		=> $token,
 			'user_id'	=> $user_id,
-			'date'		=> $date
+			'created'	=> $date
 		);
 
 		$query = $this->db->insert_string('tokens', $string_array);
@@ -134,23 +185,3 @@ class User_model extends CI_Model
 
 
 }
-
-
-/*
-							'users' 
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| id         | int(10)      | NO   | PRI | NULL    | auto_increment |
-| email      | varchar(100) | NO   |     | NULL    |                |
-| first_name | varchar(100) | NO   |     | NULL    |                |
-| last_name  | varchar(100) | NO   |     | NULL    |                |
-| country    | varchar(20)  | NO   |     | NULL    |                |
-| phone      | int(15)      | NO   |     | NULL    |                |
-| role       | varchar(10)  | NO   |     | NULL    |                |
-| password   | text         | NO   |     | NULL    |                |
-| last_login | varchar(100) | NO   |     | NULL    |                |
-| status     | varchar(100) | NO   |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
-10 rows in set (0.06 sec)
-*/
