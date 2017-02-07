@@ -19,7 +19,7 @@
 
 		public function index()
 		{
-			$this->load->view('login/login_user');
+			$this->status_login();
 		}
 
 		public function register_view()
@@ -27,13 +27,22 @@
 			$this->load->view('login/register_user');
 		}
 
+		public function status_login()
+		{
+			if (!empty($this->session->userdata('email')))
+				redirect('member');
+			else
+				$this->do_login();		
+		}
+
 		public function do_login()
 		{
+			
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
 			if ($this->form_validation->run() == FALSE) 
-				redirect('/');
+				$this->load->view('login/login_user');
 			else{
 				$post = $this->input->post();
 				$clean = $this->security->xss_clean($post);
@@ -45,14 +54,15 @@
 					$this->session->mark_as_temp('flash_messsage', 60); // Expire in 1 minutes
 					redirect(site_url().'login_user/do_login');
 				}
+
 				foreach ($user_info as $key => $value) 
 					$this->session->set_userdata($key, $value);
 
-				echo "Sukses login";
+				redirect('member');
 			}
 		}
 
-		public function reset_password()
+		public function forgot()
 		{
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			if($this->form_validation->run() == FALSE)
@@ -60,15 +70,22 @@
 			else{
 				$email = $this->input->post('email');
 				$clean = $this->security->xss_clean($email);
-				$user_info = $this->usr_mdl->get_user_info($clean);
-
-				if (!$user_info) {
+				$user_info = $this->usr_mdl->get_user_info_by_email($clean);
+				// print_r($user_info);
+				echo "hasil";
+				var_dump($user_info);
+				// echo $user_info;
+				// die;
+				// exit;
+				if ($user_info == FALSE) {
 					$this->session->set_flashdata('flash_messsage', 'We can\'t find your email address');
-					redirect('/');
+					redirect(site_url().'login_user/forgot/');
 				} else {
 					$email = $this->input->post('email');
 					$clean = $this->security->xss_clean($email);
 					$user_info = $this->usr_mdl->get_user_info_by_email($clean);
+					
+					var_dump($user_info);
 
 					if (!$user_info) {
 						$this->session->set_flashdata('flash_messsage', 'We can\'t find find your email address');
@@ -84,7 +101,7 @@
 
 					$token = $this->usr_mdl->insert_token($user_info->id);
 					$qstring = $this->base64url_encode($token);
-					$url = site_url().'login/reset_password';
+					$url = site_url().'login_user/reset_password/token/'.$qstring;
 					$link = '<a href=" '.$url.' ">'. $url .'</a>';
 
 					$message = '';
@@ -94,6 +111,49 @@
 					exit;									
 				}
 			}
+		}
+
+		public function reset_password()
+		{
+			$token = $this->base64url_decode($this->uri->segment(4));
+			$clean_token = $this->security->xss_clean($token);
+
+			/*either false or an array*/
+			$user_info = $this->usr_mdl->is_token_valid($clean_token);
+			// var_dump($clean_token);
+			// die;
+
+			if ($user_info == FALSE) {
+				$this->session->set_flashdata('flash_messsage', 'Token is invalid or expired');
+				redirect('/');
+			}
+			
+			$data = array(
+				'first_name' 	=> $user_info->first_name,
+				'email' 		=> $user_info->email,
+				'token'		=> $this->base64url_encode($token)
+			);
+
+			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
+			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
+
+			if ($this->form_validation->run() == FALSE) 
+				$this->load->view('login/reset_password');
+			else{
+				$post = $this->input->post(NULL, TRUE);
+				$clean_post = $this->security->xss_clean($post);
+	 			$hashed = $this->bcrypt->hash_password($clean_post['password']);
+				$clean_post['password'] = $hashed;
+				$clean_post['user_id'] = $user_info->id;
+				unset($clean_post['passconf']);
+				if (!$this->usr_mdl->update_password($clean_post)) 
+					$this->session->set_flashdata('flash_messsage', 'There was a problem while updating your password');
+				else 
+					$this->session->set_flashdata('flash_messsage', 'Your password has been updated. You may now login');
+				
+				redirect(site_url().'login_user/status_login');
+			}
+
 		}
 
 		public function register()

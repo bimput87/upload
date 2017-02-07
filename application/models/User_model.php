@@ -29,6 +29,7 @@ class User_model extends CI_Model
 		$this->roles = $this->config->item('roles');
 		$this->status = $this->config->item('status');
 		$this->load->library('bcrypt');
+		date_default_timezone_set("Asia/Jakarta");
 	}
 
 	/**
@@ -75,6 +76,19 @@ class User_model extends CI_Model
 			error_log('No user found get user info ('.$email.')');
 			return FALSE;
 		}
+	}
+
+	public function update_password($post)
+	{
+		$this->db->where('id', $post['user_id']);
+		$this->db->update('users', array('password' => $post['password']));
+		$success = $this->db->affected_rows();
+
+		if (!$success) {
+			error_log('Unable to update password('.$post['user_id'].')');
+			return FALSE;
+		}
+		return TRUE;
 	}
 
 	public function get_user_info($id)

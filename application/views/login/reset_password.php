@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>User | Reset Password Page</title>
+	<title>User | Fill Reset Password</title>
 	<!-- Tell the browser to be responsive to screen width -->
 	<meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 	
@@ -24,14 +24,19 @@
 			?>
 			<p class="login-box-msg">Fill email to reset your password</p>
 
-			<?php echo form_open(site_url().'login_user/forgot/', array('class' => 'bs-example')) ?>
+			<?php echo form_open(site_url().'login_user/reset_password/', array('class' => 'bs-example')) ?>
 				<div style="display:none">
 					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 				</div> 
 				<div class="form-group has-feedback">
-					<input name="email" type="email" class="form-control" placeholder="Email">
+					<input name="password" type="password" class="form-control" placeholder="Password">
 					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-					<?php echo form_error('email') ?>
+					<?php echo form_error('password') ?>
+				</div>
+				<div class="form-group has-feedback">
+					<input name="passconf" type="password" class="form-control" placeholder="Retype Password">
+					<span class="glyphicon glyphicon-envelope form-control-feedback"></span>
+					<?php echo form_error('passconf') ?>
 				</div>
 				<div class="row">
 					<div class="col-xs-8">
