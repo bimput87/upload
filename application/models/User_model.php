@@ -34,7 +34,7 @@ class User_model extends CI_Model
 
 	/**
 	 * [insert_user description]
-	 * Function used for inserting user onto the database
+	 * Function used for inserting new user onto the database
 	 * @param  [array] $post [array post]
 	 * @return [int]       [user_id]
 	 */
@@ -57,8 +57,10 @@ class User_model extends CI_Model
 
 	/**
 	 * [is_duplicate description]
-	 * @param  [type]  $email [description]
-	 * @return boolean        [description]
+	 * Function used for checking is there any email while user input 
+	 * an email 
+	 * @param  [String]  $email [email param]
+	 * @return boolean        [is there are affected rows or not ?]
 	 */
 	public function is_duplicate($email)
 	{
@@ -66,6 +68,12 @@ class User_model extends CI_Model
 		return $this->db->affected_rows() > 0 ? TRUE : FALSE;
 	}
 
+	/**
+	 * [get_user_info_by_email description]
+	 * Function used for get user detail based on email
+	 * @param  [String] $email [email param]
+	 * @return [stdClass / boolean]        [return stdClass if success otherwise FALSE]
+	 */
 	public function get_user_info_by_email($email)
 	{
 		$q = $this->db->get_where('users', array('email' => $email,), 1);
@@ -78,6 +86,13 @@ class User_model extends CI_Model
 		}
 	}
 
+	/**
+	 * [update_password description]
+	 * Function used for update user password
+	 * while a user requested reset their password
+	 * @param  [array] $post [array user detail param]
+	 * @return [boolean]       [success or not]
+	 */
 	public function update_password($post)
 	{
 		$this->db->where('id', $post['user_id']);
@@ -91,6 +106,12 @@ class User_model extends CI_Model
 		return TRUE;
 	}
 
+	/**
+	 * [get_user_info description]
+	 * Function used for get detail user info by email
+	 * @param  [int] $id [user id param]
+	 * @return [stdClass / boolean]     [return stdClass if success otherwise FALSE]
+	 */
 	public function get_user_info($id)
 	{
 		$q = $this->db->get_where('users', array('id' => $id));
@@ -103,6 +124,13 @@ class User_model extends CI_Model
 		}
 	}
 
+	/**
+	 * [insert_token description]
+	 * Function used for insert a token, token used for security reasons while
+	 * user reset their password or there're new register request
+	 * @param  [int] $user_id [user id param]
+	 * @return [varchar]          [combination between token & user_id]
+	 */
 	public function insert_token($user_id)
 	{
 		$token = substr(sha1(rand()), 0, 30);
@@ -119,6 +147,12 @@ class User_model extends CI_Model
 		return $token.$user_id;
 	}
 
+	/**
+	 * [is_token_valid description]
+	 * Function used for checking if a token is valid or not
+	 * @param  [varchar]  $token [token]
+	 * @return boolean/stdClass        [stdClass while success otherwise FALSE]
+	 */
 	public function is_token_valid($token)
 	{
 		$tkn = substr($token, 0, 30);
@@ -149,6 +183,13 @@ class User_model extends CI_Model
 			return FALSE;
 	}
 
+	/**
+	 * [check_login description]
+	 * Function used for login, and after successfull login
+	 * last login field is updated
+	 * @param  [array] $post [array user detail param]
+	 * @return [stdClass]       [row user detail]
+	 */
 	public function check_login($post)
 	{
 		$this->db->where('email', $post['email']);
@@ -167,6 +208,12 @@ class User_model extends CI_Model
 		return $user_info;
 	}
 
+	/**
+	 * [update_login_time description]
+	 * Function used for update last login field
+	 * @param  [int] $id [user_id param]
+	 * @return [void / nothing]     [just some stuff tricks :)]
+	 */
 	public function update_login_time($id)
 	{
 		$this->db->where('id', $id);
@@ -175,6 +222,13 @@ class User_model extends CI_Model
 		return;
 	}
 
+	/**
+	 * [update_user_info description]
+	 * Function used for update user info after completing their registration 
+	 * process
+	 * @param  [array] $post [array param]
+	 * @return [stdClass / boolean]       [stdClass if success otherwise is not]
+	 */
 	public function update_user_info($post)
 	{
 		$data = array(
