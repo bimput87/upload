@@ -25,7 +25,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				}
 			?>
 			<p class="login-box-msg">Sign in to start your session</p>
-
 			<?php echo form_open(site_url().'login_user/status_login/') ?>
 				<div style="display:none">
 					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
@@ -54,7 +53,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 			<?php echo anchor('login_user/forgot', 'I forgot my password') ?>
 			<br>
 			<?php echo anchor('login_user/register_view', 'Register a new account', array('class' => 'text-center')) ?>
-			<!-- <a href="register.html" class="text-center">Register a new membership</a> -->
 
 		</div>
 		<!-- /.login-box-body -->

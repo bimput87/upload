@@ -19,7 +19,9 @@
             else
                 echo "There is error in sending mail!";
 */        
-            $config = array(
+            $this->load->library('email');
+
+            $this->email->initialize(array(
                 'protocol' => 'smtp',
                 'smtp_host' => 'ssl://smtp.gmail.com',
                 'smtp_port' => 465,
@@ -27,9 +29,9 @@
                 'smtp_pass' => '@reza27#',
                 'mailtype'  => 'html',
                 'charset'   => 'iso-8859-1'
+            )
             );
              
-            $this->load->library('email', $config);
             $this->email->set_newline("\r\n");
              
             $mail = $this->email;
