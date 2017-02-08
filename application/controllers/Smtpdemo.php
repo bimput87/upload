@@ -23,10 +23,10 @@
 
             $this->email->initialize(array(
                 'protocol' => 'smtp',
-                'smtp_host' => 'ssl://smtp.gmail.com',
+                'smtp_host' => 'smtp.live.com',
                 'smtp_port' => 465,
-                'smtp_user' => 'Reza',
-                'smtp_pass' => '@reza27#',
+                'smtp_user' => 'chester_phalevi@windowslive.com',
+                'smtp_pass' => '@linkin_park',
                 'mailtype'  => 'html',
                 'charset'   => 'iso-8859-1'
             )

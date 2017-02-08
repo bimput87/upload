@@ -1,12 +1,30 @@
-<?php  
+<?php
+	if ( ! defined('BASEPATH')) exit('No direct script access allowed');  
 	/**
 	* Login class
 	*/
 	class Login_user extends CI_Controller
 	{
+		/**
+		 * [$status description]
+		 * Global var array stored roles
+		 * @var [array]
+		 */
 		public $status;
+		/**
+		 * [$roles description]
+		 * Global var stored status
+		 * @var [type]
+		 */
 		public $roles;
 
+		/**
+		 * [__construct description]
+		 * Initializing everything here
+		 * 1. Fill the roles and status variable
+		 * 2. Load library bcrypt and form validation
+		 * 3. Set error delimiters
+		 */
 		function __construct()
 		{
 			parent::__construct();
@@ -17,16 +35,31 @@
 			$this->roles = $this->config->item('roles');
 		}
 
+		/**
+		 * [index description]
+		 * Render index page
+		 * @return [view] [dashboard / login page]
+		 */
 		public function index()
 		{
 			$this->status_login();
 		}
 
+		/**
+		 * [register_view description]
+		 * Render register page
+		 * @return [view] [register user]
+		 */
 		public function register_view()
 		{
 			$this->load->view('login/register_user');
 		}
 
+		/**
+		 * [status_login description]
+		 * Check login status
+		 * @return [redirect / login] [member page / login user]
+		 */
 		public function status_login()
 		{
 			if (!empty($this->session->userdata('email')))
@@ -35,6 +68,11 @@
 				$this->do_login();		
 		}
 
+		/**
+		 * [do_login description]
+		 * Login action do here
+		 * @return [action] [redirect member page / login]
+		 */
 		public function do_login()
 		{
 			
@@ -61,6 +99,11 @@
 			}
 		}
 
+		/**
+		 * [forgot description]
+		 * Reset password page
+		 * @return [redirect] [login page & send an email to user]
+		 */
 		public function forgot()
 		{
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
@@ -105,6 +148,11 @@
 			}
 		}
 
+		/**
+		 * [reset_password description]
+		 * Checking for password input from reset password page and storing on the database
+		 * @return [redirect] [description]
+		 */
 		public function reset_password()
 		{
 			$token = $this->base64url_decode($this->uri->segment(4));
@@ -152,6 +200,10 @@
 
 		}
 
+		/**
+		 * [register description]
+		 * @return [type] [description]
+		 */
 		public function register()
 		{
 			$this->form_validation->set_rules('first_name', 'First Name', 'required');
