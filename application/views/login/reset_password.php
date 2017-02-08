@@ -22,11 +22,12 @@
 					echo $html;
 				}
 			?>
-			<p class="login-box-msg">Fill email to reset your password</p>
+			<p class="login-box-msg">Update your password below</p>
 
 			<?php echo form_open(site_url().'login_user/reset_password/', array('class' => 'bs-example')) ?>
 				<div style="display:none">
 					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+					<input type="hidden" name="user_id" value="<?php echo $user_id ?>">
 				</div> 
 				<div class="form-group has-feedback">
 					<input name="password" type="password" class="form-control" placeholder="Password">

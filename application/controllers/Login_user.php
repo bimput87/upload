@@ -50,8 +50,7 @@
 				$user_info = $this->usr_mdl->check_login($clean);
 
 				if (!$user_info) {
-					$_SESSION['flash_messsage'] = 'The login was unsuccessful';
-					$this->session->mark_as_temp('flash_messsage', 60); // Expire in 1 minutes
+					$this->session->set_flashdata('flash_messsage', 'The login was unsuccessful');
 					redirect(site_url().'login_user/do_login');
 				}
 
@@ -71,21 +70,13 @@
 				$email = $this->input->post('email');
 				$clean = $this->security->xss_clean($email);
 				$user_info = $this->usr_mdl->get_user_info_by_email($clean);
-				// print_r($user_info);
-				// echo "hasil";
-				// var_dump($user_info);
-				// echo $user_info;
-				// die;
-				// exit;
-				if ($user_info == FALSE) {
+				if (!$user_info) {
 					$this->session->set_flashdata('flash_messsage', 'We can\'t find your email address');
 					redirect(site_url().'login_user/forgot/');
 				} else {
 					$email = $this->input->post('email');
 					$clean = $this->security->xss_clean($email);
 					$user_info = $this->usr_mdl->get_user_info_by_email($clean);
-					
-					var_dump($user_info);
 
 					if (!$user_info) {
 						$this->session->set_flashdata('flash_messsage', 'We can\'t find find your email address');
@@ -98,17 +89,18 @@
 					}	
 
 					/*build token*/
-
 					$token = $this->usr_mdl->insert_token($user_info->id);
 					$qstring = $this->base64url_encode($token);
 					$url = site_url().'login_user/reset_password/token/'.$qstring;
-					$link = '<a href=" '.$url.' ">'. $url .'</a>';
+					$link = '<a href="'.$url.'">'.$url.'</a>';
 
+					/*Send Email*/
 					$message = '';
 					$message .= '<strong>A password reset has been requested for this email account</strong></br>';
 					$message .= '<strong>Please click: </strong>'.$link;
 					echo $message;
-					exit;									
+					
+					exit;						
 				}
 			}
 		}
@@ -119,39 +111,43 @@
 			$clean_token = $this->security->xss_clean($token);
 
 			/*either false or an array*/
-			$user_info = $this->usr_mdl->is_token_valid($clean_token);
-			// var_dump($clean_token);
-			// die;
-
-			if ($user_info == FALSE) {
+			$user_info = $this->usr_mdl->is_token_valid($clean_token);	
+			
+			if (empty($user_info) && $user_info != FALSE) {
 				$this->session->set_flashdata('flash_messsage', 'Token is invalid or expired');
 				redirect('/');
 			}
 			
+			/*Prepare Data*/
+			$array = json_decode(json_encode($user_info), true);
+			$first_name = $array['first_name'];
+			$email = $array['email'];
+			$id = $array['id'];
+
 			$data = array(
-				'first_name' 	=> $user_info->first_name,
-				'email' 		=> $user_info->email,
-				'token'		=> $this->base64url_encode($token)
+				'first_name' 	=> $first_name,
+				'email' 		=> $email,
+				'user_id'		=> $id,
+				'token'			=> $this->base64url_encode($token)
 			);
 
 			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
 			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 
 			if ($this->form_validation->run() == FALSE) 
-				$this->load->view('login/reset_password');
+				$this->load->view('login/reset_password', $data);
 			else{
 				$post = $this->input->post(NULL, TRUE);
 				$clean_post = $this->security->xss_clean($post);
 	 			$hashed = $this->bcrypt->hash_password($clean_post['password']);
 				$clean_post['password'] = $hashed;
-				$clean_post['user_id'] = $user_info->id;
 				unset($clean_post['passconf']);
 				if (!$this->usr_mdl->update_password($clean_post)) 
 					$this->session->set_flashdata('flash_messsage', 'There was a problem while updating your password');
 				else 
 					$this->session->set_flashdata('flash_messsage', 'Your password has been updated. You may now login');
 				
-				redirect(site_url().'login_user/status_login');
+				redirect('/');
 			}
 
 		}
@@ -178,6 +174,7 @@
 					$url = site_url().'login_user/complete/token/'.$qstring;
 					$link = '<a href="'.$url.'">'.$url.'</a>';
 
+					/*Send Email*/
 					$message = '';
 					$message .= '<strong>You have signed up</strong></br>';
 					$message .= '<strong>Please click </strong>'.$link;
@@ -220,7 +217,6 @@
 	 			$clean_post['password'] = $hashed;
 	 			unset($clean_post['passconf']);
 	 			$usr_info = $this->usr_mdl->update_user_info($clean_post);
-	 			// print_r($clean_post);
 	 			if (!$usr_info) {
 	 				$this->session->set_flashdata('flash_messsage', 'There was a problem while updating data');
 	 				redirect('/');
