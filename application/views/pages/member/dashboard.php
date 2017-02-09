@@ -3,23 +3,11 @@
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
-    <!-- Content Header (Page header) -->
-    <section class="content-header">
-      <h1>
-        Dashboard
-      </h1>
-      <ol class="breadcrumb">
-        <li><a href="<?php echo site_url() ?>member"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li class="active">Dashboard</li>
-      </ol>
-    </section>
 
     <div class="col-md-12" align="center">
-          <div class="box box-solid">
-            <div class="box-header with-border">
-              <h3 class="box-title">Carousel</h3>
-            </div>
-            <!-- /.box-header -->
+            <div class="box-body"></div>
+            <div class="box-body"></div>
+            <div class="box-body"></div>
             <div class="box-body">
               <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -58,9 +46,6 @@
                 </a>
               </div>
             </div>
-            <!-- /.box-body -->
-          </div>
-          <!-- /.box -->
         </div>
         <!-- /.col -->
       </div>
