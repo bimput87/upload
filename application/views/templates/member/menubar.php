@@ -19,15 +19,14 @@
           <!-- User Account: style can be found in dropdown.less -->
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-              <!-- <img src="dist/img/user2-160x160.jpg" class="user-image" alt="User Image"> -->
               <span class="hidden-xs"><?php echo $this->session->userdata('first_name') ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <?php
-                  $p = $this->session->userdata('first_name');
-                  echo image_asset('', $p[0].".png") 
+                  $p = $this->session->userdata('first_name'); 
                 ?>
+                <img src="<?php echo site_url().'public/assets/img/'.$p[0].'.png' ?>" class="img-circle" alt="User Image">
                 <p>
                   <?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name'); ?>
                   <small><?php echo $this->session->userdata('email') ?></small>
