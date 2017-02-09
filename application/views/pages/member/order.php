@@ -6,7 +6,7 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Available API
+       Order API
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
@@ -29,8 +29,8 @@
                   <th>ID Order</th>
                   <th>Domain</th>
                   <th>API Key</th>
-                  <th>Last used</th>
-                  <th>Last IP</th>
+                  <th>Date</th>
+                  <th>Price</th>
                   <th>Status</th>
                 </tr>
                 </thead>
@@ -39,8 +39,8 @@
                  <th>ID Order</th>
                   <th>Domain</th>
                   <th>API Key</th>
-                  <th>Last used</th>
-                  <th>Last IP</th>
+                  <th>Date</th>
+                  <th>Price</th>
                   <th>Status</th>
                 </tr>
                 </tfoot>

@@ -31,7 +31,7 @@
           </a>
         </li>
         <li class="treeview">
-          <a href="#">
+          <a href="<?php echo site_url() ?>member/page/order">
             <i class="fa fa-dashboard"></i> <span>Order API</span>
           </a>
         </li>
