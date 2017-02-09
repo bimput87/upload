@@ -24,6 +24,10 @@
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
+                <?php
+                  $p = $this->session->userdata('first_name');
+                  echo image_asset('', $p[0].".png") 
+                ?>
                 <p>
                   <?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name'); ?>
                   <small><?php echo $this->session->userdata('email') ?></small>
