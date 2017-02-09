@@ -14,10 +14,16 @@
 		/**
 		 * [$roles description]
 		 * Global var stored status
-		 * @var [type]
+		 * @var [array]
 		 */
 		public $roles;
 
+		/**
+		 * [$email description]
+		 * Global variable stored email config
+		 * @var [array]
+		 */
+		public $email_conf;
 		/**
 		 * [__construct description]
 		 * Initializing everything here
@@ -29,7 +35,7 @@
 		{
 			parent::__construct();
 			$this->load->model('user_model', 'usr_mdl', TRUE);
-			$this->load->library(array('form_validation', 'bcrypt'));
+			$this->load->library(array('email', 'form_validation', 'bcrypt'));
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible">', '</div>');
 			$this->status = $this->config->item('status');
 			$this->roles = $this->config->item('roles');
@@ -141,11 +147,48 @@
 					$message = '';
 					$message .= '<strong>A password reset has been requested for this email account</strong></br>';
 					$message .= '<strong>Please click: </strong>'.$link;
-					echo $message;
+
+					$sendmail = array(
+						'from'		=> "'rezapahlevi056@gmail.com', 'Reza Pahlevi'",
+						'to' 		=> $user_info->email,
+						'subject' 	=> 'Reset Password - UBIG',
+						'message'	=> $message
+					);
+
+					$this->email_conf = $sendmail;
 					
-					exit;						
+					$res = $this->sendmail($this->email_conf);
+					
+					$this->session->set_flashdata('flash_messsage', 'Check your email for reset your password');
+					redirect('/');
+
+					/*if($res)
+						echo 'Message Sent';
+					else
+						var_dump($res);
+					
+					exit;*/						
 				}
 			}
+		}
+
+		/**
+		 * [sendmail description]
+		 * @param  array  $email [mail description]
+		 * @return [debug / boolean]        [debug messsage or success sented]
+		 */
+		public function sendmail($m = array())
+		{
+			/*Send email there*/
+			$this->email->from($m['from']);
+			$this->email->to($m['to']);
+			$this->email->subject($m['subject']);
+			$this->email->message($m['message']);
+
+			if($this->email->send())
+				return TRUE;
+			else
+				return $this->email->print_debugger();
 		}
 
 		/**
@@ -202,7 +245,8 @@
 
 		/**
 		 * [register description]
-		 * @return [type] [description]
+		 * Showing form register
+		 * @return [view / send email] 
 		 */
 		public function register()
 		{
@@ -237,6 +281,12 @@
 			}
 		}
 
+		/**
+		 * [complete description]
+		 * After clicking link on the email confirmation showing complete password
+		 * dialog
+		 * @return [view] [member dashboard]
+		 */
 		public function complete()
 		{
 			$token = $this->base64url_decode($this->uri->segment(4));
@@ -282,6 +332,9 @@
 	 		}
 		}
 
+		/*
+		Some stuff function
+		 */
 		public function base64url_encode($data) 
 		{ 
 		    return rtrim(strtr(base64_encode($data), '+/', '-_'), '='); 

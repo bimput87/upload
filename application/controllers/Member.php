@@ -10,7 +10,7 @@
 		{
 			parent::__construct();
 			if (empty($this->session->userdata('email'))){
-				$_SESSION['flash_messsage'] = 'You are not allowed to access';
+				$_SESSION['flash_messsage'] = 'You are not allowed to access or your session has been expired';
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect(site_url().'login_user');
 			} 
@@ -18,13 +18,13 @@
 
 		public function index()
 		{
-			$this->load->view('pages/member/dashboard');
+			$this->page('dashboard');
 		}
 
 		public function logout()
 		{
 			$this->session->sess_destroy();
-			redirect('login_user');
+			redirect(site_url().'login_user');
 		}
 
 		public function page($page)
