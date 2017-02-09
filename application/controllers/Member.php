@@ -35,6 +35,8 @@
 	        $data['title'] = ucfirst($page);
 
 	        $this->load->view('templates/member/header', $data);
+	        $this->load->view('templates/member/menubar', $data);
+	        $this->load->view('templates/member/sidebar', $data);
 	        $this->load->view('pages/member/'.$page, $data);
 	        $this->load->view('templates/member/footer', $data);
 	    }
