@@ -9,9 +9,9 @@
         Available API
       </h1>
       <ol class="breadcrumb">
-        <li><a href="<?php echo site_url() ?>member"><i class="fa fa-dashboard"></i> Home</a></li>
-        <li><a href="#">Tables</a></li>
-        <li class="active">Data tables</li>
+        <li><a href="<?php echo site_url() ?>member"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+        <li><a href="#">API</a></li>
+        <li class="active">Available API</li>
       </ol>
     </section>
 
@@ -63,14 +63,6 @@
 <script>
   $(document).ready(function() {
     $("#example1").DataTable();
-    $('#example2').DataTable({
-      "paging": true,
-      "lengthChange": false,
-      "searching": false,
-      "ordering": true,
-      "info": true,
-      "autoWidth": false
-    });
   });
 
 </script>

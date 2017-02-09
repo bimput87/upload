@@ -15,25 +15,13 @@
                 </ol>
                 <div class="carousel-inner">
                   <div class="item active">
-                    <img src="http://placehold.it/900x500/39CCCC/ffffff&text=I+Love+Bootstrap" alt="First slide">
-
-                    <div class="carousel-caption">
-                      First Slide
-                    </div>
+                    <img src="<?php echo site_url() ?>public/assets/img/b1.jpg" alt="First slide">
                   </div>
                   <div class="item">
-                    <img src="http://placehold.it/900x500/3c8dbc/ffffff&text=I+Love+Bootstrap" alt="Second slide">
-
-                    <div class="carousel-caption">
-                      Second Slide
-                    </div>
+                    <img src="<?php echo site_url() ?>public/assets/img/b2.jpg" alt="Second slide">
                   </div>
                   <div class="item">
-                    <img src="http://placehold.it/900x500/f39c12/ffffff&text=I+Love+Bootstrap" alt="Third slide">
-
-                    <div class="carousel-caption">
-                      Third Slide
-                    </div>
+                    <img src="<?php echo site_url() ?>public/assets/img/b3.jpg" alt="Third slide">
                   </div>
                 </div>
                 <a class="left carousel-control" href="#carousel-example-generic" data-slide="prev">
@@ -50,7 +38,5 @@
       <!-- /.row -->
       <!-- END ACCORDION & CAROUSEL-->
 
-
 </div>
-      <?php require_once FOOT ?>
 <!-- ./wrapper -->
