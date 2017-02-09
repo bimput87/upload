@@ -6,8 +6,6 @@
 
     <div class="col-md-12" align="center">
             <div class="box-body"></div>
-            <div class="box-body"></div>
-            <div class="box-body"></div>
             <div class="box-body">
               <div id="carousel-example-generic" class="carousel slide" data-ride="carousel">
                 <ol class="carousel-indicators">
@@ -52,7 +50,7 @@
       <!-- /.row -->
       <!-- END ACCORDION & CAROUSEL-->
 
-      <?php require_once APPPATH.'views/templates/include/footer.php'; ?>
 
 </div>
+      <?php require_once FOOT ?>
 <!-- ./wrapper -->

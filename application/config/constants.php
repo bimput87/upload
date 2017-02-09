@@ -90,3 +90,4 @@ Define constant for asset path & view
 define('ASSET_PATH', 'public/assets/');
 define('VINC', APPPATH.'views/include/');
 
+define('FOOT', APPPATH.'views/templates/include/footer.php');
