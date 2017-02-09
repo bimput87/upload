@@ -23,7 +23,7 @@
             <ul class="dropdown-menu">
               <li class="user-header">
                 <?php
-                  $p = $this->session->userdata('first_name'); 
+                  $p = ucfirst($this->session->userdata('first_name')); 
                 ?>
                 <img src="<?php echo site_url().'public/assets/img/'.$p[0].'.png' ?>" class="img-circle" alt="User Image">
                 <p>

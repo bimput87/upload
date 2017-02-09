@@ -179,6 +179,18 @@
 		 */
 		public function sendmail($m = array())
 		{
+		 	$config['protocol']    = 'smtp';
+           	$config['smtp_host']    = 'smtp.gmail.com';
+           	$config['smtp_port']    = '465';
+           	$config['smtp_timeout'] = '7';
+           	$config['smtp_user']    = 'rezapahlevi056@gmail.com';
+           	$config['smtp_pass']    = '@reza2707#';
+           	$config['charset']    = 'utf-8';
+           	$config['smtp_crypto']    = 'ssl';
+           	$config['newline']    = "\r\n";
+           	$config['mailtype'] = 'html'; // or html
+           	$config['validation'] = TRUE; // bool whether to validate email or not      
+           	$this->email->initialize($config);
 			/*Send email there*/
 			$this->email->from($m['from']);
 			$this->email->to($m['to']);
@@ -274,7 +286,20 @@
 					$message = '';
 					$message .= '<strong>You have signed up</strong></br>';
 					$message .= '<strong>Please click </strong>'.$link;
-					echo $message;
+					// echo $message;
+					$sendmail = array(
+						'from'		=> "'rezapahlevi056@gmail.com', 'Reza Pahlevi'",
+						'to' 		=> $clean['email'],
+						'subject' 	=> 'Complete Registration - UBIG',
+						'message'	=> $message
+					);
+
+					$this->email_conf = $sendmail;
+					
+					$res = $this->sendmail($this->email_conf);
+					
+					$this->session->set_flashdata('flash_messsage', 'Check your email for complete registration');
+					redirect('/');
 					
 					exit;
 				}

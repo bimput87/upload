@@ -22,7 +22,7 @@
 <script type="text/javascript">
   	$('body').show();
     NProgress.start();
-    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 3000);
+    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1500);
 </script>
 
 </body>

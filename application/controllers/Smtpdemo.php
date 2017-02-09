@@ -13,7 +13,7 @@
            $config['smtp_user']    = 'rezapahlevi056@gmail.com';
            $config['smtp_pass']    = '@reza2707#';
            $config['charset']    = 'utf-8';
-           // $config['smtp_crypto']    = 'ssl';
+           $config['smtp_crypto']    = 'ssl';
            $config['newline']    = "\r\n";
            $config['mailtype'] = 'html'; // or html
            $config['validation'] = TRUE; // bool whether to validate email or not      
