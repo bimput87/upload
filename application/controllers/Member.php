@@ -15,7 +15,7 @@
 				redirect(site_url().'login_user');
 			} 
 
-			$this->load->model->('Member_model','mdl',TRUE);
+			$this->load->model('Member_model', 'mdl', TRUE);
 		}
 
 		public function index()
@@ -48,6 +48,10 @@
 	    {
 	    	$data = array('title' => 'Show API');
 	    	$this->page('show', $data);
+	    }
 
+	    public function api_data_json()
+	    {
+	    	// $list = $this->mdl
 	    }
 }
