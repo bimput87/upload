@@ -19,7 +19,7 @@
            $config['validation'] = TRUE; // bool whether to validate email or not      
            $this->email->initialize($config);
            $this->email->from('rezapahlevi056@gmail.com', 'Reza Pahlevi');
-           $this->email->to('rezaphalevi27@gmail.com'); 
+           $this->email->to('sribulanmegawati@gmail.com'); 
            $this->email->subject('Test Email');
            $this->email->message('Bulan cintaku');
            $this->email->print_debugger();

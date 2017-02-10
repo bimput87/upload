@@ -27,11 +27,6 @@
 			redirect(site_url().'login_user');
 		}
 
-		public function FunctionName($value='')
-		{
-			# code...
-		}
-
 		public function page($page)
 		{  
 			if (!file_exists(APPPATH.'views/pages/member/'.$page.'.php'))

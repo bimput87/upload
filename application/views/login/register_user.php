@@ -36,20 +36,25 @@
 				</div>
 				<div class="form-group has-feedback">
 					<input name="phone" type="text" class="form-control" placeholder="Phone">
-					<span class=" glyphicon glyphicon-phone form-control-feedback"></span>
+					<span class="glyphicon glyphicon-phone form-control-feedback"></span>
 					<?php echo form_error('phone') ?>
 				</div>
 				<div class="form-group has-feedback">
 					<div class="bfh-selectbox bfh-countries" data-country="ID" data-flags="true">
-					</div>
+					</div>				
+				</div>
+				<div class="form-group has-feedback">
+					<input name="city" type="text" class="form-control" placeholder="City">
+					<span class="glyphicon glyphicon-home form-control-feedback"></span>
+					<?php echo form_error('city') ?>
+				</div>
+				<div class="form-group has-feedback">
 					<div class="row">
 						<div class="col-xs-8">
 						</div>
-						<!-- /.col -->
 						<div class="col-xs-4">
 							<button type="submit" class="btn btn-primary btn-block btn-flat">Register</button>
 						</div>
-						<!-- /.col -->
 					</div>
 					<?php echo anchor('/', 'I already have an account', array('class' => 'text-center')) ?>
 				</div>

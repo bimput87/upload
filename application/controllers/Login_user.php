@@ -155,19 +155,13 @@
 						'message'	=> $message
 					);
 
-					$this->email_conf = $sendmail;
+/*					$this->email_conf = $sendmail;
 					
 					$res = $this->sendmail($this->email_conf);
 					
 					$this->session->set_flashdata('flash_messsage', 'Check your email for reset your password');
-					redirect('/');
-
-					/*if($res)
-						echo 'Message Sent';
-					else
-						var_dump($res);
-					
-					exit;*/						
+					redirect('/');				
+*/					echo $message;
 				}
 			}
 		}
@@ -179,18 +173,19 @@
 		 */
 		public function sendmail($m = array())
 		{
-		 	$config['protocol']    = 'smtp';
+		 	$config['protocol']    	= 'smtp';
            	$config['smtp_host']    = 'smtp.gmail.com';
            	$config['smtp_port']    = '465';
            	$config['smtp_timeout'] = '7';
            	$config['smtp_user']    = 'rezapahlevi056@gmail.com';
            	$config['smtp_pass']    = '@reza2707#';
-           	$config['charset']    = 'utf-8';
-           	$config['smtp_crypto']    = 'ssl';
-           	$config['newline']    = "\r\n";
-           	$config['mailtype'] = 'html'; // or html
-           	$config['validation'] = TRUE; // bool whether to validate email or not      
+           	$config['charset']    	= 'utf-8';
+           	$config['smtp_crypto'] 	= 'ssl';
+           	$config['newline']    	= "\r\n";
+           	$config['mailtype'] 	= 'html'; // or html
+           	$config['validation'] 	= TRUE; // bool whether to validate email or not      
            	$this->email->initialize($config);
+
 			/*Send email there*/
 			$this->email->from($m['from']);
 			$this->email->to($m['to']);
@@ -266,6 +261,7 @@
 			$this->form_validation->set_rules('last_name', 'Last Name', 'required');
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('phone', 'Phone', 'required|max_length[15]|is_natural');
+			$this->form_validation->set_rules('city', 'City', 'required');
 
 			if ($this->form_validation->run() == FALSE) 
 				$this->register_view();
@@ -294,14 +290,13 @@
 						'message'	=> $message
 					);
 
-					$this->email_conf = $sendmail;
+/*					$this->email_conf = $sendmail;
 					
 					$res = $this->sendmail($this->email_conf);
 					
 					$this->session->set_flashdata('flash_messsage', 'Check your email for complete registration');
 					redirect('/');
-					
-					exit;
+*/					echo $message;
 				}
 			}
 		}
@@ -353,7 +348,6 @@
 	 				$this->session->set_userdata($key, $value);
 
 	 			redirect('/');
-	 			
 	 		}
 		}
 

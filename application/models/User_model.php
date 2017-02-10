@@ -47,6 +47,7 @@
 				'email'		=> $post['email'],
 				'phone'		=> $post['phone'],
 				'country'	=> $post['country'],
+				'city'		=> $post['city'],
 				'role'		=> $this->roles[0],
 				'status'	=> $this->status[0]
 			);
