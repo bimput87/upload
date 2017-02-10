@@ -18,25 +18,31 @@
       </div>
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
-        <li class="header">Dashboard</li>
         <li class="treeview">
           <a href="<?php echo site_url() ?>member">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
-        <li class="header">API</li>
         <li class="treeview">
           <a href="<?php echo site_url() ?>member/show_api">
-            <i class="fa fa-dashboard"></i> <span>My API</span>
+            <i class="fa fa-users"></i> <span>Members</span>
           </a>
         </li>
         <li class="treeview">
           <a href="<?php echo site_url() ?>member">
-            <i class="fa fa-dashboard"></i> <span>Order API</span>
+            <i class="fa fa-shopping-basket"></i> <span>Orders</span>
           </a>
         </li>
-        <li class="header">Tutorial</li>
-        <li><a href="documentation/index.html"><i class="fa fa-book"></i> <span>Documentation</span></a></li>
+        <li class="treeview">
+          <a href="<?php echo site_url() ?>member">
+            <i class="fa fa-diamond"></i> <span>API Keys</span>
+          </a>
+        </li>
+        <li class="treeview">
+          <a href="<?php echo site_url() ?>member">
+            <i class="fa fa-gears"></i> <span>Setting</span>
+          </a>
+        </li>
     </section>
     <!-- /.sidebar -->
   </aside>
