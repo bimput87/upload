@@ -22,7 +22,7 @@
 			# code...
 		}
 
-		sfunction FunctionName($value='')
+		function FunctionName($value='')
 		{
 			# code...
 		}
