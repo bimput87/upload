@@ -30,12 +30,10 @@
 			redirect(site_url().'login_user');
 		}
 
-		public function page($page,$data)
+		public function page($page, $data)
 		{  
 			if (!file_exists(APPPATH.'views/pages/member/'.$page.'.php'))
 				show_404();
-
-	        $data['title'] = ucfirst($page);
 
 	        $this->load->view('templates/member/header', $data);
 	        $this->load->view('templates/member/menubar', $data);

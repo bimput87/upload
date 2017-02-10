@@ -26,12 +26,12 @@
         </li>
         <li class="header">API</li>
         <li class="treeview">
-          <a href="<?php echo site_url() ?>member/page/show">
+          <a href="<?php echo site_url() ?>member/show_api">
             <i class="fa fa-dashboard"></i> <span>My API</span>
           </a>
         </li>
         <li class="treeview">
-          <a href="<?php echo site_url() ?>member/page/order">
+          <a href="<?php echo site_url() ?>member">
             <i class="fa fa-dashboard"></i> <span>Order API</span>
           </a>
         </li>
