@@ -52,6 +52,17 @@
 
 	    public function api_data_json()
 	    {
-	    	// $list = $this->mdl
+	    	$list = $this->mdl->get_datatables();
+	    	$data = array();
+	    	foreach ($list as $value) {
+	    		$row = array();
+	    		$row[] = $list->'id';
+	    		$row[] = $list->'domain';
+	    		$row[] = $list->'price';
+	    		$row[] = $list->'status';
+	    		$row[] = $list->'user_id';
+	    		$row[] = $list->'id';
+	    	}
+	    	
 	    }
 }
