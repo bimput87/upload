@@ -1,17 +1,3 @@
-<?php  
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
-
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>User | Log in</title>
-
-	<?php  require_once VINC.'header.php';?>
-
-</head>
 <body class="hold-transition login-page">
 	<div class="login-box">
 		<!-- /.login-logo -->
@@ -58,7 +44,3 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<!-- /.login-box-body -->
 	</div>
 	<!-- /.login-box -->
-
-	<?php  require_once VINC.'footer.php';?>
-</body>
-</html>

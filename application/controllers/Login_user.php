@@ -58,7 +58,7 @@
 		 */
 		public function register_view()
 		{
-			$this->load->view('login/register_user');
+			$this->page('register_user', array('title' => 'Register Form'));
 		}
 
 		/**
@@ -85,8 +85,8 @@
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
-			if ($this->form_validation->run() == FALSE) 
-				$this->load->view('login/login_user');
+			if ($this->form_validation->run() == FALSE)
+				$this->page('login_user', array('title' => 'User Login')); 
 			else{
 				$post = $this->input->post();
 				$clean = $this->security->xss_clean($post);
@@ -105,6 +105,16 @@
 			}
 		}
 
+		public function page($page, $data)
+		{  
+			if (!file_exists(APPPATH.'views/pages/login/'.$page.'.php'))
+				show_404();
+
+	        $this->load->view('templates/login/header', $data);
+	        $this->load->view('pages/login/'.$page, $data);
+	        $this->load->view('templates/login/footer', $data);
+	    }
+
 		/**
 		 * [forgot description]
 		 * Reset password page
@@ -114,7 +124,7 @@
 		{
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			if($this->form_validation->run() == FALSE)
-				$this->load->view('login/forgot');
+				$this->page('forgot', array('title' => 'Forgot Password'));
 			else{
 				$email = $this->input->post('email');
 				$clean = $this->security->xss_clean($email);
@@ -226,14 +236,15 @@
 				'first_name' 	=> $first_name,
 				'email' 		=> $email,
 				'user_id'		=> $id,
-				'token'			=> $this->base64url_encode($token)
+				'token'			=> $this->base64url_encode($token),
+				'title'			=> 'New Password'
 			);
 
 			$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
 			$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 
 			if ($this->form_validation->run() == FALSE) 
-				$this->load->view('login/reset_password', $data);
+				$this->page('reset_password', $data);
 			else{
 				$post = $this->input->post(NULL, TRUE);
 				$clean_post = $this->security->xss_clean($post);
@@ -324,14 +335,15 @@
 		 		'first_name' => $user_info->first_name, 
 		 		'email'		 => $user_info->email,
 		 		'user_id'	 => $user_info->id,
-		 		'token'		 => $this->base64url_encode($token)	
+		 		'token'		 => $this->base64url_encode($token),
+		 		'title'		 => 'Complete Registration'	
 	 		);
 
 	 		$this->form_validation->set_rules('password', 'Password', 'required|min_length[6]');
 	 		$this->form_validation->set_rules('passconf', 'Password Confirmation', 'required|matches[password]');
 
 	 		if ($this->form_validation->run() == FALSE) 
-	 			$this->load->view('login/complete', $data);
+	 			$this->page('complete', $data);
 	 		else{
 	 			$post = $this->input->post(NULL, TRUE);
 	 			$clean_post = $this->security->xss_clean($post);

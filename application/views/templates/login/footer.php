@@ -1,3 +1,4 @@
+
 <?php  
 	$array_js = array(
 		'jquery-2.2.3.min.js',
@@ -16,4 +17,7 @@
 		},
 		1000
 	);
-</script>
+	</script>
+
+</body>
+</html>
