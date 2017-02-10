@@ -54,12 +54,12 @@
 	    	$data = array();
 	    	foreach ($list as $value) {
 	    		$row = array();
-	    		$row[] = $list->'id';
-	    		$row[] = $list->'domain';
-	    		$row[] = $list->'price';
-	    		$row[] = $list->'status';
-	    		$row[] = $list->'user_id';
-	    		$row[] = $list->'id';
+	    		$row[] = $list->id;
+	    		$row[] = $list->domain;
+	    		$row[] = $list->price;
+	    		$row[] = $list->status;
+	    		$row[] = $list->user_id;
+	    		$row[] = $list->id;
 	    	}
 	    	
 	    }
