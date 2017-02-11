@@ -12,7 +12,7 @@
 			if (empty($this->session->userdata('email'))){
 				$_SESSION['flash_messsage'] = 'You are not allowed to access or your session has been expired';
 				$this->session->mark_as_temp('flash_messsage', 1);
-				redirect(site_url().'login_user');
+				redirect('/');
 			} 
 
 			$this->load->model('Member_model', 'mdl', TRUE);
@@ -27,7 +27,7 @@
 		public function logout()
 		{
 			$this->session->sess_destroy();
-			redirect(site_url().'login_user');
+			redirect('/');
 		}
 
 		public function page($page, $data)
