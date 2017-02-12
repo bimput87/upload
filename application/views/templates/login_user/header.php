@@ -17,7 +17,8 @@
     		'bootstrap.min.css',
     		'waves.css',
     		'animate.css',
-    		'style.css' 
+    		'style.css',
+            'bootstrap-formhelpers.css'
 		);
 
     	echo "\n\t";

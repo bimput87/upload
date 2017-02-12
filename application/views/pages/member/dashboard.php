@@ -39,4 +39,5 @@
       <!-- END ACCORDION & CAROUSEL-->
 
 </div>
+<?php print_r($this->session->userdata()) ?>
 <!-- ./wrapper -->

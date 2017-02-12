@@ -48,7 +48,10 @@
 		 */
 		public function index()
 		{
-			$this->status_login();
+			if (!empty($this->session->userdata('email')) || $this->session->userdata('rememberme') == 'on')
+				redirect('member');
+			else
+				$this->do_login();	
 		}
 
 		/**
@@ -59,19 +62,6 @@
 		public function register_view()
 		{
 			$this->page('register_user', array('title' => 'Register Form'));
-		}
-
-		/**
-		 * [status_login description]
-		 * Check login status
-		 * @return [redirect / login] [member page / login user]
-		 */
-		public function status_login()
-		{
-			if (!empty($this->session->userdata('email')))
-				redirect('member');
-			else
-				$this->do_login();		
 		}
 
 		/**
@@ -92,14 +82,17 @@
 				$clean = $this->security->xss_clean($post);
 
 				$user_info = $this->usr_mdl->check_login($clean);
-
+				
 				if (!$user_info) {
 					$this->session->set_flashdata('flash_messsage', 'The login was unsuccessful');
-					redirect(site_url().'login_user/do_login');
+					redirect('/');
 				}
 
 				foreach ($user_info as $key => $value) 
 					$this->session->set_userdata($key, $value);
+
+				if(!empty($clean['rememberme']) && $clean['rememberme'] == 'on')
+					$this->session->set_userdata('rememberme', 'on');
 
 				redirect('member');
 			}
@@ -107,12 +100,12 @@
 
 		public function page($page, $data)
 		{  
-			if (!file_exists(APPPATH.'views/pages/login/'.$page.'.php'))
+			if (!file_exists(APPPATH.'views/pages/login_user/'.$page.'.php'))
 				show_404();
 
-	        $this->load->view('templates/login/header', $data);
-	        $this->load->view('pages/login/'.$page, $data);
-	        $this->load->view('templates/login/footer', $data);
+	        $this->load->view('templates/login_user/header', $data);
+	        $this->load->view('pages/login_user/'.$page, $data);
+	        $this->load->view('templates/login_user/footer', $data);
 	    }
 
 		/**
@@ -227,7 +220,7 @@
 			}
 			
 			/*Prepare Data*/
-			$array = json_decode(json_encode($user_info), true);
+			$array = json_decode(json_encode($user_info), TRUE);
 			$first_name = $array['first_name'];
 			$email = $array['email'];
 			$id = $array['id'];
