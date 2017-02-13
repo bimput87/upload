@@ -1,7 +1,7 @@
 <?php 
 	if ( ! defined('BASEPATH')) exit('No direct script access allowed');  
 	/**
-	* 
+	* class login admin
 	*/
 	class Login_admin extends CI_Controller
 	{
