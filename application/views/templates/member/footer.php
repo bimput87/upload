@@ -1,31 +1,29 @@
     <?php  
         $array_js = array(
-            'jquery-2.2.3.min.js',
-            'bootstrap.min.js',
+            'jquery.min.js',
+            'bootstrap.js',
             'bootstrap-select.js',
             'jquery.slimscroll.js',
             'waves.js',
-            'jquery.countTo.js',
-            'raphael.min.js',
-            'morris.js',
-            'Chart.bundle.js',
-            'jquery.flot.js',
-            'jquery.flot.resize.js',
-            'jquery.flot.pie.js',
-            'jquery.flot.categories.js',
-            'jquery.flot.time.js',
-            'jquery.sparkline.js',
+            'jquery.dataTables.js',
+            'dataTables.bootstrap.js',
+            'dataTables.buttons.min.js',
+            'buttons.flash.min.js',
+            'jszip.min.js',
+            'pdfmake.min.js',
+            'vfs_fonts.js',
+            'buttons.html5.min.js',
+            'buttons.print.min.js',
             'admin.js',
-            'index.js',
+            'jquery-datatable.js',
             'demo.js'
+            
         );
 
         echo "\n\n\t";
         foreach($array_js as $val)
             echo js_asset('', $val);
     ?>
-    
-
 </body>
 
 </html>
