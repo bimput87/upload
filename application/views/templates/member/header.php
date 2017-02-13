@@ -20,7 +20,7 @@
             'morris.css',
             'animate.css',
             'style.css',
-            'skin-red.min.css' 
+            'theme-red.min.css' 
         );
 
         echo "\t\n";
