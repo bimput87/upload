@@ -6,7 +6,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <?php echo form_open(site_url().'login_user/register') ?>
+                <?php echo form_open(site_url().'login_user/register/') ?>
                     <div style="display:none">
                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     </div> 
@@ -66,7 +66,6 @@
                     <button class="btn btn-block btn-lg bg-red waves-effect" type="submit">SIGN UP</button>
 
                     <div class="m-t-25 m-b--5 align-center">
-                        <!-- <a href="sign-in.html">You already have a membership?</a> -->
                         <?php echo anchor('/', 'You already have a membership?') ?>
                     </div>
                 <?php echo form_close() ?>

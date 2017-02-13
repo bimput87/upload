@@ -243,7 +243,9 @@
 				$clean_post = $this->security->xss_clean($post);
 	 			$hashed = $this->bcrypt->hash_password($clean_post['password']);
 				$clean_post['password'] = $hashed;
+				
 				unset($clean_post['passconf']);
+				
 				if (!$this->usr_mdl->update_password($clean_post)) 
 					$this->session->set_flashdata('flash_messsage', 'There was a problem while updating your password');
 				else 
