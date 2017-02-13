@@ -20,7 +20,8 @@
             'morris.css',
             'animate.css',
             'style.css',
-            'theme-red.min.css' 
+            'theme-red.min.css',
+            'dataTables.bootstrap.css'
         );
 
         echo "\t\n";
