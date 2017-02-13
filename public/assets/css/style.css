@@ -7698,7 +7698,7 @@ fieldset[disabled] .form-control {
 
 /* Login Page ================================== */
 .login-page {
-  background-color: #D40000B3;
+  background-color: #F44336 !important;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -7728,7 +7728,7 @@ fieldset[disabled] .form-control {
 
 /* Sign Up Page ================================ */
 .signup-page {
-  background-color: #D40000B3;
+  background-color: #F44336 !important;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;
@@ -7758,7 +7758,7 @@ fieldset[disabled] .form-control {
 
 /* Forgot Password Page ======================== */
 .fp-page {
-  background-color: #D40000B3;
+  background-color: #F44336 !important;
   padding-left: 0;
   max-width: 360px;
   margin: 5% auto;

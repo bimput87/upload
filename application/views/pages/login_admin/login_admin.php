@@ -14,7 +14,7 @@
                 }
             ?>
             <div class="body">
-                <?php echo form_open(site_url().'login_admin/login') ?>
+                <?php echo form_open(site_url().'admin') ?>
                     <div style="display:none">
                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     </div>

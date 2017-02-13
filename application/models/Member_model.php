@@ -1,29 +1,29 @@
 <?php
 	if ( ! defined('BASEPATH')) exit('No direct script access allowed');  
 	/**
-	* Models for user authentication(login, reset_password & signup)
+	* This model is derived from Login model core
 	*/
-	class MY_Login_Model extends CI_Model
+	class Member_model extends CI_Model
 	{	
 		/**
 		 * [$roles description]
 		 * Global var array stored roles
 		 * @var [array]
 		 */
-		public $roles;
+		private $roles;
 		/**
 		 * [$status description]
 		 * Global var array stored status
 		 * @var [array]
 		 */
-		public $status;
+		private $status;
 
 		/**
 		 * [$table_name description]
 		 * Global var stored table name
 		 * @var [String]
 		 */
-		public $table_name;
+		private $table_name;
 
 		/**
 		 * [__construct description]
@@ -34,6 +34,7 @@
 		function __construct()
 		{
 			parent::__construct();
+			$this->table_name = 'members';
 			$this->roles = $this->config->item('roles');
 			$this->status = $this->config->item('status');
 			$this->load->library('bcrypt');
@@ -48,14 +49,6 @@
 		 */
 		public function insert_user($post)
 		{
-			if ($this->table_name === 'users'){
-				$stat = $this->status[0];
-				$rol  = $this->roles[0];
-			}elseif($this->table_name === 'admin' ){
-				$stat = $this->status[1];
-				$rol  = $this->roles[1];
-			} 
-			
 			$string_array = array(
 				'first_name'=> $post['first_name'],
 				'last_name' => $post['last_name'],
@@ -63,8 +56,8 @@
 				'phone'		=> $post['phone'],
 				'country'	=> $post['country'],
 				'city'		=> $post['city'],
-				'role'		=> $stat,
-				'status'	=> $rol
+				'role'		=> $this->roles[0],
+				'status'	=> $this->status[0]
 			);
 
 			$q = $this->db->insert_string($this->table_name, $string_array);
@@ -266,7 +259,6 @@
 			$user_info = $this->get_user_info($post['user_id']);
 
 			return $user_info;
-		}
-
+		}	
 
 	}

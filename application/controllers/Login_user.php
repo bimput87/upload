@@ -1,16 +1,29 @@
 <?php
 	if ( ! defined('BASEPATH')) exit('No direct script access allowed');  
 	/**
-	* Login class
+	* This user login class is derived from login core controllers
 	*/
-	class Login_user extends MY_Login_Controller
+	class Login_user extends CI_Controller
 	{
-	
+		
+		/**
+		 * [$roles description]
+		 * Global var array stored roles
+		 * @var [array]
+		 */
+		private $roles;
+		/**
+		 * [$status description]
+		 * Global var array stored status
+		 * @var [array]
+		 */
+		private $status;
+
 		function __construct()
 		{
 			parent::__construct();
-			$this->load->model('user_model', 'usr_mdl', TRUE);
 			$this->load->library(array('email', 'form_validation', 'bcrypt'));
+			$this->load->model('member_model', 'mdl', TRUE);
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible">', '</div>');
 			$this->status = $this->config->item('status');
 			$this->roles = $this->config->item('roles');
@@ -23,7 +36,7 @@
 		 */
 		public function index()
 		{
-			if (!empty($this->session->userdata('email')) || $this->session->userdata('rememberme') == 'on')
+			if ((!empty($this->session->userdata('email')) || $this->session->userdata('rememberme') == 'on') && $this->session->userdata('role') == 'member')
 				redirect('member');
 			else
 				$this->do_login();	
@@ -56,7 +69,7 @@
 				$post = $this->input->post();
 				$clean = $this->security->xss_clean($post);
 
-				$user_info = $this->usr_mdl->check_login($clean);
+				$user_info = $this->mdl->check_login($clean);
 				
 				if (!$user_info) {
 					$this->session->set_flashdata('flash_messsage', 'The login was unsuccessful');
@@ -93,14 +106,14 @@
 			else{
 				$email = $this->input->post('email');
 				$clean = $this->security->xss_clean($email);
-				$user_info = $this->usr_mdl->get_user_info_by_email($clean);
+				$user_info = $this->mdl->get_user_info_by_email($clean);
 				if (!$user_info) {
 					$this->session->set_flashdata('flash_messsage', 'We can\'t find your email address');
 					redirect(site_url().'login_user/forgot/');
 				} else {
 					$email = $this->input->post('email');
 					$clean = $this->security->xss_clean($email);
-					$user_info = $this->usr_mdl->get_user_info_by_email($clean);
+					$user_info = $this->mdl->get_user_info_by_email($clean);
 
 					if (!$user_info) {
 						$this->session->set_flashdata('flash_messsage', 'We can\'t find find your email address');
@@ -113,7 +126,7 @@
 					}	
 
 					/*build token*/
-					$token = $this->usr_mdl->insert_token($user_info->id);
+					$token = $this->mdl->insert_token($user_info->id);
 					$qstring = $this->base64url_encode($token);
 					$url = site_url().'login_user/reset_password/token/'.$qstring;
 					$link = '<a href="'.$url.'">'.$url.'</a>';
@@ -184,7 +197,7 @@
 			$clean_token = $this->security->xss_clean($token);
 
 			/*either false or an array*/
-			$user_info = $this->usr_mdl->is_token_valid($clean_token);	
+			$user_info = $this->mdl->is_token_valid($clean_token);	
 			
 			if (empty($user_info) && $user_info != FALSE) {
 				$this->session->set_flashdata('flash_messsage', 'Token is invalid or expired');
@@ -218,7 +231,7 @@
 				
 				unset($clean_post['passconf']);
 				
-				if (!$this->usr_mdl->update_password($clean_post)) 
+				if (!$this->mdl->update_password($clean_post)) 
 					$this->session->set_flashdata('flash_messsage', 'There was a problem while updating your password');
 				else 
 					$this->session->set_flashdata('flash_messsage', 'Your password has been updated. You may now login');
@@ -244,13 +257,13 @@
 			if ($this->form_validation->run() == FALSE) 
 				$this->register_view();
 			else {
-				if ($this->usr_mdl->is_duplicate($this->input->post('email'))) {
+				if ($this->mdl->is_duplicate($this->input->post('email'))) {
 					$this->session->set_flashdata('flash_messsage', 'User email already exists');
 					redirect('/');
 				} else {
 					$clean = $this->security->xss_clean($this->input->post(NULL, TRUE));
-					$id = $this->usr_mdl->insert_user($clean);
-					$token = $this->usr_mdl->insert_token($id);
+					$id = $this->mdl->insert_user($clean);
+					$token = $this->mdl->insert_token($id);
 
 					$qstring = $this->base64url_encode($token);
 					$url = site_url().'login_user/complete/token/'.$qstring;
@@ -291,7 +304,7 @@
 			$clean_token = $this->security->xss_clean($token);
 
 			// either null or an array
-			$user_info = $this->usr_mdl->is_token_valid($clean_token);
+			$user_info = $this->mdl->is_token_valid($clean_token);
 
 			if (!$user_info) {
 			 	$this->session->set_flashdata('flash_messsage', 'Token is invalid or expired');
@@ -317,7 +330,7 @@
 	 			$hashed = $this->bcrypt->hash_password($clean_post['password']);
 	 			$clean_post['password'] = $hashed;
 	 			unset($clean_post['passconf']);
-	 			$usr_info = $this->usr_mdl->update_user_info($clean_post);
+	 			$usr_info = $this->mdl->update_user_info($clean_post);
 	 			if (!$usr_info) {
 	 				$this->session->set_flashdata('flash_messsage', 'There was a problem while updating data');
 	 				redirect('/');
@@ -341,5 +354,5 @@
 		public function base64url_decode($data) 
 		{ 
 		    return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
-		}       
+		}  
 	}
