@@ -13,12 +13,24 @@
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');
 			} 
+			$this->load->model('admin_model', 'mdl', TRUE);
 		}
 
 		public function index()
 		{
-			$data = array('title' => 'Dasboard Admin');
+			$data = array(
+				'title' 	=> 'Dasboard Admin',
+				'm_sum'		=> $this->mdl->count('members'),
+				'city_sum'	=> $this->mdl->distinct('city', 'members'),
+				'or_sum'		=> $this->mdl->count('orders')
+			);
 			$this->page('dashboard',$data);
+		}
+
+		public function new_members()
+		{
+			$date = date('Y-m-d');
+
 		}
 
 		public function page($page, $data)
