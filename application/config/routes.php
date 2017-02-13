@@ -54,5 +54,6 @@ $route['/'] 					= 'login_user';
 $route['register'] 				= 'login_user/register_view';
 $route['forgot'] 				= 'login_user/forgot'; 
 $route['admin'] 				= 'login_admin';
+$route['administrator']			= 'admin_controller';
 $route['404_override'] 			= '';
 $route['translate_uri_dashes'] 	= FALSE;

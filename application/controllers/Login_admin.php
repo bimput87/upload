@@ -16,7 +16,7 @@
 		public function index()
 		{
 			if (!empty($this->session->userdata('email')) && $this->session->userdata('role') == 'admin')
-				redirect(site_url().'admin_controller');
+				redirect(site_url().'administrator');
 			else
 				$this->do_login();	
 		}
@@ -48,7 +48,7 @@
 				foreach ($user_info as $key => $value) 
 					$this->session->set_userdata($key, $value);
 
-				redirect(site_url().'admin_controller');
+				redirect(site_url().'administrator');
 			}
 		}
 

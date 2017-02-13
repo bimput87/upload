@@ -88,6 +88,9 @@
 
 		public function page($page, $data)
 		{  
+			if (!file_exists(APPPATH.'views/pages/login_user/'.$page.'.php'))
+				show_404();
+
 	        $this->load->view('templates/login/header', $data);
 	        $this->load->view('pages/login_user/'.$page, $data);
 	        $this->load->view('templates/login/footer', $data);
