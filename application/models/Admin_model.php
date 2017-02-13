@@ -53,4 +53,17 @@
 
 			return;
 		}
+
+		public function distinct($col, $table)
+		{
+			$this->db->select($col);
+			$this->db->distinct();
+			$this->db->get($table);
+			return $this->db->affected_rows();
+		}
+
+		public function count($table)
+		{
+			return $this->db->count_all_results($table);
+		}
 	}
