@@ -3,7 +3,7 @@
 	/**
 	* class login admin
 	*/
-	class Login_admin extends CI_Controller
+	class Login_admin extends MY_Login_Controller
 	{
 		
 		function __construct()

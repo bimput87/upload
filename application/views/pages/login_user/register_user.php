@@ -1,7 +1,7 @@
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
-            <a target="_blank" href="http://ubig.co.id"><b>UBIG.CO.ID</b></a>
+            <a target="_blank" href="http://ubig.co.id"><b>UBIG</b>.CO.ID</a>
             <small>Word class big data provider</small>
         </div>
         <div class="card">

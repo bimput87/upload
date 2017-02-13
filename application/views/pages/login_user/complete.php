@@ -1,7 +1,7 @@
 <body class="fp-page">
     <div class="fp-box">
         <div class="logo">
-            <a target="_blank" href="http://ubig.co.id"><b>UBIG.CO.ID</b></a>
+            <a target="_blank" href="http://ubig.co.id"><b>UBIG</b>.CO.ID</a>
             <small>The world class big data provider</small>
         </div>
         <div class="card">

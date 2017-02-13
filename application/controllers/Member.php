@@ -14,8 +14,6 @@
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');
 			} 
-
-			$this->load->model('Member_model', 'mdl', TRUE);
 		}
 
 		public function index()
@@ -42,25 +40,4 @@
 	        $this->load->view('templates/member/footer', $data);
 	    }
 
-	    public function show_api()
-	    {
-	    	$data = array('title' => 'Show API');
-	    	$this->page('show', $data);
-	    }
-
-	    public function api_data_json()
-	    {
-	    	$list = $this->mdl->get_datatables();
-	    	$data = array();
-	    	foreach ($list as $value) {
-	    		$row = array();
-	    		$row[] = $list->id;
-	    		$row[] = $list->domain;
-	    		$row[] = $list->price;
-	    		$row[] = $list->status;
-	    		$row[] = $list->user_id;
-	    		$row[] = $list->id;
-	    	}
-	    	
-	    }
 }

@@ -3,34 +3,9 @@
 	/**
 	* Login class
 	*/
-	class Login_user extends CI_Controller
+	class Login_user extends MY_Login_Controller
 	{
-		/**
-		 * [$status description]
-		 * Global var array stored roles
-		 * @var [array]
-		 */
-		public $status;
-		/**
-		 * [$roles description]
-		 * Global var stored status
-		 * @var [array]
-		 */
-		public $roles;
-
-		/**
-		 * [$email description]
-		 * Global variable stored email config
-		 * @var [array]
-		 */
-		public $email_conf;
-		/**
-		 * [__construct description]
-		 * Initializing everything here
-		 * 1. Fill the roles and status variable
-		 * 2. Load library bcrypt and form validation
-		 * 3. Set error delimiters
-		 */
+	
 		function __construct()
 		{
 			parent::__construct();
