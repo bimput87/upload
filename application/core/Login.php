@@ -1,10 +1,15 @@
-<?php
-	if ( ! defined('BASEPATH')) exit('No direct script access allowed');  
+<?php 	
 	/**
-	* Login class
+	* 
 	*/
-	class Login_user extends CI_Controller
+	class Login extends CI_Controller
 	{
+		
+		function __construct()
+		{
+			parent::__construct();
+		}
+
 		/**
 		 * [$status description]
 		 * Global var array stored roles
@@ -100,9 +105,12 @@
 
 		public function page($page, $data)
 		{  
-	        $this->load->view('templates/login/header', $data);
+			if (!file_exists(APPPATH.'views/pages/login_user/'.$page.'.php'))
+				show_404();
+
+	        $this->load->view('templates/login_user/header', $data);
 	        $this->load->view('pages/login_user/'.$page, $data);
-	        $this->load->view('templates/login/footer', $data);
+	        $this->load->view('templates/login_user/footer', $data);
 	    }
 
 		/**
@@ -366,5 +374,5 @@
 		public function base64url_decode($data) 
 		{ 
 		    return base64_decode(str_pad(strtr($data, '-_', '+/'), strlen($data) % 4, '=', STR_PAD_RIGHT)); 
-		}       
+		}     
 	}

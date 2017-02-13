@@ -1,28 +1,31 @@
-<?php  
-defined('BASEPATH') OR exit('No direct script access allowed');
-?>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="utf-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title><?php echo $title ?></title>
-<?php  
-	$array_css = array(
-		'bootstrap.min.css',
-		'AdminLTE.min.css',
-		'bootstrap-formhelpers.css'
-	);
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+    <title><?php echo $title ?></title>
+    <!-- Favicon-->
+    <link rel="icon" href="<?php echo base_url() ?>favicon.ico" type="image/x-icon">
 
-	echo "\n\t";
-	
-	foreach ($array_css as  $value) 
-		echo css_asset('', $value);
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,700&subset=latin,cyrillic-ext" rel="stylesheet" type="text/css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet" type="text/css">
 
-?>
-<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
-	<link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
-  	<link rel="shortcut icon" href="<?php echo base_url() ?>favicon.ico" type="img/x-icon">
+    <?php  
+    	$array_css = array(
+    		'bootstrap.min.css',
+    		'waves.css',
+    		'animate.css',
+    		'style.css',
+            'bootstrap-formhelpers.css'
+		);
+
+    	echo "\n\t";
+
+    	foreach($array_css as $val)
+    		echo css_asset('', $val);
+
+    ?>
 
 </head>
-

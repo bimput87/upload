@@ -13,16 +13,19 @@
 
 		public function index()
 		{
-			$this->page('login_user', array('title' => 'Login User'));
+			$this->page('login_admin', array('title' => 'Admin Login'));
 		}
 
 		public function page($page, $data)
 		{  
-			if (!file_exists(APPPATH.'views/pages/login_user/'.$page.'.php'))
-				show_404();
+	        $this->load->view('templates/login/header', $data);
+	        $this->load->view('pages/login_admin/'.$page, $data);
+	        $this->load->view('templates/login/footer', $data);
+	    }
 
-	        $this->load->view('templates/login_user/header', $data);
-	        $this->load->view('pages/login_user/'.$page, $data);
-	        $this->load->view('templates/login_user/footer', $data);
+	    public function login()
+	    {
+	    	echo "You have logged in as admin</br>";
+	    	print_r($this->input->post(NULL, TRUE));
 	    }
 	}
