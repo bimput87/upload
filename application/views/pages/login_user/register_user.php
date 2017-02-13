@@ -2,7 +2,7 @@
     <div class="signup-box">
         <div class="logo">
             <a target="_blank" href="http://ubig.co.id"><b>UBIG</b>.CO.ID</a>
-            <small>Word class big data provider</small>
+            <small>The world class big data provider</small>
         </div>
         <div class="card">
             <div class="body">

@@ -62,8 +62,11 @@
 			return $this->db->affected_rows();
 		}
 
-		public function count($table)
+		public function count($table, $where)
 		{
+			if (!empty($where))
+				$this->db->where($where);
+
 			return $this->db->count_all_results($table);
 		}
 	}

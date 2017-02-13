@@ -2,7 +2,7 @@
     <div class="login-box body">
         <div class="logo">
             <a target="_blank" href="http://ubig.co.id"><b>UBIG</b>.CO.ID</a>
-            <small>The word class big data provider</small>
+            <small>The world class big data provider</small>
         </div>
         <div class="card">
             <?php

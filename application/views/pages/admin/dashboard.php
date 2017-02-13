@@ -45,13 +45,13 @@
 
 							<div class="info-box-content">
 								<span class="info-box-text">Orders</span>
-								<span class="info-box-number">5,200</span>
+								<span class="info-box-number"><?php echo $or_compl ?> Completed</span>
 
 								<div class="progress">
-									<div class="progress-bar" style="width: 90%"></div>
+									<div class="progress-bar" style="width: <?php echo $or_perc ?>%"></div>
 								</div>
 								<span class="progress-description">
-									<?php echo $or_sum ?> Total orders
+									<?php echo $or_sum ?> Total orders (<?php echo $or_perc ?> %)
 								</span>
 							</div>
 							<!-- /.info-box-content -->
@@ -64,14 +64,14 @@
 							<span class="info-box-icon"><i class="ion ion-key"></i></span>
 
 							<div class="info-box-content">
-								<span class="info-box-text">API'S</span>
-								<span class="info-box-number">5,200</span>
+								<span class="info-box-text">APIs</span>
+								<span class="info-box-number"><?php echo $api_act ?> Activated</span>
 
 								<div class="progress">
-									<div class="progress-bar" style="width: 50%"></div>
+									<div class="progress-bar" style="width: <?php echo $api_perc ?>%"></div>
 								</div>
 								<span class="progress-description">
-									50% Increase in 30 Days
+									<?php echo $api_sum ?> Total APIs (<?php echo $api_perc ?> %)
 								</span>
 							</div>
 							<!-- /.info-box-content -->
@@ -94,7 +94,6 @@
 										<h3 class="box-title">Latest Members</h3>
 
 										<div class="box-tools pull-right">
-											<span class="label label-danger">8 New Members</span>
 											<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 											</button>
 											<button type="button" class="btn btn-box-tool" data-widget="remove"><i class="fa fa-times"></i>

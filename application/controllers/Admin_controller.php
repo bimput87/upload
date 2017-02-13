@@ -18,11 +18,26 @@
 
 		public function index()
 		{
+			/*orders*/
+			$or_sum = $this->mdl->count('orders', '');
+			$completed = $this->mdl->count('orders', array('status' => 1));
+			$percent_completed =  ceil(($completed/$or_sum)*100);
+
+			/*api*/
+			$api_sum = $this->mdl->count('api_keys', '');
+			$api_completed = $this->mdl->count('api_keys', array('active' => 1));
+			$api_perc = ceil(($api_completed/$api_sum)*100);
+
 			$data = array(
 				'title' 	=> 'Dasboard Admin',
-				'm_sum'		=> $this->mdl->count('members'),
+				'm_sum'		=> $this->mdl->count('members', ''),
 				'city_sum'	=> $this->mdl->distinct('city', 'members'),
-				'or_sum'		=> $this->mdl->count('orders')
+				'or_sum'	=> $or_sum,
+				'or_compl'	=> $completed,
+				'or_perc'	=> $percent_completed,
+				'api_sum'	=> $api_sum,
+				'api_act'	=> $api_completed,
+				'api_perc'	=> $api_perc
 			);
 			$this->page('dashboard',$data);
 		}
