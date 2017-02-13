@@ -25,22 +25,22 @@
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Id Order</th>
+                                        <th>Domain</th>
+                                        <th>Api Key</th>
+                                        <th>Date</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Id Order</th>
+                                        <th>Domain</th>
+                                        <th>Api Key</th>
+                                        <th>Date</th>
+                                        <th>Price</th>
+                                        <th>Status</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
@@ -92,22 +92,22 @@
                             <table class="table table-bordered table-striped table-hover dataTable js-exportable">
                                 <thead>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
-                                        <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Id Order</th>
+                                        <th>Domain</th>
+                                        <th>Api Key</th>
+                                        <th>Last Used</th>
+                                        <th>Last IP</th>
+                                        <th>Status</th>
                                     </tr>
                                 </thead>
                                 <tfoot>
                                     <tr>
-                                        <th>Name</th>
-                                        <th>Position</th>
-                                        <th>Office</th>
-                                        <th>Age</th>
+                                        <th>Id Order</th>
+                                        <th>Domain</th>
+                                        <th>Api Key</th>
+                                        <th>Last Used</th>
                                         <th>Start date</th>
-                                        <th>Salary</th>
+                                        <th>Status</th>
                                     </tr>
                                 </tfoot>
                                 <tbody>
