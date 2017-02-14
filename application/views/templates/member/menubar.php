@@ -36,8 +36,7 @@
                 <a href="javascript:void(0);" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
                 <a href="javascript:void(0);" class="bars"></a>
                 <span>   
-                <a class="navbar-brand"><b>U</b>BIG</a>
-                <a class="navbar-brand"><b>UBIG</b>.CO.ID</a>
+                <img height="50" width="180" src="<?php echo site_url() ?>public/assets/img/logo-white-full.png">
                 </span>
             </div>
         </div>
