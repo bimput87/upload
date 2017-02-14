@@ -1,12 +1,12 @@
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
-            <a target="_blank" href="http://ubig.co.id"><b>UBIG</b>.CO.ID</a>
+            <a target="_blank" href="http://ubig.co.id"><img width="300" height="60" src="<?php echo site_url() ?>public/assets/img/logo-white-full.png"></a>
             <small>The world class big data provider</small>
         </div>
         <div class="card">
             <div class="body">
-                <?php echo form_open(site_url().'login_user/register/') ?>
+                <?php echo form_open(site_url().'login_user/register/', array('onsubmit' => "if(document.getElementById('terms').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }")) ?>
                     <div style="display:none">
                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     </div> 
@@ -59,7 +59,7 @@
                         </div>
                     </div>
                     <div class="form-group">
-                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-red">
+                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-red" required="you must check this out">
                         <label for="terms">I agree to the terms of usage.</label>
                     </div>
 
