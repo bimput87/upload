@@ -29,7 +29,7 @@
           </a>
         </li>
         <li class="treeview">
-          <a href="<?php echo site_url() ?>member">
+          <a href="<?php echo site_url() ?>member/order_api">
             <i class="fa fa-shopping-basket"></i> <span>Orders</span>
           </a>
         </li>
