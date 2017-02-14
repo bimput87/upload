@@ -290,6 +290,27 @@
 			$this->db->where($cond);
 
 			return $this->db->get();
-		}	
+		}
+
+		public function order_api()
+			{
+				$col = array(
+					"o.id AS 'id_order'",
+                    "o.domain AS 'domain'",
+                    "a.key AS 'api_keys'",
+                    "o.created_at AS 'date'",
+                    "o.domain AS 'price'",
+                    "o.status AS 'status'"
+				);
+				$this->db->select($col);
+				$this->db->from('orders o');
+			
+				$this->db->join('users u', 'u.id = o.user_id', 'left');
+				$this->db->join('api_keys a', 'a.order_id  = o.id', 'left');
+
+				return $this->db->get();
+
+				
+			}	
 
 	}

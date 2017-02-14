@@ -31,23 +31,32 @@
                                         <th>Status</th>
                                     </tr>
                                 </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                    </tr>
+                                 <tbody>
+                                 <!--    <?php  
+                                        for ($i=0; $i < sizeof($hasil2); $i++) {
+                                            echo '<tr>'; 
+                                            for ($j=0; $j < sizeof($col2); $j++) {
+                                                echo '<td>'.$hasil2[$i][$col2[$j]].'</td>';
+                                            }
+                                            echo '</tr>';
+                                        }
+                                    ?> -->
+                                      <?php  
+                                        for ($i=0; $i < sizeof($hasil2); $i++) {
+                                            echo '<tr>'; 
+                                            for ($j=0; $j < sizeof($col2); $j++) {
+                                                if ($j == 0) 
+                                                    echo '<td> <a target="_blank" href="http://ubig.co.id">ORD-'.$hasil2[$i][$col2[$j]].'</a></td>';
+                                                else{
+                                                    if($j == sizeof($col2)-1)
+                                                        echo '<td><span class="label bg-green">Verified</span></td>';
+                                                    else
+                                                        echo '<td>'.$hasil2[$i][$col2[$j]].'</td>';
+                                                }
+                                            }
+                                            echo '</tr>';
+                                        }
+                                    ?>
                                 </tbody>
                             </table>
                         </div>

@@ -22,6 +22,7 @@
 			$data = array(
 				'title' => 'Dasboard User',
 				'hasil' => $this->mdl->show_api($this->session->userdata('id'))->result_array(),
+				'hasil2'=> $this->mdl->order_api()->result_array(),
 				'col' 	=>  array(
 								'id_order',
 								'name',
@@ -29,6 +30,14 @@
 								'api_keys',
 								'last_used',
 								'ip',
+								'status'
+							),
+				'col2' 	=>  array(
+								'id_order',
+								'domain',
+								'api_keys',
+								'date',
+								'price',
 								'status'
 							)
 			);
