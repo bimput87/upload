@@ -13,12 +13,26 @@
 				$_SESSION['flash_messsage'] = 'You are not allowed to access or your session has been expired';
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');
-			} 
+			}
+			$this->load->model('member_model', 'mdl', TRUE); 
 		}
 
 		public function index()
-		{
-			$data = array('title' => 'Dasboard User');
+		{	
+			$data = array(
+				'title' => 'Dasboard User',
+				'hasil' => $this->mdl->show_api($this->session->userdata('id'))->result_array(),
+				'col' 	=>  array(
+								'id_order',
+								'name',
+								'domain',
+								'api_keys',
+								'last_used',
+								'ip',
+								'status'
+							)
+			);
+
 			$this->page('dashboard',$data);
 		}
 

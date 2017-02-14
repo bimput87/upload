@@ -15,7 +15,7 @@
                                     <tr>
                                         <th>Id Order</th>
                                         <th>Domain</th>
-                                        <th>Api Key</th>
+                                        <th>API Key</th>
                                         <th>Date</th>
                                         <th>Price</th>
                                         <th>Status</th>
@@ -25,7 +25,7 @@
                                     <tr>
                                         <th>Id Order</th>
                                         <th>Domain</th>
-                                        <th>Api Key</th>
+                                        <th>API Key</th>
                                         <th>Date</th>
                                         <th>Price</th>
                                         <th>Status</th>
@@ -69,49 +69,43 @@
                                 <thead>
                                     <tr>
                                         <th>Id Order</th>
+                                        <th>Owner</th>
                                         <th>Domain</th>
-                                        <th>Api Key</th>
+                                        <th>API Key</th>
                                         <th>Last Used</th>
                                         <th>Last IP</th>
                                         <th>Status</th>
                                     </tr>
                                 </thead>
+                                <tbody>
+                                    <?php  
+                                        for ($i=0; $i < sizeof($hasil); $i++) {
+                                            echo '<tr>'; 
+                                            for ($j=0; $j < sizeof($col); $j++) {
+                                                if ($j == 0) 
+                                                    echo '<td> <a target="_blank" href="http://ubig.co.id">ORD-'.$hasil[$i][$col[$j]].'</a></td>';
+                                                else{
+                                                    if($j == sizeof($col)-1)
+                                                        echo '<td><span class="label bg-blue">Ready</span></td>';
+                                                    else
+                                                        echo '<td>'.$hasil[$i][$col[$j]].'</td>';
+                                                }
+                                            }
+                                            echo '</tr>';
+                                        }
+                                    ?>
+                                </tbody>
                                 <tfoot>
                                     <tr>
                                         <th>Id Order</th>
+                                        <th>Owner</th>
                                         <th>Domain</th>
-                                        <th>Api Key</th>
+                                        <th>API Key</th>
                                         <th>Last Used</th>
-                                        <th>Start date</th>
+                                        <th>Last IP</th>
                                         <th>Status</th>
                                     </tr>
                                 </tfoot>
-                                <tbody>
-                                    <tr>
-                                        <td>Tiger Nixon</td>
-                                        <td>System Architect</td>
-                                        <td>Edinburgh</td>
-                                        <td>61</td>
-                                        <td>2011/04/25</td>
-                                        <td>$320,800</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Garrett Winters</td>
-                                        <td>Accountant</td>
-                                        <td>Tokyo</td>
-                                        <td>63</td>
-                                        <td>2011/07/25</td>
-                                        <td>$170,750</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Ashton Cox</td>
-                                        <td>Junior Technical Author</td>
-                                        <td>San Francisco</td>
-                                        <td>66</td>
-                                        <td>2009/01/12</td>
-                                        <td>$86,000</td>
-                                    </tr>
-                                </tbody>
                             </table>
                         </div>
                     </div>
