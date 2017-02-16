@@ -49,9 +49,8 @@
 		public function submit_form()
 		{
 			$price = 750000;
-			// echo "domain: ".$this->input->post('input_domain');
 			$data = array(
-				'domain'	=> $this->input->post('input_domain'),
+				'domain'	=> $this->security->xss_clean($this->input->post('input_domain')),
 				'price' 	=> $price,
 				'status'	=> 0,
 				'user_id'	=> $this->session->userdata('id'),
@@ -59,6 +58,7 @@
 			);
 
 			echo $this->mdl->add_order($data);
+			redirect('/');
 		}
 
 		public function logout()
