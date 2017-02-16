@@ -46,13 +46,17 @@
                                             echo '<tr>'; 
                                             for ($j=0; $j < sizeof($col2); $j++) {
                                                 if ($j == 0) 
-                                                    echo '<td> <span data-toggle="modal" data-target="#myModal">ORD-'.$hasil2[$i][$col2[$j]].'</span></td>';
+                                                    echo '<td> <span style = "color:#2196F3" data-toggle="modal" data-target="#myModal">ORD-'.$hasil2[$i][$col2[$j]].'</span></td>';
+                                                    // echo '<td> <span data-toggle="modal" data-target="#myModal">ORD-'.$hasil2[$i][$col2[$j]].'</span></td>';
+                                                    elseif ($j==2 && $hasil2[$i][$col2[$j]] =='') 
+                                                        echo "<td>While shown after payment</td>";
+                                                    
                                                 else{
                                                     if($j == sizeof($col2)-1){
                                                         if ($hasil2[$i][$col2[$j]] == 1) 
-                                                            echo '<td><span class="label bg-green">Verified</span></td>';
-                                                        elseif($hasil2[$i][$col2[$j]] == 0) 
-                                                            echo '<td><span class="label bg-yellow">Pending</span></td>';               
+                                                            echo '<td><span style = "color:#2196F3" class="label bg-green">Verified</span></td>';
+                                                        elseif($hasil2[$i][$col2[$j]] == 0)  
+                                                            echo '<td><span style = "color:#2196F3" class="label bg-yellow">Pending</span></td>';               
                                                     }
                                                     else
                                                         echo '<td>'.$hasil2[$i][$col2[$j]].'</td>';
