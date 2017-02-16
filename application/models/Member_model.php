@@ -299,7 +299,7 @@
                     "o.domain AS 'domain'",
                     "a.key AS 'api_keys'",
                     "o.created_at AS 'date'",
-                    "o.domain AS 'price'",
+                    "o.price AS 'price'",
                     "o.status AS 'status'"
 				);
 				$this->db->select($col);

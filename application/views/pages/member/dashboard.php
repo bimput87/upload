@@ -1,15 +1,15 @@
-    <section class="content">
+   <section class="content">
         <div class="container-fluid">
             <!-- Basic Examples -->
             <div class="row clearfix">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <div class="card">
                         <div class="header">
-                            <h2>
-                               ORDERS OVERVIEW
-                            </h2>
+                            <h2>ORDERS OVERVIEW</h2>
                         </div>
                         <div class="body">
+                            <button data-color="red" type="button" class="btn bg-red waves-effect m-r-20" data-toggle="modal" data-target="#myModal">Order!</button>
+                            
                             <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                 <thead>
                                     <tr>
@@ -123,3 +123,40 @@
             <!-- #END# Exportable Table -->
         </div>
     </section>
+     <!-- Modal -->
+<div class="modal fade" id="myModal" role="dialog">
+<div class="modal-dialog">
+
+  <!-- Modal content-->
+  <div class="modal-content">
+    <div class="modal-header">
+      <button type="button" class="close" data-dismiss="modal">&times;</button>
+    </div>
+    <div class="modal-body">
+      <p>Request new API for your site</p>
+          <form role="form">
+          <div class="form-group">
+            <label for="input_domain">Domain's Name</label>
+              <input type="email" class="form-control"
+              id="input_domain" placeholder="Enter domain"/>
+          </div>
+          </form>
+    </div>
+    <div class="modal-footer">
+            <button type="button" class="btn btn-default"data-dismiss="modal">
+            Close
+            </button>
+            <button type="button" class="btn btn-primary">
+            Save 
+            </button>
+    </div>
+  </div> 
+</div>
+</div>
+  <style type="text/css">
+      .container{
+        position: absolute;
+        top: 17%;
+        left: 5px;
+      }
+  </style>

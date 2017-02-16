@@ -16,7 +16,8 @@
             'buttons.print.min.js',
             'admin.js',
             'jquery-datatable.js',
-            'demo.js'
+            'demo.js',
+            'sweetalert.min.js'
             
         );
 
