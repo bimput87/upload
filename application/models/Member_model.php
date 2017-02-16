@@ -292,25 +292,31 @@
 			return $this->db->get();
 		}
 
-		public function order_api()
-			{
-				$col = array(
-					"o.id AS 'id_order'",
-                    "o.domain AS 'domain'",
-                    "a.key AS 'api_keys'",
-                    "o.created_at AS 'date'",
-                    "o.price AS 'price'",
-                    "o.status AS 'status'"
-				);
-				$this->db->select($col);
-				$this->db->from('orders o');
+		public function order_api($def)
+		{
+			$col = array(
+				"o.id AS 'id_order'",
+                "o.domain AS 'domain'",
+                "a.key AS 'api_keys'",
+                "o.created_at AS 'date'",
+                "o.price AS 'price'",
+                "o.status AS 'status'"
+			);
+			$this->db->select($col);
+			$this->db->from('orders o');
 			
-				$this->db->join('users u', 'u.id = o.user_id', 'left');
-				$this->db->join('api_keys a', 'a.order_id  = o.id', 'left');
+			$this->db->where($def);
 
-				return $this->db->get();
+			$this->db->join('users u', 'u.id = o.user_id', 'left');
+			$this->db->join('api_keys a', 'a.order_id  = o.id', 'left');
 
-				
-			}	
+			return $this->db->get();
+		}	
+
+		public function add_order($post)
+		{
+			$this->db->insert('orders', $post);
+			return $this->db->insert_id();
+		}
 
 	}

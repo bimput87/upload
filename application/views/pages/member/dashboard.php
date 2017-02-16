@@ -46,10 +46,14 @@
                                             echo '<tr>'; 
                                             for ($j=0; $j < sizeof($col2); $j++) {
                                                 if ($j == 0) 
-                                                    echo '<td> <a target="_blank" href="http://ubig.co.id">ORD-'.$hasil2[$i][$col2[$j]].'</a></td>';
+                                                    echo '<td> <span data-toggle="modal" data-target="#myModal">ORD-'.$hasil2[$i][$col2[$j]].'</span></td>';
                                                 else{
-                                                    if($j == sizeof($col2)-1)
-                                                        echo '<td><span class="label bg-green">Verified</span></td>';
+                                                    if($j == sizeof($col2)-1){
+                                                        if ($hasil2[$i][$col2[$j]] == 1) 
+                                                            echo '<td><span class="label bg-green">Verified</span></td>';
+                                                        elseif($hasil2[$i][$col2[$j]] == 0) 
+                                                            echo '<td><span class="label bg-yellow">Pending</span></td>';               
+                                                    }
                                                     else
                                                         echo '<td>'.$hasil2[$i][$col2[$j]].'</td>';
                                                 }
@@ -125,38 +129,33 @@
     </section>
      <!-- Modal -->
 <div class="modal fade" id="myModal" role="dialog">
-<div class="modal-dialog">
-
-  <!-- Modal content-->
-  <div class="modal-content">
-    <div class="modal-header">
-      <button type="button" class="close" data-dismiss="modal">&times;</button>
-    </div>
-    <div class="modal-body">
-      <p>Request new API for your site</p>
-          <form role="form">
-          <div class="form-group">
-            <label for="input_domain">Domain's Name</label>
-              <input type="email" class="form-control"
-              id="input_domain" placeholder="Enter domain"/>
-          </div>
-          </form>
-    </div>
-    <div class="modal-footer">
+    <div class="modal-dialog">
+        <?php echo form_open('', array('id' => 'form', 'role' => 'form')) ?>
+       <div style="display:none">
+            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+        </div>
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Request new API for your site</p>
+              <div class="form-group">
+                <label for="input_domain">Domain's Name</label>
+                  <input type="text" class="form-control"
+                  name="input_domain" id="input_domain" placeholder="Enter domain" required/>
+              </div>
+        </div>
+        <div class="modal-footer">
             <button type="button" class="btn btn-default"data-dismiss="modal">
             Close
             </button>
-            <button type="button" class="btn btn-primary">
+            <button id="btnSave" onclick="save()" type="button" class="btn btn-primary">
             Save 
             </button>
+        </div>
+      <?php echo form_close() ?>
+      </div> 
     </div>
-  </div> 
 </div>
-</div>
-  <style type="text/css">
-      .container{
-        position: absolute;
-        top: 17%;
-        left: 5px;
-      }
-  </style>

@@ -19,10 +19,11 @@
 
 		public function index()
 		{	
+			$id = $this->session->userdata('id');
 			$data = array(
 				'title' => 'Dasboard User',
-				'hasil' => $this->mdl->show_api($this->session->userdata('id'))->result_array(),
-				'hasil2'=> $this->mdl->order_api()->result_array(),
+				'hasil' => $this->mdl->show_api($id)->result_array(),
+				'hasil2'=> $this->mdl->order_api(array('user_id'=>$id))->result_array(),
 				'col' 	=>  array(
 								'id_order',
 								'name',
@@ -43,6 +44,21 @@
 			);
 
 			$this->page('dashboard',$data);
+		}
+
+		public function submit_form()
+		{
+			$price = 750000;
+			// echo "domain: ".$this->input->post('input_domain');
+			$data = array(
+				'domain'	=> $this->input->post('input_domain'),
+				'price' 	=> $price,
+				'status'	=> 0,
+				'user_id'	=> $this->session->userdata('id'),
+				'created_at' => date('Y-m-d h:i:s A')
+			);
+
+			echo $this->mdl->add_order($data);
 		}
 
 		public function logout()
