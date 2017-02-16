@@ -6,7 +6,7 @@
         </div>
         <div class="card">
             <div class="body">
-                <?php echo form_open(site_url().'login_user/register/', array('onsubmit' => "if(document.getElementById('terms').checked) { return true; } else { alert('Please indicate that you have read and agree to the Terms and Conditions and Privacy Policy'); return false; }")) ?>
+                <?php echo form_open(site_url().'login_user/register/') ?>
                     <div style="display:none">
                         <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                     </div> 
@@ -58,11 +58,7 @@
                             <input type="text" class="form-control" name="city" placeholder="City" required>
                         </div>
                     </div>
-                    <div class="form-group">
-                        <input type="checkbox" name="terms" id="terms" class="filled-in chk-col-red" required="you must check this out">
-                        <label for="terms">I agree to the terms of usage.</label>
-                    </div>
-
+                    
                     <button class="btn btn-block btn-lg bg-red waves-effect" type="submit">SIGN UP</button>
 
                     <div class="m-t-25 m-b--5 align-center">

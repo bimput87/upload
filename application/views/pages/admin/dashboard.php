@@ -91,8 +91,7 @@
 								<!-- USERS LIST -->
 								<div class="box box-danger">
 									<div class="box-header with-border">
-										<h3 class="box-title">Latest Members</h3>
-
+										<h3 class="box-title">Latest Login Members</h3>
 										<div class="box-tools pull-right">
 											<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
 											</button>
@@ -103,46 +102,14 @@
 									<!-- /.box-header -->
 									<div class="box-body no-padding">
 										<ul class="users-list clearfix">
-											<li>
-												<img src="dist/img/user1-128x128.jpg" alt="User Image">
-												<a class="users-list-name" href="#">Alexander Pierce</a>
-												<span class="users-list-date">Today</span>
-											</li>
-											<li>
-												<img src="dist/img/user8-128x128.jpg" alt="User Image">
-												<a class="users-list-name" href="#">Norman</a>
-												<span class="users-list-date">Yesterday</span>
-											</li>
-											<li>
-												<img src="dist/img/user7-128x128.jpg" alt="User Image">
-												<a class="users-list-name" href="#">Jane</a>
-												<span class="users-list-date">12 Jan</span>
-											</li>
-											<li>
-												<img src="dist/img/user6-128x128.jpg" alt="User Image">
-												<a class="users-list-name" href="#">John</a>
-												<span class="users-list-date">12 Jan</span>
-											</li>
-											<li>
-												<img src="dist/img/user2-160x160.jpg" alt="User Image">
-												<a class="users-list-name" href="#">Alexander</a>
-												<span class="users-list-date">13 Jan</span>
-											</li>
-											<li>
-												<img src="dist/img/user5-128x128.jpg" alt="User Image">
-												<a class="users-list-name" href="#">Sarah</a>
-												<span class="users-list-date">14 Jan</span>
-											</li>
-											<li>
-												<img src="dist/img/user4-128x128.jpg" alt="User Image">
-												<a class="users-list-name" href="#">Nora</a>
-												<span class="users-list-date">15 Jan</span>
-											</li>
-											<li>
-												<img src="dist/img/user3-128x128.jpg" alt="User Image">
-												<a class="users-list-name" href="#">Nadia</a>
-												<span class="users-list-date">15 Jan</span>
-											</li>
+											<?php $i=0; foreach ($lat_mem as $value): ?>
+												<?php $str = $lat_mem[$i]['first_name']; ?>
+												<li>
+													<img src="<?php echo site_url().'public/assets/img/'.ucfirst($str[0]).'.png' ?>" alt="User Image">
+													<a class="users-list-name" href="#"><?php echo $str ?></a>
+													<span class="users-list-date"><?php echo $lat_mem[$i]['last_login'] ?></span>
+												</li>
+											<?php $i++; endforeach ?>
 										</ul>
 										<!-- /.users-list -->
 									</div>
@@ -159,7 +126,7 @@
 								<!-- TABLE: LATEST ORDERS -->
 								<div class="box box-info">
 									<div class="box-header with-border">
-										<h3 class="box-title">Latest Orders</h3>
+										<h3 class="box-title">Latest Generated APIs</h3>
 
 										<div class="box-tools pull-right">
 											<button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i>
@@ -220,30 +187,16 @@
 															<div class="sparkbar" data-color="#f39c12" data-height="20">90,80,-90,70,61,-83,68</div>
 														</td>
 													</tr>
-													<tr>
-														<td><a href="pages/examples/invoice.html">OR7429</a></td>
-														<td>iPhone 6 Plus</td>
-														<td><span class="label label-danger">Delivered</span></td>
-														<td>
-															<div class="sparkbar" data-color="#f56954" data-height="20">90,-80,90,70,-61,83,63</div>
-														</td>
-													</tr>
-													<tr>
-														<td><a href="pages/examples/invoice.html">OR9842</a></td>
-														<td>Call of Duty IV</td>
-														<td><span class="label label-success">Shipped</span></td>
-														<td>
-															<div class="sparkbar" data-color="#00a65a" data-height="20">90,80,90,-70,61,-83,63</div>
-														</td>
-													</tr>
 												</tbody>
 											</table>
 										</div>
 										<!-- /.table-responsive -->
 									</div>
 									<!-- /.box-body -->
-									<div class="box-footer clearfix">
-										<a href="javascript:void(0)" class="btn btn-sm btn-default btn-flat pull-right">View All Orders</a>
+									<div class="box-footer text-center">
+										<div class="box-footer text-center">
+											<a href="javascript:void(0)" class="uppercase">View All API</a>
+										</div>
 									</div>
 									<!-- /.box-footer -->
 								</div>
@@ -263,10 +216,10 @@
 
 		<footer class="main-footer">
 			<div class="pull-right hidden-xs">
-				<b>Version</b> 2.3.7
+				<b>Version</b> 1.0
 			</div>
-			<strong>Copyright &copy; 2014-2016 <a href="http://almsaeedstudio.com">Almsaeed Studio</a>.</strong> All rights
-			reserved.
+			<strong>Copyright &copy; 2017 <a href="http://ubig.co.id">UBIG</a>.</strong> All rights
+			reserved | Developed by <strong>ndasoft</strong>
 		</footer>
 
 	</div>

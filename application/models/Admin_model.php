@@ -69,4 +69,13 @@
 
 			return $this->db->count_all_results($table);
 		}
+
+		public function select($col, $lim, $table, $order_by)
+		{
+			$this->db->select($col);
+			$this->db->from($table);
+			$this->db->order_by('last_login' , $order_by);
+
+			return $this->db->get();
+		}
 	}
