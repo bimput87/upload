@@ -307,16 +307,19 @@
         					<!-- this row will not appear when printing -->
         					<div class="row no-print">
         						<div class="col-xs-12">
-        							<td>
-	        							<button type="button" onclick="window.print();" class="btn btn-default pull-right"> 
-	        								Print
-	        							</button>        								
-        							</td>
-        							<td>
-	        							<button type="button" class="btn btn-default pull-right" data-dismiss="modal">
-	        								Close
-	        							</button>
-        							</td>
+        							<table>
+	        							<td>
+		        							<button type="button" onclick="window.print();" class="btn btn-default"> 
+		        								Print
+		        							</button>        								
+	        							</td>
+	        							<td></td>
+	        							<td>
+		        							<button type="button" class="btn btn-default" data-dismiss="modal">
+		        								Close
+		        							</button>
+	        							</td>
+        							</table>
         						</div>
         					</div>
         				</section>
