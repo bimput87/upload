@@ -319,4 +319,24 @@
 			return $this->db->insert_id();
 		}
 
+		public function invoice($id)
+		{
+			$col = array(
+                "o.domain AS 'domain'",
+                "a.key AS 'api_keys'",
+                "o.price AS 'price'"
+			);
+
+			$this->db->select($col);
+			
+			$this->db->from('orders o');
+			
+			$this->db->join('users u', 'u.id = o.user_id', 'left');
+			$this->db->join('api_keys a', 'a.order_id  = o.id', 'left');
+			
+			$this->db->where('o.id', $id);
+
+			return $this->db->get();
+		}
+
 	}
