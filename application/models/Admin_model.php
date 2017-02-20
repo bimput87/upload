@@ -62,6 +62,14 @@
 			return $this->db->affected_rows();
 		}
 
+		public function select_col($table, $col, $lim)
+		{
+			$this->db->select($col);
+			$this->db->limit($lim);
+
+			return $this->db->get($table);
+		}
+
 		public function count($table, $where)
 		{
 			if (!empty($where))
@@ -70,11 +78,12 @@
 			return $this->db->count_all_results($table);
 		}
 
-		public function select($col, $lim, $table, $order_by)
+		public function select($col, $lim, $table, $order_by_col, $order_type)
 		{
 			$this->db->select($col);
 			$this->db->from($table);
-			$this->db->order_by('last_login' , $order_by);
+			$this->db->limit($lim);
+			$this->db->order_by($order_by_col, $order_type);
 
 			return $this->db->get();
 		}

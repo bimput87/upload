@@ -38,7 +38,9 @@
 				'api_sum'	=> $api_sum,
 				'api_act'	=> $api_completed,
 				'api_perc'	=> $api_perc,
-				'lat_mem'	=> $this->mdl->select(array('first_name', 'last_login'), 4, 'members', 'desc')->result_array()
+				'col_name'	=> array('domain', 'key', 'updated_at', 'active'),
+				'lat_mem'	=> $this->mdl->select(array('first_name', 'last_login'), 4, 'members', 'last_login' ,'desc')->result_array(),
+				'api_show'	=> $this->mdl->select(array('domain', 'key', 'updated_at', 'active'), 5, 'api_keys', 'updated_at', 'desc')->result_array()
 			);
 			$this->page('dashboard',$data);
 		}
