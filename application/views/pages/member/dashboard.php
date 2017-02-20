@@ -171,7 +171,7 @@
         					<div class="row">
         						<div class="col-xs-12">
         							<h2 class="page-header">
-        								<i class="fa fa-globe"></i> AdminLTE, Inc.
+        								<i class="ion-android-globe"></i> UBIG.CO.ID.
         								<small class="pull-right">Date: 2/10/2014</small>
         							</h2>
         						</div>
@@ -182,22 +182,21 @@
         						<div class="col-sm-4 invoice-col">
         							From
         							<address>
-        								<strong>Admin, Inc.</strong><br>
-        								795 Folsom Ave, Suite 600<br>
-        								San Francisco, CA 94107<br>
-        								Phone: (804) 123-5432<br>
-        								Email: info@almasaeedstudio.com
+                                        uBig.co.id - PT Universal Big Data<br>
+                                        Jambe No. 13 Kalpataru, Jl. Mawar, East Java<br>
+                                        Malang, East Java, Indonesia<br>
+                                        Phone: (0341) 493 567<br>
+                                        Email: info@ubig.co.id<br>	
         							</address>
         						</div>
         						<!-- /.col -->
         						<div class="col-sm-4 invoice-col">
         							To
         							<address>
-        								<strong>John Doe</strong><br>
-        								795 Folsom Ave, Suite 600<br>
-        								San Francisco, CA 94107<br>
-        								Phone: (555) 539-1037<br>
-        								Email: john.doe@example.com
+                                        <?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name') ?><br>
+                                        <?php echo $this->session->userdata('city') ?><br>
+                                        <?php echo 'Phone : '.$this->session->userdata('phone') ?><br>
+        								<?php echo 'Email : '.$this->session->userdata('email') ?><br>
         							</address>
         						</div>
         						<!-- /.col -->
@@ -217,44 +216,30 @@
         						<div class="col-xs-12 table-responsive">
         							<table class="table table-striped">
         								<thead>
-        									<tr>
-        										<th>Qty</th>
-        										<th>Product</th>
-        										<th>Serial #</th>
-        										<th>Description</th>
-        										<th>Subtotal</th>
-        									</tr>
-        								</thead>
-        								<tbody>
-        									<tr>
-        										<td>1</td>
-        										<td>Call of Duty</td>
-        										<td>455-981-221</td>
-        										<td>El snort testosterone trophy driving gloves handsome</td>
-        										<td>$64.50</td>
-        									</tr>
-        									<tr>
-        										<td>1</td>
-        										<td>Need for Speed IV</td>
-        										<td>247-925-726</td>
-        										<td>Wes Anderson umami biodiesel</td>
-        										<td>$50.00</td>
-        									</tr>
-        									<tr>
-        										<td>1</td>
-        										<td>Monsters DVD</td>
-        										<td>735-845-642</td>
-        										<td>Terry Richardson helvetica tousled street art master</td>
-        										<td>$10.70</td>
-        									</tr>
-        									<tr>
-        										<td>1</td>
-        										<td>Grown Ups Blue Ray</td>
-        										<td>422-568-642</td>
-        										<td>Tousled lomo letterpress</td>
-        										<td>$25.99</td>
-        									</tr>
-        								</tbody>
+                                            <tr>
+                                                <th>Domain</th>
+                                                <th>API Key</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Domain</th>
+                                                <th>API Key</th>
+                                                <th>Price</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            <?php
+                                                for ($i=0; $i < sizeof($hasil3); $i++) { 
+                                                    echo '<tr>'; 
+                                                   for ($i=0; $i < sizeof($col3); $i++) { 
+                                                       echo '<td>coba</td>';
+                                                   }
+                                                }
+                                                echo '</tr>';
+                                            ?>
+                                        </tbody>
         							</table>
         						</div>
         						<!-- /.col -->
