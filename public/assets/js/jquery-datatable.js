@@ -21,3 +21,6 @@ table = $('.js-basic-example').DataTable({
     });
 });
 
+// $('td#id_ord').on('click', function () {
+//     console.log($(this).text())
+// })

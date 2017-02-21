@@ -16,7 +16,9 @@
             'buttons.print.min.js',
             'admin.js',
             'jquery-datatable.js',
-            'demo.js'
+            'demo.js',
+            'app.min.js',
+            'fastclick.js'
             
         );
 
@@ -24,7 +26,6 @@
         foreach($array_js as $val)
             echo js_asset('', $val);
     ?>
-
 </body>
 
 </html>

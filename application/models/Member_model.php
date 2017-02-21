@@ -319,7 +319,7 @@
 			return $this->db->insert_id();
 		}
 
-		public function invoice($id)
+		public function invoice_mdl($id)
 		{
 			$col = array(
                 "o.domain AS 'domain'",

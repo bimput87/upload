@@ -20,11 +20,12 @@
 		public function index()
 		{	
 			$id = $this->session->userdata('id');
+
 			$data = array(
 				'title' => 'Dasboard User',
 				'hasil' => $this->mdl->show_api($id)->result_array(),
 				'hasil2'=> $this->mdl->order_api(array('user_id'=>$id))->result_array(),
-				'hasil3' => $this->mdl->invoice(1)->result_array(),
+				// 'hasil3' => $this->mdl->invoice(1)->result_array(),
 				'col' 	=>  array(
 								'id_order',
 								'name',
@@ -41,11 +42,8 @@
 								'date',
 								'price',
 								'status'
-							),
-				'col3' => array(
-					'domain',
-					'api_keys',
-					'price')
+							)
+				
 			);
 
 			$this->page('dashboard',$data);
@@ -61,9 +59,22 @@
 				'user_id'	=> $this->session->userdata('id'),
 				'created_at' => date('Y-m-d h:i:s A')
 			);
-
 			echo $this->mdl->add_order($data);
 			redirect('/');
+		}
+
+		public function invoice()
+		{
+			$data = array(
+				'title'	=> 'Invoice',
+				'hasil3' => $this->mdl->invoice_mdl(1)->result_array(),
+				'col3' => array(
+					'domain',
+					'api_keys',
+					'price')
+			);
+			$this->page('invoice', $data);
+			
 		}
 
 		public function logout()

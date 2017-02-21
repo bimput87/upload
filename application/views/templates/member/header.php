@@ -22,7 +22,8 @@
             'animate.css',
             'style.css',
             'theme-red.min.css',
-            'dataTables.bootstrap.css'
+            'dataTables.bootstrap.css',
+            'AdminLTE.min.css'
         );
 
         echo "\t\n";
