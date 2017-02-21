@@ -319,12 +319,13 @@
 			return $this->db->insert_id();
 		}
 
-		public function invoice($id)
+		public function invoice_mdl($id)
 		{
 			$col = array(
                 "o.domain AS 'domain'",
                 "a.key AS 'api_keys'",
-                "o.price AS 'price'"
+                "o.price AS 'price'",
+                "o.created_at AS 'date'"
 			);
 
 			$this->db->select($col);

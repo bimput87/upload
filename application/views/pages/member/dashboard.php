@@ -45,12 +45,11 @@
                                         for ($i=0; $i < sizeof($hasil2); $i++) {
                                         	echo '<tr>'; 
                                         	for ($j=0; $j < sizeof($col2); $j++) {
-                                        		if ($j == 0) 
-                                        			echo '<td> <span style = "color:#2196F3" data-toggle="modal" data-target="#modalInv">ORD-'.$hasil2[$i][$col2[$j]].'</span></td>';
-                                                    // echo '<td> <span data-toggle="modal" data-target="#myModal">ORD-'.$hasil2[$i][$col2[$j]].'</span></td>';
-                                        		elseif ($j==2 && $hasil2[$i][$col2[$j]] =='') 
+                                        		if ($j == 0) {
+                                        			$val = $hasil2[$i][$col2[$j]];
+                                        			echo '<td> <span style = "color:#2196F3" ><a href="'.site_url().'member/invoice/'.$val.'">ORD-'.$val.'</a></span></td>';
+                                        		}elseif ($j==2 && $hasil2[$i][$col2[$j]] =='') 
                                         			echo "<td>While shown after payment</td>";
-
                                         		else{
                                         			if($j == sizeof($col2)-1){
                                         				if ($hasil2[$i][$col2[$j]] == 1) 
@@ -130,186 +129,34 @@
             </div>
         </section>
         <!-- Modal -->
-        <div class="modal fade" id="myModal" role="dialog">
-        	<div class="modal-dialog">
-        		<?php echo form_open('member/submit_form', array('id' => 'form', 'role' => 'form')) ?>
-        		<div style="display:none">
-        			<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
-        		</div>
-        		<!-- Modal content-->
-        		<div class="modal-content">
-        			<div class="modal-header">
-        				<h3><center>Request new API for your site</center></h3>
-        			</div>
-        			<div class="modal-body">
-        				<div class="form-group">
-        					<div class="form-line">
-        						<input type="text" name="input_domain" class="form-control" placeholder="Your domain name">
-        					</div>
-        				</div>
-        			</div>
-        			<div class="modal-footer">
-        				<button type="button" class="btn btn-default" data-dismiss="modal">
-        					Close
-        				</button>
-        				<button id="btnSave" type="submit" class="btn btn-primary">
-        					Save 
-        				</button>
-        			</div>
-        		</div> 
-        		<?php echo form_close() ?>
+       <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+            <?php echo form_open('member/submit_form', array('id' => 'form', 'role' => 'form')) ?>
+            <div style="display:none">
+                <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
+            </div>
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3><center>Request new API for your site</center></h3>
+                </div>
+                <div class="modal-body">
+                    <div class="form-group">
+                        <div class="form-line">
+                            <input type="text" name="input_domain" class="form-control" placeholder="Your domain name">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">
+                        Close
+                    </button>
+                    <button id="btnSave" type="submit" class="btn btn-primary">
+                        Save 
+                    </button>
+                </div>
+            </div> 
+            <?php echo form_close() ?>
 
-        	</div>
         </div>
-
-        <div class="modal fade" id="modalInv" role="dialog">
-        	<div class="modal-dialog modal-lg">
-        		<div class="modal-content">
-        			<div class="modal-body">
-        				<section class="invoice">
-        					<!-- title row -->
-        					<div class="row">
-        						<div class="col-xs-12">
-        							<h2 class="page-header">
-        								<i class="ion-android-globe"></i> UBIG.CO.ID.
-        								<small class="pull-right">Date: 2/10/2014</small>
-        							</h2>
-        						</div>
-        						<!-- /.col -->
-        					</div>
-        					<!-- info row -->
-        					<div class="row invoice-info">
-        						<div class="col-sm-4 invoice-col">
-        							From
-        							<address>
-                                        uBig.co.id - PT Universal Big Data<br>
-                                        Jambe No. 13 Kalpataru, Jl. Mawar, East Java<br>
-                                        Malang, East Java, Indonesia<br>
-                                        Phone: (0341) 493 567<br>
-                                        Email: info@ubig.co.id<br>	
-        							</address>
-        						</div>
-        						<!-- /.col -->
-        						<div class="col-sm-4 invoice-col">
-        							To
-        							<address>
-                                        <?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name') ?><br>
-                                        <?php echo $this->session->userdata('city') ?><br>
-                                        <?php echo 'Phone : '.$this->session->userdata('phone') ?><br>
-        								<?php echo 'Email : '.$this->session->userdata('email') ?><br>
-        							</address>
-        						</div>
-        						<!-- /.col -->
-        						<div class="col-sm-4 invoice-col">
-        							<b>Invoice #007612</b><br>
-        							<br>
-        							<b>Order ID:</b> 4F3S8J<br>
-        							<b>Payment Due:</b> 2/22/2014<br>
-        							<b>Account:</b> 968-34567
-        						</div>
-        						<!-- /.col -->
-        					</div>
-        					<!-- /.row -->
-
-        					<!-- Table row -->
-        					<div class="row">
-        						<div class="col-xs-12 table-responsive">
-        							<table class="table table-striped">
-        								<thead>
-                                            <tr>
-                                                <th>Domain</th>
-                                                <th>API Key</th>
-                                                <th>Price</th>
-                                            </tr>
-                                        </thead>
-                                        <tfoot>
-                                            <tr>
-                                                <th>Domain</th>
-                                                <th>API Key</th>
-                                                <th>Price</th>
-                                            </tr>
-                                        </tfoot>
-                                        <tbody>
-                                            <?php
-                                                for ($i=0; $i < sizeof($hasil3); $i++) { 
-                                                    echo '<tr>'; 
-                                                   for ($i=0; $i < sizeof($col3); $i++) { 
-                                                       echo '<td>coba</td>';
-                                                   }
-                                                }
-                                                echo '</tr>';
-                                            ?>
-                                        </tbody>
-        							</table>
-        						</div>
-        						<!-- /.col -->
-        					</div>
-        					<!-- /.row -->
-
-        					<div class="row">
-        						<!-- accepted payments column -->
-        						<div class="col-xs-6">
-        							<p class="lead">Payment Methods:</p>
-        							<img src="../../dist/img/credit/visa.png" alt="Visa">
-        							<img src="../../dist/img/credit/mastercard.png" alt="Mastercard">
-        							<img src="../../dist/img/credit/american-express.png" alt="American Express">
-        							<img src="../../dist/img/credit/paypal2.png" alt="Paypal">
-
-        							<p class="text-muted well well-sm no-shadow" style="margin-top: 10px;">
-        								Etsy doostang zoodles disqus groupon greplin oooj voxy zoodles, weebly ning heekya handango imeem plugg
-        								dopplr jibjab, movity jajah plickers sifteo edmodo ifttt zimbra.
-        							</p>
-        						</div>
-        						<!-- /.col -->
-        						<div class="col-xs-6">
-        							<p class="lead">Amount Due 2/22/2014</p>
-
-        							<div class="table-responsive">
-        								<table class="table">
-        									<tr>
-        										<th style="width:50%">Subtotal:</th>
-        										<td>$250.30</td>
-        									</tr>
-        									<tr>
-        										<th>Tax (9.3%)</th>
-        										<td>$10.34</td>
-        									</tr>
-        									<tr>
-        										<th>Shipping:</th>
-        										<td>$5.80</td>
-        									</tr>
-        									<tr>
-        										<th>Total:</th>
-        										<td>$265.24</td>
-        									</tr>
-        								</table>
-        							</div>
-        						</div>
-        						<!-- /.col -->
-        					</div>
-        					<!-- /.row -->
-
-        					<!-- this row will not appear when printing -->
-        					<div class="row no-print">
-        						<div class="col-xs-12">
-        							<table>
-	        							<td>
-		        							<button type="button" onclick="window.print();" class="btn btn-default"> 
-		        								Print
-		        							</button>        								
-	        							</td>
-	        							<td></td>
-	        							<td>
-		        							<button type="button" class="btn btn-default" data-dismiss="modal">
-		        								Close
-		        							</button>
-	        							</td>
-        							</table>
-        						</div>
-        					</div>
-        				</section>
-        				<!-- /.content -->
-        			</div>
-        		</div> 
-        	</div>
-        </div>
+    </div>
