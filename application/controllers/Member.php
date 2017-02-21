@@ -9,7 +9,7 @@
 		function __construct()
 		{
 			parent::__construct();
-			if (empty($this->session->userdata('email')) && $this->session->userdata('role') != 'member'){
+			if ($this->session->userdata('role') != 'member'){
 				$_SESSION['flash_messsage'] = 'You are not allowed to access or your session has been expired';
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');

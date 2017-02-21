@@ -1,3 +1,14 @@
+		<footer class="main-footer">
+			<div class="pull-right hidden-xs">
+				<b>Version</b> 1.0
+			</div>
+			<strong>Copyright &copy; 2017 <a href="http://ubig.co.id">UBIG</a>.</strong> All rights
+			reserved | Developed by <strong>ndasoft</strong>
+		</footer>
+
+	</div>
+	<!-- ./wrapper -->
+
 <?php  
 	$array_js = array(
 		'bootstrap.min.js',
@@ -19,11 +30,44 @@
 	foreach($array_js as $val)
 		echo js_asset('', $val);
 ?>
-<script type="text/javascript">
-  	$('body').show();
-    NProgress.start();
-    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1500);
-</script>
+
+<?php 
+	if($this->uri->segment(2) == 'members'){
+		?>
+	<script type="text/javascript">
+	  	$('#example2').DataTable({
+	      	autoWidth		: true,
+	      	responsive		: true,
+	      	lengthMenu		: [5, 10, 15, 20]
+		});
+	</script>
+		<?php
+	} 
+?>
+
+	<script type="text/javascript">
+	  	$('body').show();
+	    NProgress.start();
+	    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1500);
+
+	    $.ajax({
+	    	url: 'controller e opo',
+	    	type: 'POST',
+	    	data: {
+	    		$('idne opo').serialize()
+	    	},
+	    })
+	    .done(function() {
+	    	console.log("success");
+	    })
+	    .fail(function() {
+	    	console.log("error");
+	    })
+	    .always(function() {
+	    	console.log("complete");
+	    });
+	    
+	</script>
 
 </body>
 </html>
