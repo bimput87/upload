@@ -5,13 +5,14 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
     <!-- Main content -->
+    <div id="print">
     <section class="invoice">
       <!-- title row -->
      <div class="row">
           <div class="col-xs-12">
             <h2 class="page-header">
               <i class="ion-android-globe"></i> UBIG.CO.ID.
-              <small class="pull-right">Date: 2/10/2014</small>
+              <small class="pull-right">Date: <?php echo $hasil3[0][$col3[3]] ?></small>
             </h2>
           </div>
           <!-- /.col -->
@@ -70,13 +71,11 @@
                   </tfoot>
                   <tbody>
                     <?php
-                    for ($i=0; $i < sizeof($hasil3); $i++) { 
                       echo '<tr>'; 
-                      for ($j=0; $j < sizeof($col3); $j++) { 
-                        echo '<td>'.$hasil3[$i][$col3[$j]].'</td>';
+                      for ($j=0; $j < sizeof($col3)-1; $j++) { 
+                        echo '<td>'.$hasil3[0][$col3[$j]].'</td>';
                       }
-                    }
-                    echo '</tr>';
+                      echo '</tr>';
                     ?>
                   </tbody>
                 </table>
@@ -88,22 +87,17 @@
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
-        <td>
-          <button type="button" onclick="window.print();" class="btn btn-default"> 
-                      Print
-          </button>  
-        </td>
           <td>
-          <button type="button" class="btn btn-primary pull-right" style="margin-right: 5px;">
-            <i class="fa fa-download"></i> Generate PDF
-          </button>
+            <button type="button" onclick="print()" class="btn btn-default"> 
+                        Print
+            </button>  
           </td>
           <td>
-            <button type="button" class="btn btn-default" data-dismiss="modal" ><a href="dashboard.php"></a>
-                        Back
-            </button> 
+            <a class="btn btn-default" href="<?php echo site_url() ?>member">Back</a>
+            <!-- meski samean seneng e opel2 tapi ayu kok-->  
           </td>
         </div>
       </div>
     </section>
     <!-- /.content -->
+    </div>

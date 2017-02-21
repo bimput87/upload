@@ -9,7 +9,7 @@
 		function __construct()
 		{
 			parent::__construct();
-			if ($this->session->userdata('role') != 'member'){
+			if (empty($this->session->userdata('email')) && $this->session->userdata('role') != 'member'){
 				$_SESSION['flash_messsage'] = 'You are not allowed to access or your session has been expired';
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');
@@ -25,7 +25,6 @@
 				'title' => 'Dasboard User',
 				'hasil' => $this->mdl->show_api($id)->result_array(),
 				'hasil2'=> $this->mdl->order_api(array('user_id'=>$id))->result_array(),
-				// 'hasil3' => $this->mdl->invoice(1)->result_array(),
 				'col' 	=>  array(
 								'id_order',
 								'name',
@@ -34,7 +33,7 @@
 								'last_used',
 								'ip',
 								'status'
-							),
+				),
 				'col2' 	=>  array(
 								'id_order',
 								'domain',
@@ -42,7 +41,7 @@
 								'date',
 								'price',
 								'status'
-							)
+				)
 				
 			);
 
@@ -63,18 +62,19 @@
 			redirect('/');
 		}
 
-		public function invoice()
+		public function invoice($id)
 		{
 			$data = array(
 				'title'	=> 'Invoice',
-				'hasil3' => $this->mdl->invoice_mdl(1)->result_array(),
+				'hasil3' => $this->mdl->invoice_mdl($id)->result_array(),
 				'col3' => array(
 					'domain',
 					'api_keys',
-					'price')
+					'price',
+					'date'
+				)
 			);
 			$this->page('invoice', $data);
-			
 		}
 
 		public function logout()

@@ -324,7 +324,8 @@
 			$col = array(
                 "o.domain AS 'domain'",
                 "a.key AS 'api_keys'",
-                "o.price AS 'price'"
+                "o.price AS 'price'",
+                "o.created_at AS 'date'"
 			);
 
 			$this->db->select($col);

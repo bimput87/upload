@@ -45,12 +45,11 @@
                                         for ($i=0; $i < sizeof($hasil2); $i++) {
                                         	echo '<tr>'; 
                                         	for ($j=0; $j < sizeof($col2); $j++) {
-                                        		if ($j == 0) 
-                                        			echo '<td id="id_ord"> <span style = "color:#2196F3" ><a href="'.site_url().'member/invoice">ORD-'.$hasil2[$i][$col2[$j]].'</a></span></td>';
-                                                    // echo '<td> <span data-toggle="modal" data-target="#myModal">ORD-'.$hasil2[$i][$col2[$j]].'</span></td>';
-                                        		elseif ($j==2 && $hasil2[$i][$col2[$j]] =='') 
+                                        		if ($j == 0) {
+                                        			$val = $hasil2[$i][$col2[$j]];
+                                        			echo '<td> <span style = "color:#2196F3" ><a href="'.site_url().'member/invoice/'.$val.'">ORD-'.$val.'</a></span></td>';
+                                        		}elseif ($j==2 && $hasil2[$i][$col2[$j]] =='') 
                                         			echo "<td>While shown after payment</td>";
-
                                         		else{
                                         			if($j == sizeof($col2)-1){
                                         				if ($hasil2[$i][$col2[$j]] == 1) 
