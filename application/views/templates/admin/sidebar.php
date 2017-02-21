@@ -19,27 +19,27 @@
       <!-- sidebar menu: : style can be found in sidebar.less -->
       <ul class="sidebar-menu">
         <li class="treeview">
-          <a href="<?php echo site_url() ?>member">
+          <a href="<?php echo site_url() ?>administrator">
             <i class="fa fa-dashboard"></i> <span>Dashboard</span>
           </a>
         </li>
         <li class="treeview">
-          <a href="<?php echo site_url() ?>member/show_api">
+          <a href="<?php echo site_url() ?>administrator/members">
             <i class="fa fa-users"></i> <span>Members</span>
           </a>
         </li>
         <li class="treeview">
-          <a href="<?php echo site_url() ?>member/order_api">
+          <a href="<?php echo site_url() ?>administrator/order_api">
             <i class="fa fa-shopping-basket"></i> <span>Orders</span>
           </a>
         </li>
         <li class="treeview">
-          <a href="<?php echo site_url() ?>member">
+          <a href="<?php echo site_url() ?>administrator">
             <i class="fa fa-diamond"></i> <span>API Keys</span>
           </a>
         </li>
         <li class="treeview">
-          <a href="<?php echo site_url() ?>member">
+          <a href="<?php echo site_url() ?>administrator">
             <i class="fa fa-gears"></i> <span>Setting</span>
           </a>
         </li>

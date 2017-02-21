@@ -8,7 +8,7 @@
 		function __construct()
 		{
 			parent::__construct();
-			if (empty($this->session->userdata('email')) && $this->session->userdata('role') != 'admin'){
+			if ($this->session->userdata('role') != 'admin'){
 				$_SESSION['flash_messsage'] = 'You are not allowed to access !';
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');
@@ -45,9 +45,15 @@
 			$this->page('dashboard',$data);
 		}
 
-		public function new_members()
+		public function members()
 		{
-			$date = date('Y-m-d');
+			$col = array('id', 'first_name', 'email', 'phone', 'country', 'city');
+			$data = array(
+				'title'		=> 'Show Members',
+				'col_name'	=> $col,
+				'list_member'	=> $this->mdl->select($col, 0, 'members', '', '')->result_array()
+			);
+			$this->page('members', $data);
 
 		}
 

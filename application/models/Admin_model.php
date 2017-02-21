@@ -82,9 +82,17 @@
 		{
 			$this->db->select($col);
 			$this->db->from($table);
-			$this->db->limit($lim);
+
+			if($lim > 0)
+				$this->db->limit($lim);
+
 			$this->db->order_by($order_by_col, $order_type);
 
 			return $this->db->get();
+		}
+
+		public function index($value='')
+		{
+			# code...
 		}
 	}

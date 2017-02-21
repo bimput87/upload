@@ -155,6 +155,7 @@
 																 	if ($api_show[$i][$col_name[$j]] == 1) 
 																 		echo '<td><span class="label label-info">Ready</span></td>';
 																 	elseif($api_show[$i][$col_name[$j]] == 3)
+																 		echo '<td><span class="label label-danger">Suspended</span></td>';
 																 	else 
 																 		echo '<td><span class="label label-success">Activated</span></td>';
 																 }else 
@@ -189,14 +190,3 @@
 			<!-- /.content -->
 		</div>
 		<!-- /.content-wrapper -->
-
-		<footer class="main-footer">
-			<div class="pull-right hidden-xs">
-				<b>Version</b> 1.0
-			</div>
-			<strong>Copyright &copy; 2017 <a href="http://ubig.co.id">UBIG</a>.</strong> All rights
-			reserved | Developed by <strong>ndasoft</strong>
-		</footer>
-
-	</div>
-	<!-- ./wrapper -->

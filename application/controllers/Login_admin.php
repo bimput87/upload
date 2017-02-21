@@ -15,7 +15,7 @@
 
 		public function index()
 		{
-			if (!empty($this->session->userdata('email')) && $this->session->userdata('role') == 'admin')
+			if ($this->session->userdata('role') == 'admin')
 				redirect(site_url().'administrator');
 			else
 				$this->do_login();	
