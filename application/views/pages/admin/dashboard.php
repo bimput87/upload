@@ -24,7 +24,7 @@
 							<span class="info-box-icon"><i class="ion ion-ios-people"></i></span>
 
 							<div class="info-box-content">
-							<span class="info-box-text">Members</span>
+								<span class="info-box-text">Members</span>
 								<span class="info-box-number"><?php echo $m_sum ?> Registered</span>
 
 								<div class="progress">
