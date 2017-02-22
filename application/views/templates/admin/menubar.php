@@ -25,7 +25,7 @@
                 <?php
                   $p = ucfirst($this->session->userdata('first_name')); 
                 ?>
-                <img src="<?php echo site_url().'public/assets/img/'.$p[0].'.png' ?>" class="img-circle" alt="User Image">
+                <img class="img-circle" src="<?php echo site_url().'public/assets/img/'.$p[0].'.png' ?>" class="img-circle" alt="User Image">
                 <p>
                   <?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name'); ?>
                   <small><?php echo $this->session->userdata('email') ?></small>

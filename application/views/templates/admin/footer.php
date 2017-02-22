@@ -49,24 +49,6 @@
 	  	$('body').show();
 	    NProgress.start();
 	    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1500);
-
-	    $.ajax({
-	    	url: 'controller e opo',
-	    	type: 'POST',
-	    	data: {
-	    		$('idne opo').serialize()
-	    	},
-	    })
-	    .done(function() {
-	    	console.log("success");
-	    })
-	    .fail(function() {
-	    	console.log("error");
-	    })
-	    .always(function() {
-	    	console.log("complete");
-	    });
-	    
 	</script>
 
 </body>

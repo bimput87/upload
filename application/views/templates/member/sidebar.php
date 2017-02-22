@@ -5,7 +5,7 @@
             <div class="user-info">
                 <div class="image">
                     <?php  $str = ucfirst($this->session->userdata('first_name')); $str2 = ucfirst($this->session->userdata('last_name'));?>
-                    <img src="<?php echo site_url()."public/assets/img/".$str[0] ?>.png" width="50" height="50" alt="User" />
+                    <img class="img-circle" src="<?php echo site_url()."public/assets/img/".$str[0] ?>.png" width="50" height="50" alt="User" />
                 </div>
                 <div class="info-container">
                     <div class="name" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><?php echo $str." ".$str2 ?></div>
@@ -26,13 +26,13 @@
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
                     <li class="active">
-                        <a href="index.html">
+                        <a href="<?php echo site_url() ?>member">
                             <i class="material-icons">home</i>
                             <span>Home</span>
                         </a>
                     </li>
                     <li>
-                        <a href="pages/typography.html">
+                        <a href="<?php echo site_url() ?>member/tutorial">
                             <i class="material-icons">text_fields</i>
                             <span>Tutorial</span>
                         </a>

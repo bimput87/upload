@@ -72,8 +72,11 @@
                   <tbody>
                     <?php
                       echo '<tr>'; 
-                      for ($j=0; $j < sizeof($col3)-1; $j++) { 
-                        echo '<td>'.$hasil3[0][$col3[$j]].'</td>';
+                      for ($j=0; $j < sizeof($col3)-1; $j++) {
+                        if($j == 1 && $hasil3[0][$col3[$j]] == '')
+                          echo '<td>Will shown after payment</td>';
+                        else 
+                          echo '<td>'.$hasil3[0][$col3[$j]].'</td>';
                       }
                       echo '</tr>';
                     ?>

@@ -47,11 +47,21 @@
 
 		public function members()
 		{
-			$col = array('id', 'first_name', 'email', 'phone', 'country', 'city');
+			$id = $this->session->userdata('id');
+			$sel = array(
+				'm.id AS "id"', 
+				'm.first_name AS "first_name"', 
+				'm.email AS "email"', 
+				'm.phone AS "phone"', 
+				'm.country AS "country"', 
+				'm.city AS "city"', 
+				'COUNT(o.user_id) AS "orders"'
+			);
+			$col = array('id', 'first_name', 'email', 'phone', 'country', 'city', 'orders');
 			$data = array(
 				'title'		=> 'Show Members',
 				'col_name'	=> $col,
-				'list_member'	=> $this->mdl->select($col, 0, 'members', '', '')->result_array()
+				'list_member'	=> $this->mdl->select_spec($sel, 'members m, orders o', 'm.id', 'm.id = o.user_id')->result_array()
 			);
 			$this->page('members', $data);
 

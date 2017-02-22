@@ -91,8 +91,16 @@
 			return $this->db->get();
 		}
 
-		public function index($value='')
+		public function select_spec($col, $from, $group_by, $where)
 		{
-			# code...
+			$this->db->select($col);
+
+			$this->db->from($from);
+
+			$this->db->group_by($group_by);
+
+			$this->db->where($where);
+
+			return $this->db->get();
 		}
 	}
