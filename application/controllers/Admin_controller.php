@@ -50,14 +50,14 @@
 			$id = $this->session->userdata('id');
 			$sel = array(
 				'm.id AS "id"', 
-				'm.first_name AS "first_name"', 
+				'CONCAT(m.first_name, " ", m.last_name) AS "name"', 
 				'm.email AS "email"', 
 				'm.phone AS "phone"', 
 				'm.country AS "country"', 
 				'm.city AS "city"', 
 				'COUNT(o.user_id) AS "orders"'
 			);
-			$col = array('id', 'first_name', 'email', 'phone', 'country', 'city', 'orders');
+			$col = array('id', 'name', 'email', 'phone', 'country', 'city', 'orders');
 			$data = array(
 				'title'		=> 'Show Members',
 				'col_name'	=> $col,
