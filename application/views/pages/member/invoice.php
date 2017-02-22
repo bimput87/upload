@@ -1,58 +1,4 @@
-<<<<<<< HEAD
-	 <section class="content">
-		<div class="container-fluid">
-			<!-- Basic Examples -->
-			<div class="row clearfix">
-				<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-					<div class="card">
-		<!-- Main content -->
-		<div id="print">
-		<section class="invoice">
-			<!-- title row -->
-		 <div class="row">
-					<div class="col-xs-12">
-						<h2 class="page-header">
-							<i class="ion-android-globe"></i> UBIG.CO.ID.
-							<small class="pull-right">Date: <?php echo $hasil3[0][$col3[3]] ?></small>
-						</h2>
-					</div>
-					<!-- /.col -->
-			</div>
-			<!-- info row -->
-			<div class="row invoice-info">
-				<div class="col-sm-4 invoice-col">
-						From
-						<address>
-							uBig.co.id - PT Universal Big Data<br>
-							Jambe No. 13 Kalpataru, Jl. Mawar, East Java<br>
-							Malang, East Java, Indonesia<br>
-							Phone: (0341) 493 567<br>
-							Email: info@ubig.co.id<br>  
-						</address>
-					</div>
-				<!-- /.col -->
-				<div class="col-sm-4 invoice-col">
-						To
-						<address>
-							<?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name') ?><br>
-							<?php echo $this->session->userdata('city') ?><br>
-							<?php echo 'Phone : '.$this->session->userdata('phone') ?><br>
-							<?php echo 'Email : '.$this->session->userdata('email') ?><br>
-						</address>
-				</div>
-				<!-- /.col -->
-				<div class="col-sm-4 invoice-col">
-					<b>Invoice #007612</b><br>
-					<br>
-					<b>Order ID:</b> 4F3S8J<br>
-					<b>Payment Due:</b> 2/22/2014<br>
-					<b>Account:</b> 968-34567
-				</div>
-				<!-- /.col -->
-			</div>
-			<!-- /.row -->
-=======
-   <section class="content">
+    <section class="content">
     <div class="container-fluid">
       <!-- Basic Examples -->
       <div class="row clearfix">
@@ -104,7 +50,6 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
->>>>>>> 2855558f4bcd69b82eaaa2d785991fec8435a80b
 
 			<!-- Table row -->
 			<div class="row">
@@ -142,7 +87,6 @@
 						</div>
 			<!-- /.row -->
 
-<<<<<<< HEAD
 			<!-- this row will not appear when printing -->
 			<div class="row no-print">
 				<div class="col-xs-12">
@@ -160,7 +104,6 @@
 		</section>
 		<!-- /.content -->
 		</div>
-=======
       <!-- this row will not appear when printing -->
       <div class="row no-print">
         <div class="col-xs-12">
@@ -178,4 +121,3 @@
     </section>
     <!-- /.content -->
     <!-- </div> -->
->>>>>>> 2855558f4bcd69b82eaaa2d785991fec8435a80b
