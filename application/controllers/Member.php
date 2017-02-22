@@ -82,6 +82,11 @@
 			$this->page('tutorial', array('title' => 'Tutorial'));
 		}
 
+		public function profile ()
+		{
+			$this->page('profile', array('title' => 'Profile'));
+		}
+
 		public function logout()
 		{
 			$this->session->sess_destroy();

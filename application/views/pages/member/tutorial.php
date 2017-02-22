@@ -10,7 +10,7 @@
 
                     <div class="timeline-body">
                       <div class="embed-responsive embed-responsive-16by9">
-                        <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/AL_xxRhykGk?rel=0" frameborder="0" allowfullscreen></iframe>
+                        <iframe class="embed-responsive-item" src="<?php echo base_url() ?>public/videos/intro.mp4" frameborder="0" allowfullscreen></iframe>
                       </div>
                     </div>
                     <div class="timeline-footer">

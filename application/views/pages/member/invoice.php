@@ -8,10 +8,10 @@
             <section id="print" class="invoice">
               <!-- title row -->
              <div class="row">
-                  <div class="col-xs-12">
+                  <div class="col-xs-12" align="center">
                     <h2 class="page-header">
                       <i class="ion-android-globe"></i> UBIG.CO.ID.
-                      <small class="pull-right">Date: <?php echo $hasil3[0][$col3[3]] ?></small>
+                      <small class="pull-right">Date: <?= date('d-m-Y') ?></small>
                     </h2>
                   </div>
                   <!-- /.col -->
@@ -40,11 +40,11 @@
                 </div>
                 <!-- /.col -->
                 <div class="col-sm-4 invoice-col">
-                  <b>Invoice #007612</b><br>
+                  <b>Invoice </b><br>
                   <br>
-                  <b>Order ID:</b> 4F3S8J<br>
+                  <b>Order ID:</b> ORD-<?= $this->uri->segment(3) ?><br>
                   <b>Payment Due:</b> 2/22/2014<br>
-                  <b>Account:</b> 968-34567
+                  <b>ID Account:</b>USR - <?= $this->session->userdata('id') ?>
                 </div>
                 <!-- /.col -->
               </div>
@@ -61,21 +61,18 @@
 										<th>Price</th>
 									</tr>
 								</thead>
-								<tfoot>
-									<tr>
-										<th>Domain</th>
-										<th>API Key</th>
-										<th>Price</th>
-									</tr>
-								</tfoot>
 								<tbody>
 									<?php
 										echo '<tr>'; 
 										for ($j=0; $j < sizeof($col3)-1; $j++) {
 											if($j == 1 && $hasil3[0][$col3[$j]] == '')
 												echo '<td>Will shown after payment</td>';
-											else 
-												echo '<td>'.$hasil3[0][$col3[$j]].'</td>';
+											else{
+                        if($j == 2)
+                          echo '<td> IDR '.$hasil3[0][$col3[$j]].'</td>';
+                        else
+  												echo '<td>'.$hasil3[0][$col3[$j]].'</td>';
+                      } 
 										}
 										echo '</tr>';
 									?>
