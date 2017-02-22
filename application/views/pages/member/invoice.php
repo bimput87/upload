@@ -5,7 +5,6 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
             <!-- Main content -->
-            <!-- <div id="print" class="invoice"> -->
             <section id="print" class="invoice">
               <!-- title row -->
              <div class="row">
@@ -53,38 +52,38 @@
 
         			<!-- Table row -->
         			<div class="row">
-        							<div class="col-xs-12 table-responsive">
-        								<table class="table table-striped">
-        									<thead>
-        										<tr>
-        											<th>Domain</th>
-        											<th>API Key</th>
-        											<th>Price</th>
-        										</tr>
-        									</thead>
-        									<tfoot>
-        										<tr>
-        											<th>Domain</th>
-        											<th>API Key</th>
-        											<th>Price</th>
-        										</tr>
-        									</tfoot>
-        									<tbody>
-        										<?php
-        											echo '<tr>'; 
-        											for ($j=0; $j < sizeof($col3)-1; $j++) {
-        												if($j == 1 && $hasil3[0][$col3[$j]] == '')
-        													echo '<td>Will shown after payment</td>';
-        												else 
-        													echo '<td>'.$hasil3[0][$col3[$j]].'</td>';
-        											}
-        											echo '</tr>';
-        										?>
-        									</tbody>
-        								</table>
-        							</div>
-        							<!-- /.col -->
-        						</div>
+						<div class="col-xs-12 table-responsive">
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>Domain</th>
+										<th>API Key</th>
+										<th>Price</th>
+									</tr>
+								</thead>
+								<tfoot>
+									<tr>
+										<th>Domain</th>
+										<th>API Key</th>
+										<th>Price</th>
+									</tr>
+								</tfoot>
+								<tbody>
+									<?php
+										echo '<tr>'; 
+										for ($j=0; $j < sizeof($col3)-1; $j++) {
+											if($j == 1 && $hasil3[0][$col3[$j]] == '')
+												echo '<td>Will shown after payment</td>';
+											else 
+												echo '<td>'.$hasil3[0][$col3[$j]].'</td>';
+										}
+										echo '</tr>';
+									?>
+								</tbody>
+							</table>
+						</div>
+						<!-- /.col -->
+					</div>
         			<!-- /.row -->
 
         			<!-- this row will not appear when printing -->
@@ -104,5 +103,4 @@
         		</section>
 		<!-- /.content -->
 		</div>
-      <!-- this row will not appear when printing -->
       
