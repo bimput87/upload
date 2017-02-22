@@ -77,6 +77,11 @@
 			$this->page('invoice', $data);
 		}
 
+		public function update_password()
+		{
+			print_r($this->input->post());
+		}
+
 		public function tutorial()
 		{
 			$this->page('tutorial', array('title' => 'Tutorial'));
