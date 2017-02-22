@@ -1,4 +1,4 @@
-<section>
+<section class="no-print">
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
             <!-- User Info -->
