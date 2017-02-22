@@ -77,6 +77,11 @@
 			$this->page('invoice', $data);
 		}
 
+		public function tutorial()
+		{
+			$this->page('tutorial', array('title' => 'Tutorial'));
+		}
+
 		public function logout()
 		{
 			$this->session->sess_destroy();
