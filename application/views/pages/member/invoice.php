@@ -5,8 +5,8 @@
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
           <div class="card">
     <!-- Main content -->
-    <div id="print">
-    <section class="invoice">
+    <!-- <div id="print" class="invoice"> -->
+    <section id="print" class="invoice">
       <!-- title row -->
      <div class="row">
           <div class="col-xs-12">
@@ -94,13 +94,13 @@
             <button type="button" onclick="print()" class="btn btn-default"> 
                         Print
             </button>  
+             <!-- <button class="print-link avoid-this"> Print this</button> -->
           </td>
           <td>
             <a class="btn btn-default" href="<?php echo site_url() ?>member">Back</a>
-            <!-- meski samean seneng e opel2 tapi ayu kok-->  
           </td>
         </div>
       </div>
     </section>
     <!-- /.content -->
-    </div>
+    <!-- </div> -->
