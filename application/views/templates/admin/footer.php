@@ -22,6 +22,7 @@
 		'demo.js',
 		'jquery.dataTables.min.js',
 		'dataTables.bootstrap.min.js',
+		'bootstrap-formhelpers.js', 
 		'nprogress.js'
 	);
 
@@ -48,7 +49,7 @@
 	<script type="text/javascript">
 	  	$('body').show();
 	    NProgress.start();
-	    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 1500);
+	    setTimeout(function() { NProgress.done(); $('.fade').removeClass('out'); }, 400);
 	</script>
 
 </body>

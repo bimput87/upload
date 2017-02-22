@@ -88,6 +88,3 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 Define constant for asset path & view
  */
 define('ASSET_PATH', 'public/assets/');
-define('VINC', APPPATH.'views/include/');
-
-define('FOOT', APPPATH.'views/templates/include/footer.php');

@@ -41,6 +41,8 @@
 											for ($j=0; $j < sizeof($list_member[$i]); $j++) {
 												if($j == 0) 
 													echo '<td>USR-'.(($list_member[$i][$col_name[$j]])-1).'</td>';
+												elseif($j == 4)
+													echo '<td> <span class="bfh-countries" data-country="'.$list_member[$i][$col_name[$j]].'" data-flags="true"></span> </td>';
 												else
 													echo '<td>'.$list_member[$i][$col_name[$j]].'</td>';
 											}

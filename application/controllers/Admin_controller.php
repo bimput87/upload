@@ -67,6 +67,27 @@
 
 		}
 
+		public function orders()
+		{
+			$sum 		= $this->mdl->count('orders', '');
+			$completed 	= $this->mdl->count('orders', array('status' => 1));
+			$pending 	= $this->mdl->count('orders', array('status' => 0));
+			$expired 	= $this->mdl->count('orders', array('status' => 2));
+
+			$data = array(
+				'title' 	=> 'Orders API',
+				'sum'		=> $sum,
+				'completed'	=> $completed,
+				'pending'	=> $pending,
+				'expired'	=> $expired,
+				'perc_comp'	=> ceil(($completed/$sum)*100),
+				'perc_pend'	=> ceil(($pending/$sum)*100),
+				'perc_exp'	=> ceil(($expired/$sum)*100)
+			);
+			
+			$this->page('orders', $data);
+		}
+
 		public function page($page, $data)
 		{  
 			if (!file_exists(APPPATH.'views/pages/admin/'.$page.'.php'))

@@ -13,6 +13,7 @@
   		'skin-red.min.css',
   		'jquery-jvectormap-1.2.2.css',
   		'dataTables.bootstrap.css',
+      'bootstrap-formhelpers.css',
   		'nprogress.css'
 	);
 	

@@ -154,8 +154,8 @@
 																if ($j == sizeof($api_show[$i])-1) {
 																 	if ($api_show[$i][$col_name[$j]] == 1) 
 																 		echo '<td><span class="label label-info">Ready</span></td>';
-																 	elseif($api_show[$i][$col_name[$j]] == 3)
-																 		echo '<td><span class="label label-danger">Suspended</span></td>';
+																 	elseif($api_show[$i][$col_name[$j]] == 2)
+																 		echo '<td><span class="label label-danger">Expired</span></td>';
 																 	else 
 																 		echo '<td><span class="label label-success">Activated</span></td>';
 																 }else 
