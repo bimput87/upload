@@ -109,31 +109,16 @@
 									</tr>
 								</thead>
 								<tbody>
-									<tr>
-										<td></td>
-										<td>1</td>
-										<td>2</td>
-										<td>3</td>
-										<td>4</td>
-										<td>5</td>
-										<td>6</td>
-										<td>7</td>
-										<td>8</td>
-									</tr>
+									<?php 
+										for ($i=0; $i < sizeof($data_order); $i++) { 
+											echo '<tr><td></td>';
+										 	for ($j=0; $j < sizeof($data_order[$i]); $j++) { 
+										 		echo '<td>'.$data_order[$i][$column[$j]].'</td>';
+										 	}
+											echo '<td></td></tr>';
+										 } 
+									?>
 								</tbody>
-								<tfoot>
-									<tr>
-										<th><input type="checkbox" class="flat-red all"></th>
-			                            <th>ID Order</th>
-			                            <th>Customers Name</th>
-			                            <th>Domain</th>
-			                            <th>API Key</th>
-			                            <th>Date</th>
-			                            <th>Price</th>
-			                            <th style="width: 10%">Status</th>
-			                            <th>Action</th>
-									</tr>
-								</tfoot>
 							</table>
 						</div>
 						<!-- /.box-body -->

@@ -5,6 +5,12 @@
 		<div class="content-wrapper">
 			<!-- Content Header (Page header) -->
 			<section class="content-header">
+				<?php 
+					$var = gethostbyname('ubig.co.id') ; 
+					echo "IP: ".$var;
+					echo "</br>HTTP_HOST [{$_SERVER['HTTP_HOST']}]</br>"; echo "SERVER_NAME [{$_SERVER['SERVER_NAME']}]"; 
+				?>
+
 				<h1>
 					Welcome
 					<small><?php echo $this->session->userdata('first_name') ?></small>
@@ -115,7 +121,7 @@
 									</div>
 									<!-- /.box-body -->
 									<div class="box-footer text-center">
-										<a href="javascript:void(0)" class="uppercase">View All Users</a>
+										<a href="<?php echo site_url() ?>administrator/members" class="uppercase">View All Members</a>
 									</div>
 									<!-- /.box-footer -->
 								</div>
@@ -171,9 +177,7 @@
 									</div>
 									<!-- /.box-body -->
 									<div class="box-footer text-center">
-										<div class="box-footer text-center">
-											<a href="javascript:void(0)" class="uppercase">View All API</a>
-										</div>
+										<a href="javascript:void(0)" class="uppercase">View All API</a>
 									</div>
 									<!-- /.box-footer -->
 								</div>

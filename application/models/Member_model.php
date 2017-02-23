@@ -227,7 +227,7 @@
 		public function update_login_time($id)
 		{
 			$this->db->where('id', $id);
-			$this->db->update($this->table_name, array('last_login' => date('Y-m-d h:i:s A')));
+			$this->db->update($this->table_name, array('last_login' => date('Y-m-d H:i:s')));
 
 			return;
 		}
@@ -243,7 +243,7 @@
 		{
 			$data = array(
 				'password' 	=> $post['password'], 
-				'last_login'=> date('Y-m-d h:i:s A'),
+				'last_login'=> date('Y-m-d H:i:s'),
 				'status'	=> $this->status[1] 
 			);
 

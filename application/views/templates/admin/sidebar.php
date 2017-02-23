@@ -13,7 +13,7 @@
 				</div>
 				<div class="pull-left info">
 					<p><?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name') ?></p>
-					<a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+					<a href="#"><i class="fa fa-circle text-success"></i> Administrator</a>
 				</div>
 			</div>
 			<!-- sidebar menu: : style can be found in sidebar.less -->

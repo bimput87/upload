@@ -15,6 +15,7 @@
 				redirect('/');
 			}
 			$this->load->model('member_model', 'mdl', TRUE); 
+			date_default_timezone_set("Asia/Jakarta");
 		}
 
 		public function index()
@@ -56,7 +57,7 @@
 				'price' 	=> $price,
 				'status'	=> 0,
 				'user_id'	=> $this->session->userdata('id'),
-				'created_at' => date('Y-m-d h:i:s A')
+				'created_at' => date('Y-m-d H:i:s')
 			);
 			echo $this->mdl->add_order($data);
 			redirect('/');

@@ -49,7 +49,7 @@
 		public function update_login_time($id)
 		{
 			$this->db->where('id', $id);
-			$this->db->update($this->table_name, array('last_login' => date('Y-m-d h:i:s A')));
+			$this->db->update($this->table_name, array('last_login' => date('Y-m-d H:i:s')));
 
 			return;
 		}
@@ -65,7 +65,9 @@
 		public function select_col($table, $col, $lim)
 		{
 			$this->db->select($col);
-			$this->db->limit($lim);
+			
+			if (!empty($lim)) 
+				$this->db->limit($lim);
 
 			return $this->db->get($table);
 		}
@@ -100,6 +102,19 @@
 			$this->db->group_by($group_by);
 
 			$this->db->where($where);
+
+			return $this->db->get();
+		}
+
+		public function show_orders($col, $table1, $table2, $table3, $on1, $on2, $type)
+		{
+			$this->db->select($col);
+
+			$this->db->from($table1);
+
+			$this->db->join($table2, $on1, $type);
+
+			$this->db->join($table3, $on2, $type);
 
 			return $this->db->get();
 		}
