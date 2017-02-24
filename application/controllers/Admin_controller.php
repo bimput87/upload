@@ -69,20 +69,6 @@
 
 		public function orders()
 		{
-			/*
-		SELECT 
-			o.id AS 'order_id',
-			CONCAT(m.first_name, " ", m.last_name) AS 'name',
-			o.domain AS 'domain',
-			a.key AS 'api_key',
-			o.created_at AS 'date',
-			o.price AS 'price',
-			o.status AS 'status'
-		FROM
-			orders o LEFT JOIN api_keys a
-			ON o.id = a.order_id
-			LEFT JOIN members m
-			ON o.user_id = m.id*/
 			$sum 		= $this->mdl->count('orders', '');
 			$completed 	= $this->mdl->count('orders', array('status' => 1));
 			$pending 	= $this->mdl->count('orders', array('status' => 0));
@@ -98,8 +84,6 @@
 				'o.status AS "status"'
 			);
 
-			$column = array('order_id', 'name', 'domain', 'api_key', 'date', 'price', 'status');
-			
 			$data = array(
 				'title' 	=> 'Orders API',
 				'sum'		=> $sum,
@@ -109,11 +93,54 @@
 				'perc_comp'	=> ceil(($completed/$sum)*100),
 				'perc_pend'	=> ceil(($pending/$sum)*100),
 				'perc_exp'	=> ceil(($expired/$sum)*100),
-				'column'	=> $column,
+				'column'	=> array('order_id', 'name', 'domain', 'api_key', 'date', 'price', 'status'),
 				'data_order'=> $this->mdl->show_orders($col_select, 'orders o', 'api_keys a', 'members m', 'o.id = a.order_id', 'o.user_id = m.id', 'left')->result_array()		
 			);
 			
 			$this->page('orders', $data);
+		}
+
+		public function api()
+		{
+			$sum = $this->mdl->count('api_keys', '');
+			$completed = $this->mdl->count('api_keys', array('active' => 1));
+			$non_active = $this->mdl->count('api_keys', array('active' => 0));
+
+			$col_select = array(
+				'a.order_id AS "id"',
+				'CONCAT(m.first_name, " ", m.last_name) AS "name"',
+				'a.domain AS "domain"',
+				'a.key AS "key"',
+				'a.active AS "status"'
+			);
+
+			$data = array(
+				'title' => 'API Keys',
+				'sum'	=> $sum,
+				'comp'	=> $completed,
+				'perc'	=> ceil(($completed/$sum)*100),
+				'non'	=> $non_active,
+				'pern'	=> ceil(($non_active/$sum)*100),
+				'col'	=> array('id', 'name', 'domain', 'key', 'status'),
+				'data'	=> $this->mdl->show_orders($col_select, 'api_keys a', 'orders o', 'members m', 'a.order_id = o.id ', 'o.user_id = m.id', 'left')->result_array()
+			);
+
+			$this->page('api', $data);
+		}
+
+		public function setting()
+		{
+			$data = array(
+				'title'	=> 'Setting page',
+				'price'	=> $this->mdl->select_col('options', array('value'), '')->result_array()[0]['value']
+			);
+
+			$this->page('settings', $data);
+		}
+
+		public function admin()
+		{
+			$this->page('admin', array('title' => 'Admin user'));
 		}
 
 		public function page($page, $data)

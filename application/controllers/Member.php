@@ -51,7 +51,7 @@
 
 		public function submit_form()
 		{
-			$price = 750000;
+			$price = $this->mdl_admin->select_col('options', array('value'), '')->result_array()[0]['value'];
 			$data = array(
 				'domain'	=> $this->security->xss_clean($this->input->post('input_domain')),
 				'price' 	=> $price,
@@ -75,6 +75,7 @@
 					'date'
 				)
 			);
+			
 			$this->page('invoice', $data);
 		}
 

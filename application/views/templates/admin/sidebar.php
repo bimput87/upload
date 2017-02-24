@@ -34,13 +34,18 @@
 					</a>
 				</li>
 				<li class="treeview">
-					<a href="<?php echo site_url() ?>administrator">
+					<a href="<?php echo site_url() ?>administrator/api">
 						<i class="fa fa-diamond"></i> <span>API Keys</span>
 					</a>
 				</li>
 				<li class="treeview">
-					<a href="<?php echo site_url() ?>administrator">
+					<a href="<?php echo site_url() ?>administrator/setting">
 						<i class="fa fa-gears"></i> <span>Setting</span>
+					</a>
+				</li>
+				<li class="treeview">
+					<a href="<?php echo site_url() ?>administrator/admin">
+						<i class="fa fa-gears"></i> <span>Admin</span>
 					</a>
 				</li>
 		</section>

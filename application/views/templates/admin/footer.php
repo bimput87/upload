@@ -43,6 +43,14 @@
 		});
 	</script>
 		<?php
+	}
+	if($this->uri->segment(2) == 'api'){
+		?>
+	<script type="text/javascript">
+	  	$('#data_api').DataTable({
+		});
+	</script>
+		<?php
 	} 
 ?>
 
