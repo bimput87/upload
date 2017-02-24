@@ -45,14 +45,60 @@
             </script>
             <?php
         }
-           if ($this->uri->segment(2) == 'profile') {
+
+        if ($this->uri->segment(2) == 'profile') {
             ?>
             <script type="text/javascript">
                 setTimeout(function() {
-                    $('.alert').fadeOut(1000);
+                    $('.alert').fadeOut(1000)
                     },
                     1000
-                );
+                )
+            </script>
+
+            <?php
+        }
+
+ // ^[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$|i
+        if ($this->uri->segment(1) == 'member') {
+            ?>
+        <script type="text/javascript">
+           
+                $('#myModal').on('shown.bs.modal', function () {
+                    $('#input_domain').focus()
+                })
+
+                $('#myModal').on('hide.bs.modal', function () {
+                    $('#input_domain').val('')
+                })
+            </script>
+            <script type="text/javascript">
+                function formValidation() {
+                    if ($('#input_domain').val() == '') {
+                        alert('domain tidak boleh kosong')
+                        return false
+                    }else{
+                        var hasil = CheckIsValidDomain($('#input_domain').val())
+                        if (hasil != null) {
+                            alert('Alhamdulillah sukses ma !')
+                            return true
+                        } else {
+                            // alert('Gagal maneh :( !')
+                            setTimeout(function() {
+                                $('.error').html('<div class="alert bg-red">domain incorrect</div>').fadeOut(4000)
+                                },
+                                300
+                            )
+                            return false
+                        }
+                    }
+                }
+
+                function CheckIsValidDomain(domain) { 
+                    var re = new RegExp(/^((?:(?:(?:\w[\.\-\+]?)*)\w)+)((?:(?:(?:\w[\.\-\+]?){0,62})\w)+)\.(\w{2,6})$/); 
+                    return domain.match(re);
+                }
+
             </script>
             <?php
         }

@@ -133,7 +133,7 @@
 		<!-- Modal -->
 		<div class="modal fade" id="myModal" role="dialog">
 			<div class="modal-dialog">
-				<?php echo form_open('member/submit_form', array('id' => 'form', 'role' => 'form')) ?>
+				<?php echo form_open('member/submit_form', array('id' => 'form', 'role' => 'form', 'onsubmit' => 'return formValidation()')) ?>
 				<div style="display:none">
 					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
 				</div>
@@ -145,9 +145,10 @@
 					<div class="modal-body">
 						<div class="form-group">
 							<div class="form-line">
-								<input type="text" name="input_domain" class="form-control" placeholder="Your domain name">
+								<input type="text" id="input_domain" name="input_domain" class="form-control" placeholder="Your domain name">
 							</div>
 						</div>
+						<div class="error"></div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">
