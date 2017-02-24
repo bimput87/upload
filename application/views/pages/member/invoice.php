@@ -1,5 +1,5 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
-    <section class="content">
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');   ?>
+<section class="content">
     <div class="container-fluid">
       <!-- Basic Examples -->
       <div class="row clearfix">

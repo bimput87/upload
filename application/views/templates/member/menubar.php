@@ -1,4 +1,4 @@
- <!-- Page Loader -->
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');   ?> <!-- Page Loader -->
     <div class="page-loader-wrapper">
         <div class="loader">
             <div class="preloader">

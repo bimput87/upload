@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');   ?>
     <?php  
         $array_js = array(
             'jquery.min.js',

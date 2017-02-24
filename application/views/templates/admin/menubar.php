@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');   ?>
   <header class="main-header">
     <!-- Logo -->
     <a href="<?php echo site_url() ?>administrator" class="logo">

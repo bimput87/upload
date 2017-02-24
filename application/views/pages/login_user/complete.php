@@ -1,6 +1,4 @@
-<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
-
-<body class="fp-page">
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');   ?><body class="fp-page">
     <div class="fp-box">
         <div class="logo">
             <a target="_blank" href="http://ubig.co.id"><img width="300" height="60" src="<?php echo site_url() ?>public/assets/img/logo-white-full.png"></a>

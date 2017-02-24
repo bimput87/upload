@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');   ?>
 <section class="no-print">
         <!-- Left Sidebar -->
         <aside id="leftsidebar" class="sidebar">
