@@ -1,3 +1,5 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
+
 <body class="fp-page">
     <div class="fp-box">
         <div class="logo">

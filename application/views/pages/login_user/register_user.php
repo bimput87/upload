@@ -1,3 +1,4 @@
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed'); ?>
 <body class="signup-page">
     <div class="signup-box">
         <div class="logo">
