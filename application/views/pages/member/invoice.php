@@ -43,7 +43,12 @@
                   <b>Invoice </b><br>
                   <br>
                   <b>Order ID:</b> ORD-<?= $this->uri->segment(3) ?><br>
-                  <b>Payment Due:</b> 2/22/2014<br>
+                    <?php 
+                        $stop_date = new DateTime($hasil3[0][$col3[3]]);
+                        $stop_date->modify('+1 day');
+                   ?>
+                  <b>Payment Due:</b> <?= $stop_date->format('Y-m-d H:i:s') ?><br>
+ 
                   <b>ID Account:</b>USR - <?= $this->session->userdata('id') ?>
                 </div>
                 <!-- /.col -->

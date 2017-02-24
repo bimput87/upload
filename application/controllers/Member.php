@@ -14,7 +14,8 @@
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');
 			}
-			$this->load->model('member_model', 'mdl', TRUE); 
+			$this->load->model('member_model', 'mdl', TRUE);
+			$this->load->library('form_validation'); 
 			date_default_timezone_set("Asia/Jakarta");
 		}
 
@@ -81,6 +82,10 @@
 
 		public function update_password()
 		{
+			$this->form_validation->set_rules('old_password', 'Password', 'required');
+			$this->form_validation->set_rules('old_password', 'Password', 'required');
+			$this->form_validation->set_rules('old_password', 'Password', 'required');
+
 			print_r($this->input->post());
 		}
 
@@ -111,5 +116,4 @@
 	        $this->load->view('pages/member/'.$page, $data);
 	        $this->load->view('templates/member/footer', $data);
 	    }
-
 }
