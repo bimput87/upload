@@ -44,6 +44,17 @@
             </script>
             <?php
         }
+           if ($this->uri->segment(2) == 'profile') {
+            ?>
+            <script type="text/javascript">
+                setTimeout(function() {
+                    $('.alert').fadeOut(1000);
+                    },
+                    1000
+                );
+            </script>
+            <?php
+        }
     ?>
 </body>
 

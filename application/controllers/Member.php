@@ -15,7 +15,9 @@
 				redirect('/');
 			}
 			$this->load->model('member_model', 'mdl', TRUE); 
-			$this->load->model('admin_model', 'mdl_admin', TRUE); 
+			$this->load->model('admin_model', 'mdl_admin', TRUE);
+			$this->load->library('form_validation','bcrypt');
+			$this->form_validation->set_error_delimiters('<div class="alert bg-red">', '</div>');
 			date_default_timezone_set("Asia/Jakarta");
 		}
 
@@ -80,11 +82,6 @@
 			$this->page('invoice', $data);
 		}
 
-		public function update_password()
-		{
-			print_r($this->input->post());
-		}
-
 		public function tutorial()
 		{
 			$this->page('tutorial', array('title' => 'Tutorial'));
@@ -92,7 +89,32 @@
 
 		public function profile ()
 		{
-			$this->page('profile', array('title' => 'Profile'));
+			$this->form_validation->set_rules('old_password','Old Password','required|min_length[6]');
+			$this->form_validation->set_rules('newpasswd','New Password','required|min_length[6]');
+			$this->form_validation->set_rules('passconf','Password Confirmation','required|min_length[6]|matches[newpasswd]');
+			
+			if($this->form_validation->run() == FALSE){
+				$this->page('profile', array('title' => 'Profile'));
+			}else{
+				$old_password = $this->security->xss_clean($this->input->post('old_password'));
+				$id_user = $this->session->userdata('id');
+				$password_db = $this->mdl->get_password_by_id($id_user)->result_array()[0]['password'];
+
+				if ($this->bcrypt->check_password($old_password, $password_db)) {
+					$newpasswd = $this->security->xss_clean($this->input->post('newpasswd'));
+					$encrypt = $this->bcrypt->hash_password($newpasswd);
+					if ($this->mdl->password_update($id_user, $encrypt) > 0) {
+						$this->session->set_flashdata('flash_messsage', 'Update password success! | jelas sukses');
+						redirect(site_url().'member/profile');
+					}
+
+					$this->session->set_flashdata('flash_messsage', 'Update password failed! | sama db,gagal');
+					redirect(site_url().'member/profile');
+				}else{
+					$this->session->set_flashdata('flash_messsage', 'Update password failed! | password beda');
+					redirect(site_url().'member/profile');
+				}
+			}
 		}
 
 		public function logout()

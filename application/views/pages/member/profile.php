@@ -4,13 +4,21 @@
         <div class="row clearfix">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="card">
+                    <?php
+                        if(!empty($_SESSION['flash_messsage'])){
+                            $html = '<div class="alert bg-red">';
+                            $html .= $_SESSION['flash_messsage']; 
+                            $html .= '</div>';
+                            echo $html;
+                        }
+                    ?>
                     <div class="header">
                         <h2>
                             UPDATE PASSWORD
                         </h2>
                     </div>
                     <div class="body">
-                        <?php echo form_open('member/update_password') ?>
+                        <?php echo form_open('member/profile') ?>
                             <div style="display:none">
                                 <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash(); ?>">
                             </div>

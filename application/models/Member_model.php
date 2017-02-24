@@ -340,4 +340,22 @@
 			return $this->db->get();
 		}
 
+		public function get_password_by_id($id)
+		{
+			$this->db->select('password');
+			$this->db->from('members');
+
+			$this->db->where(array('id' => $id));
+
+			return $this->db->get();
+		}
+
+		public function password_update($id, $newpasswd)
+		{
+			$this->db->where('id', $id);
+			$this->db->update($this->table_name, array('password' => $newpasswd));
+
+			return $this->db->affected_rows();
+		}
+
 	}
