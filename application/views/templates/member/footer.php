@@ -59,7 +59,6 @@
             <?php
         }
 
- // ^[a-z0-9-]+(.[a-z0-9-]+)*(:[0-9]+)?(\/.*)?$|i
         if ($this->uri->segment(1) == 'member') {
             ?>
         <script type="text/javascript">
@@ -75,17 +74,15 @@
             <script type="text/javascript">
                 function formValidation() {
                     if ($('#input_domain').val() == '') {
-                        alert('domain tidak boleh kosong')
+                        alert('Fill your correct domain !')
                         return false
                     }else{
                         var hasil = CheckIsValidDomain($('#input_domain').val())
                         if (hasil != null) {
-                            alert('Alhamdulillah sukses ma !')
                             return true
                         } else {
-                            // alert('Gagal maneh :( !')
                             setTimeout(function() {
-                                $('.error').html('<div class="alert bg-red">domain incorrect</div>').fadeOut(4000)
+                                $('.error').html('<div class="alert bg-red">Domain incorrect!</div>').fadeOut(4000)
                                 },
                                 300
                             )

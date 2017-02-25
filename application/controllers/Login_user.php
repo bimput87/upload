@@ -112,7 +112,7 @@
 				$user_info = $this->mdl->get_user_info_by_email($clean);
 				if (!$user_info) {
 					$this->session->set_flashdata('flash_messsage', 'We can\'t find your email address');
-					redirect(site_url().'login_user/forgot/');
+					redirect(site_url().'forgot');
 				} else {
 					$email = $this->input->post('email');
 					$clean = $this->security->xss_clean($email);

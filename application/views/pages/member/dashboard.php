@@ -5,6 +5,14 @@
 	 		<div class="row clearfix">
 	 			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 	 				<div class="card">
+		 				<?php
+		                    if(!empty($_SESSION['flash_messsage'])){
+		                        $html = '<div class="alert alert-danger alert-dismissible">';
+		                        $html .= $_SESSION['flash_messsage']; 
+		                        $html .= '</div>';
+		                        echo $html;
+		                    }
+		                ?>
 	 					<div class="header">
 	 						<h1><center>ORDERS OVERVIEW</center></h1>
 	 					</div>

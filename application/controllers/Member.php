@@ -62,8 +62,8 @@
 				'user_id'	=> $this->session->userdata('id'),
 				'created_at' => date('Y-m-d H:i:s')
 			);
-			echo $this->mdl->add_order($data);
-			redirect('/');
+			$url = $this->mdl->add_order($data);
+			redirect('member/invoice/'.$url);
 		}
 
 		public function invoice($id)
