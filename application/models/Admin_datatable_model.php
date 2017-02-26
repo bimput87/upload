@@ -20,9 +20,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Admin_datatable_model extends CI_Model {
  
     private $table = 'admins';
-    private $column_order = array('email', 'first_name','last_name','country','city','phone'); //set column field database for datatable orderable
-    private $column_search = array('email', 'first_name','last_name'); //set column field database for datatable searchable just firstname , lastname , and email are searchable
-    private $order = array('id' => 'desc'); // default order 
+    private $column_order = array('email', 'name','address','phone'); //set column field database for datatable orderable
+    private $column_search = array('email', 'name', 'address', 'phone'); //set column field database for datatable searchable just firstname , lastname , and email are searchable
+    private $order = array('id' => 'asc'); // default order 
  
     public function __construct()
     {

@@ -5,6 +5,7 @@
 	*/
 	class Admin_controller extends CI_Controller
 	{
+		private $roles;
 		
 		function __construct()
 		{
@@ -14,7 +15,8 @@
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');
 			}
-			$this->load->library('form_validation');
+			$this->roles = $this->config->item('roles');
+			$this->load->library(array('bcrypt', 'form_validation'));
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible">', '</div>');
 			$this->load->model('admin_model', 'mdl', TRUE);
 			$this->load->model('admin_datatable_model', 'dttb', TRUE);
@@ -190,9 +192,11 @@
 	        foreach ($list as $value) {
 	            $no++;
 	            $row = array();
-	            $row[] = $value->first_name." ".$value->last_name;
+	            $row[] = $value->id;
+	            $row[] = $value->name;
 	            $row[] = $value->email;
 	            $row[] = $value->phone;
+	            $row[] = $value->address;
 	            $row[] = $value->password;
 	 
 	            //add html for action
@@ -221,27 +225,23 @@
 	    public function ajax_add()
 	    {
 	    	$post = $this->security->xss_clean($this->input->post());
-	        // $data = array(
-	        //         'firstName' => $this->input->post('firstName'),
-	        //         'lastName' => $this->input->post('lastName'),
-	        //         'gender' => $this->input->post('gender'),
-	        //         'address' => $this->input->post('address'),
-	        //         'dob' => $this->input->post('dob'),
-	        //     );
-	        $insert = $this->dttb->save($data);
+	    	$post['role'] = $this->roles[1];
+	    	$password = $post['password'];
+	    	unset($post['password']);
+	    	$post['password'] = $this->bcrypt->hash_password($password);
+
+	        $insert = $this->dttb->save($post);
+	        
 	        echo json_encode(array("status" => TRUE));
 	    }
 	 
 	    public function ajax_update()
 	    {
 	    	$post = $this->security->xss_clean($this->input->post());
-	        // $data = array(
-	        //         'firstName' => $this->input->post('firstName'),
-	        //         'lastName' => $this->input->post('lastName'),
-	        //         'gender' => $this->input->post('gender'),
-	        //         'address' => $this->input->post('address'),
-	        //         'dob' => $this->input->post('dob'),
-	        //     );
+			$password = $post['password'];
+	    	unset($post['password']);
+	    	$post['password'] = $this->bcrypt->hash_password($password);
+	    	
 	        $this->dttb->update(array('id' => $post['id']), $post);
 	        echo json_encode(array("status" => TRUE));
 	    }

@@ -19,8 +19,12 @@
 			<section class="content">
 				<div class="row">
 					<div class="col-xs-12">
-						<div class="box">
+						<div class="box box-danger">
 							<!-- /.box-header -->
+							 <div class="box-header">
+									<button type="button" onclick="add_person()" class="btn bg-green"><i class="fa fa-plus-circle"></i> Add Admin</button>
+									<button type="button" onclick="reload_table()" class="btn"><i class="fa fa-refresh"></i> Refresh Table</button>
+				            </div>
 							<div class="box-body">
 								<table id="example2" class="table table-bordered table-striped">
 									<thead>
@@ -29,9 +33,9 @@
 											<th>Name</th>
 											<th>E-Mail</th>
 											<th>Contact</th>
-											<th>Country</th>
-											<th>City</th>
-											<th>Orders</th>
+											<th>Address</th>
+											<th>Password</th>
+											<th>Action</th>
 										</tr>
 									</thead>
 									<tbody>
@@ -56,48 +60,43 @@
         <div class="modal-content">
             <div class="modal-header">
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                <h3 class="modal-title">Person Form</h3>
+                <h3 class="modal-title">Admin add form</h3>
             </div>
             <div class="modal-body form">
                 <form action="#" id="form" class="form-horizontal">
-                    <input type="hidden" value="" name="id"/> 
                     <div class="form-body">
                         <div class="form-group">
-                            <label class="control-label col-md-3">First Name</label>
+                            <label class="control-label col-md-3">Name</label>
                             <div class="col-md-9">
-                                <input name="firstName" placeholder="First Name" class="form-control" type="text">
+                                <input name="name" placeholder="Name" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Last Name</label>
+                            <label class="control-label col-md-3">E-mail</label>
                             <div class="col-md-9">
-                                <input name="lastName" placeholder="Last Name" class="form-control" type="text">
+                                <input name="email" placeholder="E-mail" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Gender</label>
+                            <label class="control-label col-md-3">Contact</label>
                             <div class="col-md-9">
-                                <select name="gender" class="form-control">
-                                    <option value="">--Select Gender--</option>
-                                    <option value="male">Male</option>
-                                    <option value="female">Female</option>
-                                </select>
+                                <input name="phone" placeholder="Contact" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
                             <label class="control-label col-md-3">Address</label>
                             <div class="col-md-9">
-                                <textarea name="address" placeholder="Address" class="form-control"></textarea>
+                                <input name="address" placeholder="Address" class="form-control" type="text">
                                 <span class="help-block"></span>
                             </div>
                         </div>
                         <div class="form-group">
-                            <label class="control-label col-md-3">Date of Birth</label>
+                            <label class="control-label col-md-3">Password</label>
                             <div class="col-md-9">
-                                <input name="dob" placeholder="yyyy-mm-dd" class="form-control datepicker" type="text">
+                                <input name="password" placeholder="Password" class="form-control" type="password">
                                 <span class="help-block"></span>
                             </div>
                         </div>

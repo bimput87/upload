@@ -7,12 +7,12 @@
 			<div class="user-panel">
 				<div class="pull-left image">
 					<?php
-						$p = ucfirst($this->session->userdata('first_name')); 
+						$p = ucfirst($this->session->userdata('name')); 
 					?>
 					<img src="<?php echo site_url().'public/assets/img/'.$p[0].'.png' ?>" class="img-circle" alt="User Image">
 				</div>
 				<div class="pull-left info">
-					<p><?php echo $this->session->userdata('first_name')." ".$this->session->userdata('last_name') ?></p>
+					<p><?php echo $this->session->userdata('name') ?></p>
 					<a href="#"><i class="fa fa-circle text-success"></i> Administrator</a>
 				</div>
 			</div>

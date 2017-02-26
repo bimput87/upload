@@ -11,8 +11,8 @@
 				?>
 
 				<h1>
-					Welcome
-					<small><?php echo $this->session->userdata('first_name') ?></small>
+					Assalamu'alaikum
+					<small><?php echo $this->session->userdata('name') ?></small>
 				</h1>
 				<ol class="breadcrumb">
 					<li><a href="<?php echo site_url() ?>administrator"><i class="fa fa-dashboard"></i> Home</a></li>

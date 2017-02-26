@@ -126,20 +126,23 @@
 			 
 			    //Ajax Load data from ajax
 			    $.ajax({
-			        url : "<?php echo site_url('administrator/ajax_edit/')?>/" + id,
+			        url : "<?php echo site_url('admin_controller/ajax_edit/')?>/" + id,
 			        type: "GET",
 			        dataType: "JSON",
 			        success: function(data)
 			        {
-			 
-			            $('[name="id"]').val(data.id);
-			            $('[name="firstName"]').val(data.firstName);
-			            $('[name="lastName"]').val(data.lastName);
-			            $('[name="gender"]').val(data.gender);
+			 			$('<input>').attr({
+						    type: 'hidden',
+						    name: 'id',
+						    value: id
+						}).appendTo('form');
+			            $('[name="name"]').val(data.name);
+			            $('[name="email"]').val(data.email);
+			            $('[name="phone"]').val(data.phone);
 			            $('[name="address"]').val(data.address);
-			            $('[name="dob"]').datepicker('update',data.dob);
+			            $('[name="password"]').val(data.password);
 			            $('#modal_form').modal('show'); // show bootstrap modal when complete loaded
-			            $('.modal-title').text('Edit Person'); // Set title to Bootstrap modal title
+			            $('.modal-title').text('Edit Admin'); // Set title to Bootstrap modal title
 			 
 			        },
 			        error: function (jqXHR, textStatus, errorThrown)
@@ -161,9 +164,9 @@
 			    var url;
 			 
 			    if(save_method == 'add') {
-			        url = "<?php echo site_url('administrator/ajax_add')?>";
+			        url = "<?php echo site_url('admin_controller/ajax_add/')?>";
 			    } else {
-			        url = "<?php echo site_url('administrator/ajax_update')?>";
+			        url = "<?php echo site_url('admin_controller/ajax_update/')?>";
 			    }
 			 
 			    // ajax adding data to database
@@ -202,7 +205,7 @@
 			    {
 			        // ajax delete data to database
 			        $.ajax({
-			            url : "<?php echo site_url('administrator/ajax_delete')?>/"+id,
+			            url : "<?php echo site_url('admin_controller/ajax_delete')?>/"+id,
 			            type: "POST",
 			            dataType: "JSON",
 			            success: function(data)
