@@ -11,6 +11,11 @@
                             $html .= $_SESSION['flash_messsage']; 
                             $html .= '</div>';
                             echo $html;
+                        }elseif(!empty($_SESSION['flash_messsage_success'])){
+                            $html = '<div class="alert bg-green">';
+                            $html .= $_SESSION['flash_messsage_success']; 
+                            $html .= '</div>';
+                            echo $html;
                         }
                     ?>
                     <div class="header">

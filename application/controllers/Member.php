@@ -104,14 +104,14 @@
 					$newpasswd = $this->security->xss_clean($this->input->post('newpasswd'));
 					$encrypt = $this->bcrypt->hash_password($newpasswd);
 					if ($this->mdl->password_update($id_user, $encrypt) > 0) {
-						$this->session->set_flashdata('flash_messsage', 'Update password success! | jelas sukses');
+						$this->session->set_flashdata('flash_messsage_success', 'Update password success!');
 						redirect(site_url().'member/profile');
 					}
 
-					$this->session->set_flashdata('flash_messsage', 'Update password failed! | sama db,gagal');
+					$this->session->set_flashdata('flash_messsage', 'Update password failed!');
 					redirect(site_url().'member/profile');
 				}else{
-					$this->session->set_flashdata('flash_messsage', 'Update password failed! | password beda');
+					$this->session->set_flashdata('flash_messsage', 'Update password failed!');
 					redirect(site_url().'member/profile');
 				}
 			}

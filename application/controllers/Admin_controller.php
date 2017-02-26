@@ -25,12 +25,20 @@
 			/*orders*/
 			$or_sum = $this->mdl->count('orders', '');
 			$completed = $this->mdl->count('orders', array('status' => 1));
-			$percent_completed =  ceil(($completed/$or_sum)*100);
+			if ($or_sum !== 0) {
+				$percent_completed =  ceil(($completed/$or_sum)*100);
+			}else{
+				$percent_completed = 0;
+			}
 
 			/*api*/
 			$api_sum = $this->mdl->count('api_keys', '');
 			$api_completed = $this->mdl->count('api_keys', array('active' => 1));
-			$api_perc = ceil(($api_completed/$api_sum)*100);
+			if ($api_sum !== 0) {
+				$api_perc = ceil(($api_completed/$api_sum)*100);
+			}else{
+				$api_perc = 0;
+			}
 
 			$data = array(
 				'title' 	=> 'Dasboard Admin',
