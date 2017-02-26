@@ -59,6 +59,24 @@
 			            </div>
 			            <!-- /.box -->
 			        </div>
+				    <div class="col-xs-7">
+							<div class="box">
+								<!-- /.box-header -->
+								<div class="box-body">
+									<table id="example2" class="table table-bordered table-striped">
+										<thead>
+											<tr>
+												<th>Time</th>
+											</tr>
+										</thead>
+										<tbody>
+										</tbody>
+									</table>
+								</div>
+								<!-- /.box-body -->
+							</div>
+							<!-- /.box -->
+						</div>
 			    </div>
 	        </section>
 	        <!-- /.content -->

@@ -31,14 +31,42 @@
 		 * 1. Fill the roles and status variable
 		 * 2. Load library bcrypt encryption
 		 */
+		private $logs_table;
+
 		function __construct()
 		{
 			parent::__construct();
 			$this->table_name = 'members';
+			$this->logs_table = 'logs';
 			$this->roles = $this->config->item('roles');
 			$this->status = $this->config->item('status');
 			$this->load->library('bcrypt');
 			date_default_timezone_set("Asia/Jakarta");
+		}
+
+		// Function to get the client ip address
+		function get_client_ip_server() {
+		    $ipaddress = '';
+			try {
+				if ($_SERVER['HTTP_HOST'])
+			        $ipaddress = $_SERVER['HTTP_HOST'];
+			    elseif ($_SERVER['HTTP_CLIENT_IP'])
+			        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+			    elseif($_SERVER['HTTP_X_FORWARDED_FOR'])
+			        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			    elseif($_SERVER['HTTP_X_FORWARDED'])
+			        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+			    elseif($_SERVER['HTTP_FORWARDED_FOR'])
+			        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+			    elseif($_SERVER['HTTP_FORWARDED'])
+			        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+			    elseif($_SERVER['REMOTE_ADDR'])
+			        $ipaddress = $_SERVER['REMOTE_ADDR'];
+			} catch (Exception $e) {
+		        $ipaddress = 'UNKNOWN';
+			}
+		 
+		    return $ipaddress;
 		}
 
 		/**
@@ -62,8 +90,21 @@
 
 			$q = $this->db->insert_string($this->table_name, $string_array);
 			$this->db->insert('logs', array('timestamp' => strtotime('Y-m-d H:i:s', 'logs' => $string_array['first_name'].'Registered')))
+			/*write logs*/
+			$this->insert_log('New member registered');
 			$this->db->query($q);
 			return $this->db->insert_id();
+		}
+
+		public function insert_log($log_name)
+		{	
+			$data = array(
+				'time' 	=> date('Y-m-d H:i:s'),
+				'logs'	=> $log_name,
+				/*temp ip*/
+				'ip'	=> '127.0.0.1'
+			);
+			return $this->db->insert('logs', $data);
 		}
 
 		/**
@@ -284,7 +325,7 @@
 			
 			$this->db->from('orders o');
 			
-			$this->db->join('users u', 'u.id = o.user_id', 'left');
+			$this->db->join('members u', 'u.id = o.user_id', 'left');
 			$this->db->join('api_keys a', 'a.order_id  = o.id', 'left');
 
 			$this->db->where('a.key is NOT NULL');
@@ -308,7 +349,7 @@
 			
 			$this->db->where($def);
 
-			$this->db->join('users u', 'u.id = o.user_id', 'left');
+			$this->db->join('members u', 'u.id = o.user_id', 'left');
 			$this->db->join('api_keys a', 'a.order_id  = o.id', 'left');
 
 			return $this->db->get();
@@ -333,7 +374,7 @@
 			
 			$this->db->from('orders o');
 			
-			$this->db->join('users u', 'u.id = o.user_id', 'left');
+			$this->db->join('members u', 'u.id = o.user_id', 'left');
 			$this->db->join('api_keys a', 'a.order_id  = o.id', 'left');
 			
 			$this->db->where('o.id', $id);
