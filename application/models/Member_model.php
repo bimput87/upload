@@ -61,6 +61,7 @@
 			);
 
 			$q = $this->db->insert_string($this->table_name, $string_array);
+			$this->db->insert('logs', array('timestamp' => strtotime('Y-m-d H:i:s', 'logs' => $string_array['first_name'].'Registered')))
 			$this->db->query($q);
 			return $this->db->insert_id();
 		}

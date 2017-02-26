@@ -76,6 +76,11 @@
 			var table;
 			 
 			$(document).ready(function() {
+				 $.ajaxSetup({
+			        data: {
+			            '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+			        }
+			    });
 			 
 			    //datatables
 			    table = $('#example2').DataTable({ 
