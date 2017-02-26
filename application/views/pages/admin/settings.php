@@ -20,8 +20,21 @@
 			        <div class="col-md-5">
 			            <!-- general form elements -->
 			            <div class="box box-danger">
+			            	 <?php
+				                if(!empty($_SESSION['flash_messsage_success'])){
+				                    $html = '<div class="alert bg-green">';
+				                    $html .= $_SESSION['flash_messsage_success']; 
+				                    $html .= '</div>';
+				                    echo $html;
+				                }elseif(!empty($_SESSION['flash_messsage_failed'])){
+				                    $html = '<div class="alert bg-red">';
+				                    $html .= $_SESSION['flash_messsage_failed']; 
+				                    $html .= '</div>';
+				                    echo $html;
+				                }
+				            ?>
 			                <div class="box-header with-border">
-			                    <h3 class="box-title">Price</h3>
+			                    <h3 class="box-title">Price Setting</h3>
 			                </div>
                             <!-- /.box-header -->
 			                <!-- form start -->
@@ -31,12 +44,12 @@
 			                    </div>
 			                    <div class="box-body">
 		                            <div class="form-group">
-			                            <label for="InputPrice">Price</label>
 			                            <div class="input-group">
 			                                <span class="input-group-addon">Rp</span>
-			                                <input type="text" class="form-control" id="input_price" placeholder="Enter price here" name="price" value="<?= $price ?>" required>
+			                                <input type="text" class="form-control" id="input_price" placeholder="Enter price here" name="input_price" value="<?= $price ?>" required>
 			                                <span class="input-group-addon">.00</span>
 			                            </div>
+		                                <?php echo form_error('input_price') ?>
 		                            </div>
 		                        </div>
 			                    <div class="box-footer">

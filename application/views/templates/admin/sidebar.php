@@ -40,12 +40,12 @@
 				</li>
 				<li class="treeview">
 					<a href="<?php echo site_url() ?>administrator/setting">
-						<i class="fa fa-gears"></i> <span>Setting</span>
+						<i class="fa fa-gears"></i> <span>Setting & Logs</span>
 					</a>
 				</li>
 				<li class="treeview">
 					<a href="<?php echo site_url() ?>administrator/admin">
-						<i class="fa fa-gears"></i> <span>Admin</span>
+						<i class="fa fa-user"></i> <span>Admin</span>
 					</a>
 				</li>
 		</section>

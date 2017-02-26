@@ -13,8 +13,11 @@
 				$_SESSION['flash_messsage'] = 'You are not allowed to access !';
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');
-			} 
+			}
+			$this->load->library('form_validation');
+			$this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible">', '</div>');
 			$this->load->model('admin_model', 'mdl', TRUE);
+			$this->load->model('admin_datatable_model', 'dttb', TRUE);
 		}
 
 		public function index()
@@ -131,12 +134,25 @@
 
 		public function setting()
 		{
-			$data = array(
-				'title'	=> 'Setting page',
-				'price'	=> $this->mdl->select_col('options', array('value'), '')->result_array()[0]['value']
-			);
+			$this->form_validation->set_rules('input_price', 'Input price', 'required|is_natural');
+			if($this->form_validation->run() == FALSE){
+				$data = array(
+					'title'	=> 'Setting page',
+					'price'	=> $this->mdl->select_col('options', array('value'), '')->result_array()[0]['value']
+				);
 
-			$this->page('settings', $data);
+				$this->page('settings', $data);
+			}else{
+				$price = $this->security->xss_clean($this->input->post('input_price'));
+				$update = $this->mdl->update_col('price', $price, 'options');
+				if ($update > 0) {
+					$this->session->set_flashdata('flash_messsage_success', 'Setting updated !');
+					redirect(site_url().'administrator/setting');
+				}else{
+					$this->session->set_flashdata('flash_messsage_failed', 'Failed update setting !');
+					redirect(site_url().'administrator/setting');
+				}
+			}
 		}
 
 		public function admin()
@@ -154,6 +170,78 @@
 	        $this->load->view('templates/admin/sidebar', $data);
 	        $this->load->view('pages/admin/'.$page, $data);
 	        $this->load->view('templates/admin/footer', $data);
+	    }
+
+
+	    /*AJAX for admin management*/
+	    public function ajax_list()
+	    {
+	        $list = $this->dttb->get_datatables();
+	        $data = array();
+	        $no = $_POST['start'];
+	        foreach ($list as $value) {
+	            $no++;
+	            $row = array();
+	            $row[] = $value->first_name." ".$value->last_name;
+	            $row[] = $value->email;
+	            $row[] = $value->phone;
+	            $row[] = $value->password;
+	 
+	            //add html for action
+	            $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$value->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+	                  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$value->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+	 
+	            $data[] = $row;
+	        }
+	 
+	        $output = array(
+	                        "draw" => $_POST['draw'],
+	                        "recordsTotal" => $this->dttb->count_all(),
+	                        "recordsFiltered" => $this->dttb->count_filtered(),
+	                        "data" => $data,
+	                );
+	        //output to json format
+	        echo json_encode($output);
+	    }
+	 
+	    public function ajax_edit($id)
+	    {
+	        $data = $this->dttb->get_by_id($id);
+	        echo json_encode($data);
+	    }
+	 
+	    public function ajax_add()
+	    {
+	    	$post = $this->security->xss_clean($this->input->post());
+	        // $data = array(
+	        //         'firstName' => $this->input->post('firstName'),
+	        //         'lastName' => $this->input->post('lastName'),
+	        //         'gender' => $this->input->post('gender'),
+	        //         'address' => $this->input->post('address'),
+	        //         'dob' => $this->input->post('dob'),
+	        //     );
+	        $insert = $this->dttb->save($data);
+	        echo json_encode(array("status" => TRUE));
+	    }
+	 
+	    public function ajax_update()
+	    {
+	    	$post = $this->security->xss_clean($this->input->post());
+	        // $data = array(
+	        //         'firstName' => $this->input->post('firstName'),
+	        //         'lastName' => $this->input->post('lastName'),
+	        //         'gender' => $this->input->post('gender'),
+	        //         'address' => $this->input->post('address'),
+	        //         'dob' => $this->input->post('dob'),
+	        //     );
+	        $this->dttb->update(array('id' => $post['id']), $post);
+	        echo json_encode(array("status" => TRUE));
+	    }
+	 
+	    public function ajax_delete($id)
+	    {
+	        $this->dttb->delete_by_id($id);
+	        echo json_encode(array("status" => TRUE));
 	    }
 
 		public function logout()

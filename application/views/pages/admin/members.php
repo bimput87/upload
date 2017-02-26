@@ -10,7 +10,7 @@
 					Members
 				</h1>
 				<ol class="breadcrumb">
-					<li><a href="<?php echo site_url() ?>members"><i class="fa fa-dashboard"></i> Home</a></li>
+					<li><a href="<?php echo site_url() ?>administrator"><i class="fa fa-dashboard"></i> Home</a></li>
 					<li class="active">Members</li>
 				</ol>
 			</section>
@@ -40,7 +40,7 @@
 											echo '<tr>'; 
 											for ($j=0; $j < sizeof($list_member[$i]); $j++) {
 												if($j == 0) 
-													echo '<td>USR-'.(($list_member[$i][$col_name[$j]])-1).'</td>';
+													echo '<td>USR-'.(($list_member[$i][$col_name[$j]])).'</td>';
 												elseif($j == 4)
 													echo '<td> <span class="bfh-countries" data-country="'.$list_member[$i][$col_name[$j]].'" data-flags="true"></span> </td>';
 												else
@@ -50,17 +50,6 @@
 										}
 										?>
 									</tbody>
-									<tfoot>
-										<tr>
-											<th>ID</th>
-											<th>Name</th>
-											<th>E-Mail</th>
-											<th>Contact</th>
-											<th>Country</th>
-											<th>City</th>
-											<th>Orders</th>
-										</tr>
-									</tfoot>
 								</table>
 							</div>
 							<!-- /.box-body -->

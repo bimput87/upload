@@ -106,6 +106,14 @@
 			return $this->db->get();
 		}
 
+		public function update_col($key, $value, $table)
+		{
+			$this->db->where('key', $key);
+			$this->db->update($table, array('value' => $value));
+
+			return $this->db->affected_rows();
+		}
+
 		public function show_orders($col, $table1, $table2, $table3, $on1, $on2, $type)
 		{
 			$this->db->select($col);
