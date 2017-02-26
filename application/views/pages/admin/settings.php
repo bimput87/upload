@@ -53,20 +53,26 @@
 		                            </div>
 		                        </div>
 			                    <div class="box-footer">
-			                        <button type="submit" class="btn btn-danger">Save</button>
+			                        <button type="submit" class="btn btn-success">Save</button>
 			                    </div>
 			                <?php echo form_close() ?>
 			            </div>
 			            <!-- /.box -->
 			        </div>
 				    <div class="col-xs-7">
-							<div class="box">
+							<div class="box box-danger">
+								 <div class="box-header">
+										<button type="button" onclick="clear_logs()" class="btn bg-red"><i class="fa fa-trash"></i> Clear all logs</button>
+					                    <h3 align="center" class="pull-right box-title">Logs</h3>
+					            </div>
 								<!-- /.box-header -->
 								<div class="box-body">
-									<table id="example2" class="table table-bordered table-striped">
+									<table id="logs" class="table table-bordered table-striped">
 										<thead>
 											<tr>
 												<th>Time</th>
+												<th>Logs</th>
+												<th>IP</th>
 											</tr>
 										</thead>
 										<tbody>

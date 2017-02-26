@@ -56,6 +56,44 @@
 		<?php
 	}
 
+	if($this->uri->segment(2) == 'orders'){
+		?>
+	<script type="text/javascript">
+		$(document).ready(function() {
+				 $.ajaxSetup({
+			        data: {
+			            '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+			        }
+			    });
+			 
+			    //datatables
+			    table = $('#data_order').DataTable({ 
+			 
+			        "processing": true, //Feature control the processing indicator.
+			        "serverSide": true, //Feature control DataTables' server-side processing mode.
+			        "order": [], //Initial no order.
+			 
+			        // Load data for the table's content from an Ajax source
+			        "ajax": {
+			            "url": "<?php echo site_url('admin_controller/ajax_list_orders')?>",
+			            "type": "POST"
+			        },
+			 
+			        //Set column definition initialisation properties.
+			        "columnDefs": [
+			        { 
+			            "targets": [ -1 ], //last column
+			            "orderable": false, //set not orderable
+			        }
+			        ]
+			 
+			    });
+			 
+			});
+	</script>
+		<?php
+	}
+
 	if ($this->uri->segment(2) == 'setting') {
         ?>
         <script type="text/javascript">
@@ -64,6 +102,75 @@
                 },
                 1000
             )
+        </script>
+
+        <script type="text/javascript">
+        	$(document).ready(function() {
+				 $.ajaxSetup({
+			        data: {
+			            '<?php echo $this->security->get_csrf_token_name(); ?>' : '<?php echo $this->security->get_csrf_hash(); ?>'
+			        }
+			    });
+			 
+			    //datatables
+			    table = $('#logs').DataTable({ 
+			 
+			        "processing": true, //Feature control the processing indicator.
+			        "serverSide": true, //Feature control DataTables' server-side processing mode.
+			        "order": [], //Initial no order.
+			 
+			        // Load data for the table's content from an Ajax source
+			        "ajax": {
+			            "url": "<?php echo site_url('admin_controller/ajax_list_logs/')?>",
+			            "type": "POST"
+			        },
+			 
+			        //Set column definition initialisation properties.
+			        "columnDefs": [
+			        { 
+			            "targets": [ -1 ], //last column
+			            "orderable": false, //set not orderable
+			        },
+			        ],
+			         "language": {
+				      "emptyTable": "No logs found"
+				    }
+			 
+			    });
+			 
+			});
+
+        	function reload_table()
+			{
+			    table.ajax.reload(null,false); //reload datatable ajax 
+			}
+
+			function clear_logs()
+			{
+			    if(confirm('Are you sure delete all log?'))
+			    {
+			        // ajax delete data to database
+			        $.ajax({
+			            url : "<?php echo site_url('admin_controller/ajax_delete_logs/')?>",
+			            type: "POST",
+			            dataType: "JSON",
+			            success: function(data)
+			            {
+			                //if success reload ajax table
+			                reload_table();
+			            },
+			            error: function (jqXHR, textStatus, errorThrown)
+			            {
+			                alert('Error deleting logs data');
+			            }
+			        });
+			 
+			    }
+			}
+
+			setInterval(function(){
+			    reload_table() // this will run after every 5 seconds
+			}, 60000);
         </script>
 
         <?php

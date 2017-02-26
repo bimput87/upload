@@ -94,10 +94,9 @@
 					<div class="box box-danger">
 						<!-- /.box-header -->
 						<div class="box-body">
-							<table id="example1" class="table table-bordered table-striped">
+							<table id="data_order" class="table table-bordered table-striped">
 								<thead>
 									<tr>
-										<th><input type="checkbox" class="flat-red all"></th>
 			                            <th>ID Order</th>
 			                            <th>Customers Name</th>
 			                            <th>Domain</th>
@@ -108,17 +107,6 @@
 			                            <th>Action</th>
 									</tr>
 								</thead>
-								<tbody>
-									<?php 
-										for ($i=0; $i < sizeof($data_order); $i++) { 
-											echo '<tr><td></td>';
-										 	for ($j=0; $j < sizeof($data_order[$i]); $j++) { 
-										 		echo '<td>'.$data_order[$i][$column[$j]].'</td>';
-										 	}
-											echo '<td></td></tr>';
-										 } 
-									?>
-								</tbody>
 							</table>
 						</div>
 						<!-- /.box-body -->

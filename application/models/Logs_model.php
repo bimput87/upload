@@ -1,18 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-class Admin_datatable_model extends CI_Model {
+class Logs_model extends CI_Model {
  
-    private $table = 'admins';
-    private $column_order = array('email', 'name','address','phone'); //set column field database for datatable orderable
-    private $column_search = array('email', 'name', 'address', 'phone'); //set column field database for datatable searchable just firstname , lastname , and email are searchable
-    private $order = array('id' => 'asc'); // default order 
+    private $table = 'logs';
+    private $column_order = array('time', 'logs'); //set column field database for datatable orderable
+    private $column_search = array('time', 'logs', 'ip'); //set column field database for datatable searchable just firstname , lastname , and email are searchable
+    private $order = array('time' => 'asc'); // default order 
  
     public function __construct()
     {
         parent::__construct();
     }
  
-
     private function _get_datatables_query()
     {
          
@@ -74,31 +73,9 @@ class Admin_datatable_model extends CI_Model {
         return $this->db->count_all_results();
     }
  
-    public function get_by_id($id)
+    public function delete_all()
     {
-        $this->db->from($this->table);
-        $this->db->where('id',$id);
-        $query = $this->db->get();
- 
-        return $query->row();
-    }
- 
-    public function save($data)
-    {
-        $this->db->insert($this->table, $data);
-        return $this->db->insert_id();
-    }
- 
-    public function update($where, $data)
-    {
-        $this->db->update($this->table, $data, $where);
-        return $this->db->affected_rows();
-    }
- 
-    public function delete_by_id($id)
-    {
-        $this->db->where('id', $id);
-        $this->db->delete($this->table);
+    	$this->db->empty_table($this->table);
     }
  
  

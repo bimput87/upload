@@ -20,6 +20,8 @@
 			$this->form_validation->set_error_delimiters('<div class="alert alert-danger alert-dismissible">', '</div>');
 			$this->load->model('admin_model', 'mdl', TRUE);
 			$this->load->model('admin_datatable_model', 'dttb', TRUE);
+			$this->load->model('logs_model', 'logmdl', TRUE);
+			$this->load->model('order_model', 'omdl', TRUE);
 		}
 
 		public function index()
@@ -241,7 +243,7 @@
 			$password = $post['password'];
 	    	unset($post['password']);
 	    	$post['password'] = $this->bcrypt->hash_password($password);
-	    	
+
 	        $this->dttb->update(array('id' => $post['id']), $post);
 	        echo json_encode(array("status" => TRUE));
 	    }
@@ -250,6 +252,71 @@
 	    {
 	        $this->dttb->delete_by_id($id);
 	        echo json_encode(array("status" => TRUE));
+	    }
+
+	    public function ajax_list_logs()
+	    {
+	    	$list = $this->logmdl->get_datatables();
+	        $data = array();
+	        $no = $_POST['start'];
+	        foreach ($list as $value) {
+	            $no++;
+	            $row = array();
+	            $row[] = $value->time;
+	            $row[] = $value->logs;
+	            $row[] = $value->ip;
+	 
+	            $data[] = $row;
+	        }
+	 
+	        $output = array(
+	                        "draw" => $_POST['draw'],
+	                        "recordsTotal" => $this->logmdl->count_all(),
+	                        "recordsFiltered" => $this->logmdl->count_filtered(),
+	                        "data" => $data,
+	                );
+	        //output to json format
+	        echo json_encode($output);
+	    }
+
+	    public function ajax_delete_logs()
+	    {
+	        $this->logmdl->delete_all();
+	        echo json_encode(array("status" => TRUE));
+	    }
+
+	    public function ajax_list_orders()
+	    {
+	    	$list = $this->omdl->get_datatables();
+	        $data = array();
+	        $no = $_POST['start'];
+	        foreach ($list as $value) {
+	            $no++;
+	            $row = array();
+	            $row[] = 'ORD -'.$value->order_id;
+	            $row[] = $value->name;
+	            $row[] = $value->domain;
+	            $row[] = $value->api_key;
+	            $row[] = $value->date;
+	            $row[] = $value->price;
+	            $val = $value->status;
+	 			if($val == 1)
+	 				$row[] = '<td><span class="label label-success">Verified</span></td>';
+	 			elseif($val == 0)
+	 				$row[] = '<td><span class="label label-warning">Pending</span></td>';
+	            $row[] = 'hehe';
+	 
+	            $data[] = $row;
+	        }
+	 
+	        $output = array(
+                "draw" => $_POST['draw'],
+                "recordsTotal" => $this->omdl->count_all(),
+                "recordsFiltered" => $this->omdl->count_filtered(),
+                "data" => $data
+        );
+	        //output to json format
+	        echo json_encode($output);
 	    }
 
 		public function logout()

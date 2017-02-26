@@ -95,8 +95,18 @@
 			                        	<?php
 			                        		for ($i=0; $i < sizeof($data); $i++) { 
 			                        			echo '<tr>';
-			                        			for ($j=0; $j < sizeof($data[$i]); $j++) { 
-			                        				echo '<td>'.$data[$i][$col[$j]].'</td>';
+			                        			for ($j=0; $j < sizeof($data[$i]); $j++) {
+			                        				if($j == 0)
+				                        				echo '<td> ORD-'.$data[$i][$col[$j]].'</td>';
+			                        				elseif ($j == 4){
+			                        					$val = $data[$i][$col[$j]];
+			                        					if($val == 1)
+											 				echo '<td><span class="label label-success">Activated</span></td>';
+											 			elseif($val == 0)
+											 				echo '<td><span class="label label-danger">Non-Activated</span></td>';
+			                        				} 
+			                        				else 
+				                        				echo '<td>'.$data[$i][$col[$j]].'</td>';
 			                        			}
 			                        			echo '</tr>';
 			                        		}

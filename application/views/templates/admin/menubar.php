@@ -19,6 +19,7 @@
         <ul class="nav navbar-nav">
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <i class="ion ion-person"></i>
               <span class="hidden-xs"><?php echo $this->session->userdata('name') ?></span>
             </a>
             <ul class="dropdown-menu">

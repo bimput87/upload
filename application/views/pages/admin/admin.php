@@ -29,7 +29,7 @@
 								<table id="example2" class="table table-bordered table-striped">
 									<thead>
 										<tr>
-											<th>ID</th>
+											<th>Id</th>
 											<th>Name</th>
 											<th>E-Mail</th>
 											<th>Contact</th>
