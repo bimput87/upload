@@ -101,7 +101,7 @@
 				'time' 	=> date('Y-m-d H:i:s'),
 				'logs'	=> $log_name,
 				/*temp ip*/
-				'ip'	=> '127.0.0.1'
+				'ip'	=> gethostbyname($this->get_client_ip_server())
 			);
 			return $this->db->insert('logs', $data);
 		}
@@ -188,7 +188,7 @@
 			$date = date('Y-m-d');
 
 			$string_array = array(
-				'token' 		=> $token,
+				'token' 	=> $token,
 				'user_id'	=> $user_id,
 				'created'	=> $date
 			);
@@ -253,8 +253,9 @@
 			}
 			
 			$this->update_login_time($user_info->id);
-
 			unset($user_info->password);
+
+			$this->insert_log($post['email'].' logged in');
 
 			return $user_info;
 		}
