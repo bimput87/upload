@@ -36,6 +36,7 @@
 			$this->update_login_time($user_info->id);
 
 			unset($user_info->password);
+			$this->insert_log('Admin '.$post['email'].' logged in ');
 
 			return $user_info;
 		}
@@ -125,5 +126,41 @@
 			$this->db->join($table3, $on2, $type);
 
 			return $this->db->get();
+		}
+
+		public function insert_log($log_name)
+		{	
+			$data = array(
+				'time' 	=> date('Y-m-d H:i:s'),
+				'logs'	=> $log_name,
+				/*temp ip*/
+				'ip'	=> gethostbyname($this->get_client_ip_server())
+			);
+			return $this->db->insert('logs', $data);
+		}
+
+		// Function to get the client ip address
+		function get_client_ip_server() {
+		    $ipaddress = '';
+			try {
+				if ($_SERVER['HTTP_HOST'])
+			        $ipaddress = $_SERVER['HTTP_HOST'];
+			    elseif ($_SERVER['HTTP_CLIENT_IP'])
+			        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+			    elseif($_SERVER['HTTP_X_FORWARDED_FOR'])
+			        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+			    elseif($_SERVER['HTTP_X_FORWARDED'])
+			        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+			    elseif($_SERVER['HTTP_FORWARDED_FOR'])
+			        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+			    elseif($_SERVER['HTTP_FORWARDED'])
+			        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+			    elseif($_SERVER['REMOTE_ADDR'])
+			        $ipaddress = $_SERVER['REMOTE_ADDR'];
+			} catch (Exception $e) {
+		        $ipaddress = 'UNKNOWN';
+			}
+		 
+		    return $ipaddress;
 		}
 	}

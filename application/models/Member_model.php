@@ -357,6 +357,7 @@
 
 		public function add_order($post)
 		{
+			$this->insert_log('USR - '.$post['user_id'].' Order API for '.$post['domain']);
 			$this->db->insert('orders', $post);
 			return $this->db->insert_id();
 		}
