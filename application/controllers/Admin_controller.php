@@ -10,7 +10,7 @@
 		function __construct()
 		{
 			parent::__construct();
-			if ($this->session->userdata('role') != 'admin'){
+			if ($this->session->userdata('session_admin') != 'true'){
 				$_SESSION['flash_messsage'] = 'You are not allowed to access !';
 				$this->session->mark_as_temp('flash_messsage', 1);
 				redirect('/');

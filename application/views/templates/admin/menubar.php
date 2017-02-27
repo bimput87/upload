@@ -20,17 +20,17 @@
           <li class="dropdown user user-menu">
             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
               <i class="ion ion-person"></i>
-              <span class="hidden-xs"><?php echo $this->session->userdata('name') ?></span>
+              <span class="hidden-xs"><?php echo $this->session->userdata('name_admin') ?></span>
             </a>
             <ul class="dropdown-menu">
               <li class="user-header">
                 <?php
-                  $p = ucfirst($this->session->userdata('name')); 
+                  $p = ucfirst($this->session->userdata('name_admin')); 
                 ?>
                 <img class="img-circle" src="<?php echo site_url().'public/assets/img/'.$p[0].'.png' ?>" class="img-circle" alt="User Image">
                 <p>
-                  <?php echo $this->session->userdata('name'); ?>
-                  <small><?php echo $this->session->userdata('email') ?></small>
+                  <?php echo $this->session->userdata('name_admin'); ?>
+                  <small><?php echo $this->session->userdata('email_admin') ?></small>
                 </p>
               </li>
               <!-- Menu Footer-->

@@ -36,7 +36,7 @@
 		 */
 		public function index()
 		{
-			if ((!empty($this->session->userdata('email')) || $this->session->userdata('rememberme') == 'on') && $this->session->userdata('role') == 'member')
+			if ($this->session->userdata('rememberme') == 'on' || $this->session->userdata('session_member') == 'true')
 				redirect('member');
 			else
 				$this->do_login();	
@@ -82,6 +82,7 @@
 				if(!empty($clean['rememberme']) && $clean['rememberme'] == 'on')
 					$this->session->set_userdata('rememberme', 'on');
 
+				$this->session->set_userdata('session_member', 'true');
 				redirect('member');
 			}
 		}

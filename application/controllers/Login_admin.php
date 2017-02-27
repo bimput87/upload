@@ -15,7 +15,7 @@
 
 		public function index()
 		{
-			if ($this->session->userdata('role') == 'admin')
+			if ($this->session->userdata('session_admin') == 'true')
 				redirect(site_url().'administrator');
 			else
 				$this->do_login();	
@@ -28,7 +28,6 @@
 		 */
 		public function do_login()
 		{
-			
 			$this->form_validation->set_rules('email', 'Email', 'required|valid_email');
 			$this->form_validation->set_rules('password', 'Password', 'required');
 
@@ -46,7 +45,9 @@
 				}
 
 				foreach ($user_info as $key => $value) 
-					$this->session->set_userdata($key, $value);
+					$this->session->set_userdata($key.'_admin', $value);
+
+				$this->session->set_userdata('session_admin', 'true');
 
 				redirect(site_url().'administrator');
 			}
