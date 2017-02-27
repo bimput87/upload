@@ -30,16 +30,6 @@
 	 									<th>Status</th>
 	 								</tr>
 	 							</thead>
-	 							<tfoot>
-	 								<tr>
-	 									<th>Id Order</th>
-	 									<th>Domain</th>
-	 									<th>API Key</th>
-	 									<th>Date</th>
-	 									<th>Price</th>
-	 									<th>Status</th>
-	 								</tr>
-	 							</tfoot>
 	 							<tbody>
 							 <!--    <?php  
 											for ($i=0; $i < sizeof($hasil2); $i++) {
@@ -120,17 +110,6 @@
 										}
 										?>
 									</tbody>
-									<tfoot>
-										<tr>
-											<th>Id Order</th>
-											<th>Owner</th>
-											<th>Domain</th>
-											<th>API Key</th>
-											<th>Last Used</th>
-											<th>Last IP</th>
-											<th>Status</th>
-										</tr>
-									</tfoot>
 								</table>
 							</div>
 						</div>

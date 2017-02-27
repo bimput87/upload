@@ -11,7 +11,7 @@
              <div class="row">
                   <div class="col-xs-12" align="center">
                     <h2 class="page-header">
-                      <i class="ion-android-globe"></i> UBIG.CO.ID.
+                      <i class="ion-android-globe"></i> UBIG.CO.ID
                       <small class="pull-right">Date: <?= date('d-m-Y') ?></small>
                     </h2>
                   </div>
