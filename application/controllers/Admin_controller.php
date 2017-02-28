@@ -304,7 +304,7 @@
 	 				$row[] = '<td><span class="label label-success">Verified</span></td>';
 	 			elseif($val == 0)
 	 				$row[] = '<td><span class="label label-warning">Pending</span></td>';
-	            $row[] = 'hehe';
+	            $row[] = 'action';
 	 
 	            $data[] = $row;
 	        }

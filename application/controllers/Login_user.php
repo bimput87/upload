@@ -169,8 +169,8 @@
            	$config['smtp_host']    = 'smtp.gmail.com';
            	$config['smtp_port']    = '465';
            	$config['smtp_timeout'] = '7';
-           	$config['smtp_user']    = 'rezapahlevi056@gmail.com';
-           	$config['smtp_pass']    = '@reza2707#';
+           	$config['smtp_user']    = 'mailuser';
+           	$config['smtp_pass']    = 'mailpassword#';
            	$config['charset']    	= 'utf-8';
            	$config['smtp_crypto'] 	= 'ssl';
            	$config['newline']    	= "\r\n";
